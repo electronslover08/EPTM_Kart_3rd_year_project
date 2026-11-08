@@ -63,7 +63,7 @@ Toute contribution passe par une **pull request** :
 2. Fais tes modifications **dans le dossier de l'année en cours**.
 3. Ouvre une pull request en expliquant ce que tu as changé, pourquoi, et comment tu l'as testé.
 
-Pour signaler un problème ou proposer une idée, ouvre une [issue](https://github.com/electronslover08/EPTM_Kart_3rd_year_project/issues/new/choose). L'accès administrateur est réservé aux élèves de l'école : tout est expliqué dans le [guide de contribution](CONTRIBUTING.md).
+Pour signaler un problème ou proposer une idée, ouvre une [issue](https://github.com/electronslover08/EPTM_Kart_3rd_year_project/issues/new/choose). L'accès administrateur est réservé aux élèves de l'école : fais ta demande avec le [formulaire de demande d'accès](https://forms.cloud.microsoft/r/6yDiL06M1y). Tout est expliqué dans le [guide de contribution](CONTRIBUTING.md).
 
 ## ⚠️ Sécurité
 
