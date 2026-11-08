@@ -1,1 +1,5 @@
 blank_issues_enabled: false
+contact_links:
+  - name: 🔑 Demander un accès administrateur
+    url: https://forms.cloud.microsoft/r/6yDiL06M1y
+    about: Réservé aux élèves de l'école. Formulaire privé, tes informations ne sont pas publiées.

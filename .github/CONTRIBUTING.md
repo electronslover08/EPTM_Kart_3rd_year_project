@@ -58,11 +58,17 @@ Pour les fichiers matériels (schémas, KiCad, Fusion), la licence CERN-OHL-P de
 
 L'accès administrateur au dépôt est réservé aux **élèves de l'école**.
 
-1. Ouvre une **issue** avec le modèle « Demande d'accès administrateur ».
-2. Ta demande doit permettre de **prouver que tu es bien élève de l'école**. La preuve attendue te sera précisée en réponse à ton issue.
-3. **Si l'appartenance à l'école ne peut pas être prouvée, l'accès sera refusé.**
+👉 **Remplis le [formulaire de demande d'accès](https://forms.cloud.microsoft/r/6yDiL06M1y).**
 
-Les issues sont publiques : n'y publie aucun document personnel (pièce d'identité, carte d'élève, etc.).
+Tu devras y indiquer :
+- ton prénom et ton nom ;
+- ton adresse e-mail scolaire (@edu.vs.ch) ;
+- le prénom et le nom du professeur responsable de ton projet ;
+- ton nom d'utilisateur GitHub.
+
+Ces informations ne sont pas publiées : seul le responsable du dépôt les voit. Elles servent uniquement à vérifier que tu es bien élève de l'école. **Si cette vérification n'est pas possible, l'accès sera refusé.** Si elle aboutit, tu recevras une invitation GitHub par e-mail pour rejoindre le dépôt.
+
+N'ouvre pas d'issue pour demander un accès : les issues sont publiques.
 
 ## Licences
 
