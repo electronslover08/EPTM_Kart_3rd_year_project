@@ -1,0 +1,24 @@
+# Fichiers temporaires à ne pas publier dans le dépôt
+
+# --- KiCad ---
+# sauvegardes automatiques et fichiers de verrouillage
+*-backups/
+_autosave-*
+\#auto_saved_files\#
+~*.lck
+*.lck
+*.bak
+*-bak
+*-cache.lib
+fp-info-cache
+# réglages locaux propres à chaque poste (affichage, calques visibles…)
+*.kicad_prl
+
+# --- Word / Office ---
+# fichiers de verrouillage créés pendant l'édition d'un document
+~$*
+
+# --- Systèmes d'exploitation ---
+Thumbs.db
+desktop.ini
+.DS_Store
