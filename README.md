@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/projet-3e%20ann%C3%A9e%20EPTM-1F3A5F?style=for-the-badge" alt="Projet de 3e année EPTM">
+  <a href="https://eptm.ch"><img src="https://img.shields.io/badge/projet-3e%20ann%C3%A9e%20EPTM-1F3A5F?style=for-the-badge" alt="Projet de 3e année EPTM"></a>
   <img src="https://img.shields.io/badge/acc%C3%A8s-libre-E8542F?style=for-the-badge" alt="Accès libre">
   <a href="CONTRIBUTING.md"><img src="https://img.shields.io/badge/PR-bienvenues-2E6B2A?style=for-the-badge" alt="Pull requests bienvenues"></a>
 </p>
@@ -14,11 +14,19 @@
   <a href="LICENSES/CC-BY-4.0.txt"><img src="https://img.shields.io/badge/documentation-CC%20BY%204.0-E8542F" alt="Documentation : CC BY 4.0"></a>
 </p>
 
+<p align="center">
+  <b><a href="https://eptm.ch">🌐 Site de l'EPTM</a></b>
+  &nbsp;·&nbsp;
+  <b><a href="documentation/">📚 Documentation</a></b>
+  &nbsp;·&nbsp;
+  <b><a href="CONTRIBUTING.md">🤝 Contribuer</a></b>
+</p>
+
 ---
 
 ## 🏁 Le projet
 
-Le kart électrique de l'école est un projet de 3e année repris par les élèves d'une volée à l'autre. Chacun y apporte sa pierre : électronique, mécanique, logiciel ou documentation.
+Le kart électrique de l'[EPTM](https://eptm.ch) est un projet de 3e année repris par les élèves d'une volée à l'autre. Chacun y apporte sa pierre : électronique, mécanique, logiciel ou documentation.
 
 Ce dépôt rassemble ce travail **en accès libre**, pour que chaque nouvel élève puisse partir d'une base documentée, comprendre ce qui a déjà été fait et continuer à améliorer le kart, au lieu de tout redécouvrir.
 
@@ -70,5 +78,6 @@ Détails dans [LICENSE.md](LICENSE.md).
 ---
 
 <p align="center">
-  🏎️ <i>Un projet des élèves de l'EPTM, d'une volée à l'autre.</i>
+  🏎️ <i>Un projet des élèves de l'<a href="https://eptm.ch">EPTM</a>, d'une volée à l'autre.</i><br>
+  <a href="https://eptm.ch"><b>🌐 eptm.ch</b></a>
 </p>
