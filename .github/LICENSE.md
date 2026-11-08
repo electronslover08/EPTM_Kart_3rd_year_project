@@ -2,7 +2,7 @@
 
 Copyright (c) 2026 Nathanaël Bachelard
 
-Ce projet est publié en accès libre pour que les futurs élèves puissent le reprendre, le modifier et l'améliorer. Chaque type de contenu est couvert par la licence la plus adaptée :
+Ce projet est publié en accès libre pour que les futurs élèves puissent le reprendre, le modifier et l'améliorer. Les licences s'appliquent à tous les dossiers d'année (`nom_AAAA_AAAA/`). Chaque type de contenu est couvert par la licence la plus adaptée :
 
 | Contenu | Licence | Texte complet |
 |---|---|---|
