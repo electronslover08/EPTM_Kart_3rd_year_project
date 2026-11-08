@@ -1,7 +1,8 @@
 ---
-name: Demande d'accès administrateur
+name: 🔑 Demande d'accès administrateur
 about: Demander un accès administrateur au dépôt (réservé aux élèves de l'école)
 title: "Demande d'accès administrateur : [ton nom]"
+labels: ["accès-admin"]
 ---
 
 **Nom et prénom :**
