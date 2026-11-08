@@ -1,0 +1,38 @@
+name: 🐞 Signaler un problème
+description: Quelque chose ne fonctionne pas comme prévu (kart, électronique, code, documentation)
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: domaine
+    attributes:
+      label: Domaine concerné
+      options:
+        - Électronique
+        - Mécanique
+        - Logiciel
+        - Documentation
+        - Autre
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description du problème
+      description: Qu'est-ce qui ne fonctionne pas ?
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Comment reproduire le problème
+      placeholder: "1. …\n2. …\n3. …"
+  - type: textarea
+    id: attendu
+    attributes:
+      label: Comportement attendu
+  - type: checkboxes
+    id: securite
+    attributes:
+      label: Sécurité
+      options:
+        - label: Ce problème touche à la sécurité (batteries, freinage, alimentation…)
