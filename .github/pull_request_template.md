@@ -12,5 +12,6 @@
 
 ## Vérifications
 
+- [ ] Mes modifications sont dans le dossier de l'année en cours (`nom_AAAA_AAAA`), ou la modification d'une archive est expliquée ci-dessus
 - [ ] Les fichiers matériels modifiés (KiCad, Fusion) indiquent la date et une brève description du changement (licence CERN-OHL-P)
 - [ ] La modification ne touche pas à la sécurité, ou ses effets sur la sécurité sont décrits ci-dessus
