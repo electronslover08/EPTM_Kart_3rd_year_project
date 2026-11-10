@@ -14,6 +14,6 @@ Ce projet est publié en accès libre pour que les futurs élèves puissent le r
 
 - Tu peux **utiliser, copier, modifier et redistribuer** tout le contenu de ce dépôt.
 - Tu dois **conserver la mention de l'auteur** et indiquer la licence. Pour le matériel (CERN-OHL-P), tu dois aussi signaler tes modifications, avec leur date et une brève description.
-- Le contenu est fourni **« tel quel », sans aucune garantie**. L'auteur ne peut pas être tenu responsable de l'utilisation qui en est faite. Le kart est un véhicule électrique alimenté par des batteries lithium : toute reproduction ou modification se fait sous ta propre responsabilité.
+- Le contenu est fourni **« tel quel », sans aucune garantie**. L'auteur ne peut pas être tenu responsable de l'utilisation qui en est faite. Le kart est un véhicule électrique alimenté par des batteries : toute reproduction ou modification se fait sous ta propre responsabilité.
 
 Ce résumé ne remplace pas les textes des licences, qui seuls font foi.
