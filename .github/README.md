@@ -30,13 +30,15 @@ Le kart électrique de l'[EPTM](https://eptm.ch) est un projet de 3e année repr
 
 Ce dépôt rassemble ce travail **en accès libre**, pour que chaque nouvel élève puisse partir d'une base documentée, comprendre ce qui a déjà été fait et continuer à améliorer le kart, au lieu de tout redécouvrir.
 
+**En 2026–2027**, le projet porte sur le **pilotage à distance** du kart : radiocommande, PCB de commande, motorisation de la direction et nouveaux freins, avec le pilotage manuel conservé. Détails dans le [cahier des charges](https://github.com/electronslover08/EPTM_Kart_3rd_year_project/blob/main/bachelard_2026_2027/documentation/cahier_des_charges/Cahier_des_charges_kart_Bachelard_v2.pdf).
+
 ## 📚 Projets par année
 
 Chaque année, l'élève responsable du projet crée **son propre dossier** à partir d'une copie du dossier de l'année précédente, puis le fait évoluer. Les dossiers des années passées restent consultables comme archives.
 
 | Année scolaire | Élève responsable | Sujet | Dossier |
 |---|---|---|---|
-| 2026–2027 | Nathanaël Bachelard | Rénovation physique et électronique | [`bachelard_2026_2027`](https://github.com/electronslover08/EPTM_Kart_3rd_year_project/tree/main/bachelard_2026_2027) |
+| 2026–2027 | Nathanaël Bachelard | Pilotage à distance | [`bachelard_2026_2027`](https://github.com/electronslover08/EPTM_Kart_3rd_year_project/tree/main/bachelard_2026_2027) |
 
 > Tu reprends le projet ? Le [guide de contribution](CONTRIBUTING.md) explique comment créer ton dossier.
 
@@ -68,7 +70,7 @@ Pour signaler un problème ou proposer une idée, ouvre une [issue](https://gith
 ## ⚠️ Sécurité
 
 > [!WARNING]
-> Le kart est un véhicule électrique alimenté par des batteries. Le contenu de ce dépôt est fourni **« tel quel », sans garantie** : toute reproduction ou modification se fait sous ta propre responsabilité.
+> Le kart est un véhicule électrique alimenté par des batteries et **pilotable à distance**. Toute modification du pilotage à distance se teste d'abord **kart sur cales (roues levées)**, avec l'arrêt d'urgence à portée de main. Le contenu de ce dépôt est fourni **« tel quel », sans garantie** : toute reproduction ou modification se fait sous ta propre responsabilité.
 
 ## 📜 Licences
 
