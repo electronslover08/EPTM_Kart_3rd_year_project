@@ -21,7 +21,7 @@ radiocommande ──► récepteur ──► PCB de commande ──► accélér
 Le moteur est conservé. Les freins, actuellement dangereux, sont changés, et les pneus remplacés.
 
 > [!NOTE]
-> La **version 1** du cahier des charges proposait de rénover le kart avant de le télécommander. Après discussion avec le professeur, le projet a été réorienté sur le pilotage à distance (version 2). Les deux versions sont conservées pour garder la trace de ce choix.
+> **L'idée a changé en cours de route.** Mon idée de départ était de télécommander le kart. Après l'avoir examiné aux portes ouvertes, j'ai d'abord proposé de le rénover avant tout (cahier des charges **version 1**). Après discussion avec le professeur, le projet **revient finalement en partie à l'idée de départ** : le pilotage à distance, avec seulement les remises en état qu'il exige (cahier des charges **version 2**). Les deux versions sont conservées pour garder la trace de ce choix.
 
 ## Contenu du dossier
 

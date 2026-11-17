@@ -34,7 +34,9 @@ Ce dépôt rassemble ce travail **en accès libre**, pour que chaque nouvel él�
 
 ## 📚 Projets par année
 
-Chaque année, l'élève responsable du projet crée **son propre dossier** à partir d'une copie du dossier de l'année précédente, puis le fait évoluer. Les dossiers des années passées restent consultables comme archives.
+Chaque année, l'élève responsable du projet crée **son propre dossier** à partir du [dossier modèle](https://github.com/electronslover08/EPTM_Kart_3rd_year_project/tree/main/_modele_nom_AAAA_AAAA), y reprend les fichiers de l'année précédente qu'il continue, puis le fait évoluer. Les dossiers des années passées restent consultables comme archives.
+
+Les projets réalisés **avant la création de ce dépôt** sont documentés dans [`_documentation_avant_2026`](https://github.com/electronslover08/EPTM_Kart_3rd_year_project/tree/main/_documentation_avant_2026).
 
 | Année scolaire | Élève responsable | Sujet | Dossier |
 |---|---|---|---|
@@ -46,15 +48,17 @@ Chaque année, l'élève responsable du projet crée **son propre dossier** à p
 
 ```
 EPTM_Kart_3rd_year_project/
-├── bachelard_2026_2027/   Projet 2026–2027
-│   ├── assets/            Images du projet
-│   ├── documentation/     Cahier des charges, rapports, notices
-│   ├── electronique/      Schémas et PCB (KiCad)
-│   ├── logiciel/          Code et firmware
-│   └── mecanique/         Modèles 3D et pièces (Fusion)
-├── nom_AAAA_AAAA/         Projet de l'année suivante, et ainsi de suite
-└── .github/               Fonctionnement du dépôt : README, contribution,
-                           licences, modèles d'issues et de pull requests
+├── _documentation_avant_2026/  Documentation des projets antérieurs au dépôt
+├── _modele_nom_AAAA_AAAA/      Dossier modèle vide, à copier chaque année
+├── bachelard_2026_2027/        Projet 2026–2027
+│   ├── assets/                 Images du projet
+│   ├── documentation/          Cahier des charges, rapports, notices
+│   ├── electronique/           Schémas et PCB (KiCad)
+│   ├── logiciel/               Code et firmware
+│   └── mecanique/              Modèles 3D et pièces (Fusion)
+├── nom_AAAA_AAAA/              Projet de l'année suivante, et ainsi de suite
+└── .github/                    Fonctionnement du dépôt : README, contribution,
+                                licences, modèles d'issues et de pull requests
 ```
 
 ## 🤝 Contribuer

@@ -25,19 +25,33 @@ Chaque dossier d'année contient toujours les mêmes sous-dossiers :
 
 Le dossier `.github/` contient le fonctionnement du dépôt (README, ce guide, licences, modèles d'issues et de pull requests). Il est commun à toutes les années.
 
+Deux dossiers spéciaux, préfixés par `_`, s'affichent en tête du dépôt :
+
+| Dossier | Rôle |
+|---|---|
+| `_modele_nom_AAAA_AAAA/` | Dossier **modèle vide** : la structure à copier chaque année. On n'y travaille jamais directement. |
+| `_documentation_avant_2026/` | Documentation des projets réalisés **avant la création du dépôt** (rapports, schémas, photos…). Lis son README avant d'y ajouter un document : les droits d'auteur doivent être vérifiés. |
+
 ## Reprendre le projet (élève responsable)
 
-Au début de ton année, crée ton dossier à partir du **dossier le plus récent**. Ainsi, tu pars de la dernière version de tous les fichiers.
+Au début de ton année, crée ton dossier à partir du **dossier modèle**, puis reprends-y les fichiers de l'année précédente que tu continues. Ainsi, tu pars d'une structure propre et de la dernière version des fichiers techniques.
 
 1. **Nomme ton dossier** `nom_AAAA_AAAA` : ton nom de famille en minuscules, sans accents ni espaces, puis l'année scolaire. Par exemple, `dupont_2027_2028`.
-2. **Copie le dossier le plus récent** sous ce nouveau nom, dans une nouvelle branche :
+2. **Copie le dossier modèle** sous ce nouveau nom, dans une nouvelle branche :
    ```bash
    git checkout -b reprise-dupont-2027-2028
-   cp -r bachelard_2026_2027 dupont_2027_2028
+   cp -r _modele_nom_AAAA_AAAA dupont_2027_2028
    ```
-3. **Mets à jour le `README.md` de ton dossier** : élève responsable, année scolaire, sujet et lien vers ton cahier des charges.
-4. **Ajoute ta ligne** au tableau « Projets par année » du fichier `.github/README.md`.
-5. **Ouvre une pull request** avec ces changements.
+3. **Reprends les fichiers techniques** du dossier le plus récent que tu vas continuer (KiCad, Fusion, code), par exemple :
+   ```bash
+   cp -r bachelard_2026_2027/electronique/. dupont_2027_2028/electronique/
+   ```
+   Ne recopie pas la documentation de l'année précédente (cahier des charges, rapports) : elle reste dans son dossier, qui sert d'archive.
+4. **Remplis le `README.md` de ton dossier** (tous les `…`) : élève responsable, année scolaire, professeur, sujet, dossier repris et lien vers ton cahier des charges. Supprime l'encadré « dossier modèle ».
+5. **Ajoute ta ligne** au tableau « Projets par année » du fichier `.github/README.md`.
+6. **Ouvre une pull request** avec ces changements.
+
+Si tu améliores la structure commune (un nouveau sous-dossier utile chaque année, par exemple), mets aussi à jour le dossier modèle dans la même pull request.
 
 Pendant ton année, tu travailles **uniquement dans ton dossier**. Les dossiers des années précédentes sont des archives : on n'y touche que pour corriger une erreur, et en l'expliquant dans la PR.
 
