@@ -1,0 +1,66 @@
+Circuit: * N:\11_Karting_Projet\Karting\BatterieFaible\BatterieFaibleSimul.asc
+
+Direct Newton iteration failed to find .op point.  (Use ".option noopiter" to skip.)
+Starting Gmin stepping
+Gmin = 10
+Gmin = 1.07374
+Gmin = 0.115292
+Gmin = 0.0123794
+Gmin = 0.00132923
+vernier = 0.5
+Gmin = 0.000247786
+vernier = 0.25
+vernier = 0.333333
+Gmin = 0.000133464
+vernier = 0.444444
+Gmin = 5.28162e-005
+vernier = 0.592592
+vernier = 0.790123
+Gmin = 1.20827e-005
+vernier = 1
+Gmin = 1.47548e-006
+vernier = 0.5
+vernier = 0.25
+vernier = 0.125
+vernier = 0.0625
+vernier = 0.03125
+vernier = 0.015625
+vernier = 0.0078125
+vernier = 0.00390625
+vernier = 0.00195313
+Gmin = 1.84435e-006
+vernier = 0.000976563
+vernier = 0.000488281
+Gmin = 0
+Gmin stepping failed
+
+Starting source stepping with srcstepmethod=0
+Source Step = 3.0303%
+vernier = 0.25
+Source Step = 0.0177557%
+Starting source stepping with srcstepmethod=1
+Source Step = 3.0303%
+vernier = 0.25
+Source stepping failed
+
+Pseudo Transient succeeded in finding the operating point.
+
+Date: Fri Dec 16 09:42:50 2016
+Total elapsed time: 1.633 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 25814
+traniter = 17322
+tranpoints = 6578
+accept = 4884
+rejected = 1783
+matrix size = 37
+fillins = 47
+solver = Normal
+Thread vector: 21.9/18.6[2] 3.9/3.1[2] 2.4/3.0[1] 1.1/1.7[1]  2592/500
+Matrix Compiler1: 3,98 Ko object code size  2.4/1.9/[1.0]
+Matrix Compiler2: 4,46 Ko object code size  1.6/1.9/[1.5]
+
+

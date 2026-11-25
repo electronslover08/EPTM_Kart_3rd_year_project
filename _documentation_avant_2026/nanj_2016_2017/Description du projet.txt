@@ -1,0 +1,5 @@
+En 1860 naît le premier moteur à explosion, inventé par Étienne Lenoir, il utilisait de l’huile de houille comme carburant. Depuis ce jour, le moteur à explosion s’est popularisé, il est maintenant partout, dans nos véhicules, dans les génératrices, etc.
+Le plus gros défaut de ces moteurs thermiques est leurs rendements ainsi que leurs impacts sur l’environnement. En effet, leur rendement est d’environ 25% à 30% (peuvent monter jusqu’à 50%), et ils utilisent des énergies non renouvelables.
+C’est pourquoi tout le monde se pose la question de comment va durer cette technologie durant ces prochaines décennies. Une des solutions serait de remplacer les moteurs thermiques et leurs carburants polluants contre des batteries et des moteurs électriques, qui atteignent jusqu’à 95% de rendement.
+En réalisant un eKarting, c’est-à-dire en transformant un karting à essence en karting électrique, c’est un peu se lancer dans le futur. En partant des batteries (qui est surement le futur de notre métier), jusqu’à la commande moteur, ce projet est complet, et permet de comprendre la fonctionnement d'un vehicule électrique.
+

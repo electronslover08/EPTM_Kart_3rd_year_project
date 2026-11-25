@@ -1,0 +1,105 @@
+
+ROM used:   9046/31936 (28%)
+            9046/31936 (28%) including unused fragments
+
+            3.6 Average locations per line
+            18.7 Average locations per statement
+
+RAM used:   241/1524 (16%) at main() level
+            271/1524 (18%) worst case
+
+Stack used: 7 worst case (3 in main + 4 for interrupts)
+Stack size: 30
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+ 1021   396  82  08022017.c
+  843     0   0  ..\..\..\..\Program Files (x86)\PICC\devices\18F4520.h
+  401     0   0  18F_register.h
+  237    88  18  FonctionsEcran.c
+----- -----
+ 2502   484 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     28   0    1             @I2C_WRITEU_1
+0     28   0    1             @I2C_READU_1
+0     56   0    1    233  3.1  StartConnection
+0     52   0    1     93  3.3  reinit
+0     62   0    5    240  4.7  iCK
+0     48   0    2    120  3.4  iG
+0     56   0    3    160  4.2  iTW
+0     56   0    3    160  4.2  iTH
+0     48   0    2    120  3.4  iTA
+0     50   0    3    160  4.2  iAF
+0     86   0    3    247  4.6  iDT
+0     44   0    4    190  2.1  writeLine
+0     68   0    1    277  3.7  startReading
+0     62   0    5    240  4.7  iDe
+0     50   0    3    160  4.2  iDC
+0     54   0    2    172  3.5  BlockRead
+0     52   0    0    399  2.8  init
+0    334   2    0    584  6.2  MAIN
+0    212   1    0    391  1.9  writeTabMain
+0    126   1    2    165  1.7  writeText
+0     26   0    0             @const1167
+0    114   1    0    365  1.9  TouchFieldMain
+0     90   0    0    161  1.8  VoltageScreen
+0    984   5    2   4471  2.0  DrawGraphVoltage
+0     22   0    0             @const1168
+0     20   0    0             @const1169
+0     20   0    0             @const1170
+0     20   0    0             @const1171
+0     38   0    0             @const1172
+0    370   2    2    592  1.9  WriteVoltageText
+0     22   0    0             @const1173
+0     28   0    0             @const1174
+0     26   0    0             @const1175
+0     52   0    0    163  1.8  TouchFieldVoltage
+0     90   0    0    161  1.8  speedScreen
+0    114   1    0    147  1.8  TouchFieldSpeed
+0    318   2    8    355  6.7  SaveVoltageData
+0     54   0    2             @ITOF
+0    246   1   11             @MULFF
+0    380   2   14             @DIVFF
+0    642   4   16             @ADDFF
+0     60   0    4             @SFTOI
+0    800   4    4   1274  7.7  DrawGraphVoltageDot
+0    168   1   10             @FLT
+0    624   3    7    795  4.3  MesAndWriteVoltage
+0     40   0    3             @DIV88
+0    282   2    1    706  3.8  MesAndWriteCurrent
+0    218   1    1    706  4.3  MesAndWriteUri
+0     48   0    0    130  1.8  ClearGraphVoltage
+0    720   4    8   1268  6.8  DrawTensionTimer
+0     42   0    0     98  1.7  DrawSpeedTimer
+0    230   1    1    658  3.9  DrawDistanceTimer
+0     58   0    0    296  2.7  TIMER0_isr
+0     18   0    0     82  2.8  ALERT
+0     52   0    1    357  4.7  Timer1_isr
+0     10   0    0     32  1.0  Echo_isr
+0     20   0    0     74  1.6  sendPulse
+0     32   0    2    127  4.2  adc_read
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               40
+    Statements              484
+    Comments                968
+    Volume (V)              30728
+    Difficulty (D)          138.6
+    Effort to implement (E) 4258627
+    Time to implement (T)   65 hours, 43 minutes
+    Est Delivered Bugs (B)  9
+    Cyclomatic Complexity   39
+    Maintainability (MI)    144
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-0017A   372  0  
+0017C-07CBE  8670  22886  
+
+
+
