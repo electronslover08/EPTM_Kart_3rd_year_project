@@ -1,0 +1,50 @@
+
+ROM used: 886 (3%)
+          886 (3%) including unused fragments
+
+          1 Average locations per line
+          20 Average locations per statement
+
+RAM used: 48 (3%) at main() level
+          52 (3%) worst case
+
+Stack used: 4 worst case (out of 30 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   96    44 100  real6b.c
+  469     0   0  ..\..\..\Program Files\PICC\devices\18F4520.h
+  412     0   0  18F_register.h
+----- -----
+  977    44 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     28   2   1             @I2C_WRITEU_1
+0     30   2   1             @I2C_READU_1
+0    292  16   0   445  1.9  Init
+0     42   2   1   149  2.6  RB0_isr
+0     96   5   0   303  1.9  RB1_isr
+0     46   3   0    32  1.2  MAIN
+
+Program metrics:
+    Functions               4
+    Statements              44
+    Comments                151
+    Volume (V)              1253
+    Difficilty (D)          8.0
+    Effort to implement (E) 10074
+    Time to implement (T)   9 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    98
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-00162   348  0  
+00164-07CBE   534  31046  
+
+
+

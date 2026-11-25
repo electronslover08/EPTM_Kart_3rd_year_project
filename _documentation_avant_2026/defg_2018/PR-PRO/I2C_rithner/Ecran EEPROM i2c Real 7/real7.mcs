@@ -1,0 +1,23 @@
+[Header]
+MagicCookie={0b13fe8c-dfe0-40eb-8900-6712719559a7}
+Version=1.0
+[File000]
+Location=C:\AA_cours19avril 2013\PR_uP 2(44)\J_proJect\Ecran EEPROM i2c Real 7\Réalisation 7 EEPROM_SEQ.ESYM
+Folder=Intermediary
+[File001]
+Location=C:\AA_cours19avril 2013\PR_uP 2(44)\J_proJect\Ecran EEPROM i2c Real 7\Réalisation 7 EEPROM_SEQ.o
+Folder=Intermediary
+[File002]
+Location=C:\AA_cours19avril 2013\PR_uP 2(44)\J_proJect\Ecran EEPROM i2c Real 7\Réalisation 7 EEPROM_SEQ.HEX
+Folder=Output
+[File003]
+Location=C:\AA_cours19avril 2013\PR_uP 2(44)\J_proJect\Ecran EEPROM i2c Real 7\Réalisation 7 EEPROM_SEQ.LST
+Folder=Output
+[File004]
+Location=C:\AA_cours19avril 2013\PR_uP 2(44)\J_proJect\Ecran EEPROM i2c Real 7\Réalisation 7 EEPROM_SEQ.ERR
+Folder=Output
+[File005]
+Location=C:\AA_cours19avril 2013\PR_uP 2(44)\J_proJect\Ecran EEPROM i2c Real 7\Réalisation 7 EEPROM_SEQ.COF
+Folder=Output
+[TOOL_LOC_STAMPS]
+tool_loc{0C155615-B197-4A4B-AEB6-343BB3F41A35}=C:\Program Files\PICC\Ccsc.exe
