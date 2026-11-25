@@ -1,0 +1,50 @@
+
+ROM used: 296 (1%)
+          296 (1%) including unused fragments
+
+          0 Average locations per line
+          14 Average locations per statement
+
+RAM used: 25 (2%) at main() level
+          26 (2%) worst case
+
+Stack used: 3 worst case (out of 30 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  124    21 100  Base CCS.c
+  470     0   0  ..\..\..\..\Program Files (x86)\PICC\devices\18F4520.h
+  401     0   0  18F_register.h
+----- -----
+  995    21 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     44   7   0    32  1.2  main
+0     38   6   0   280  2.3  init
+0      8   1   1    40  1.7  fct_1
+0      8   1   1    40  1.7  fct_2
+0      8   1   0    16  1.0  RB0_isr
+0      8   1   0    16  1.0  RB1_isr
+
+Program metrics:
+    Functions               6
+    Statements              21
+    Comments                220
+    Volume (V)              629
+    Difficilty (D)          9.7
+    Effort to implement (E) 6122
+    Time to implement (T)   6 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    129
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-000B8   178  0  
+000BA-07CBE   114  31636  
+
+
+

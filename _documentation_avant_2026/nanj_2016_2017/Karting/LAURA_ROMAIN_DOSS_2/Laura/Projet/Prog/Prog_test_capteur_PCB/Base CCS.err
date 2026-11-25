@@ -1,0 +1,7 @@
+>>> Warning 203 "Base CCS.c" Line 62(1,1): Condition always TRUE
+>>> Warning 225 "Base CCS.c" Line 110(1,1): Interrupt level changed  EXT: NORMAL=>HIGH
+>>> Warning 202 "Base CCS.c" Line 19(5,13): Variable never used:   Centaine
+>>> Warning 202 "Base CCS.c" Line 20(5,12): Variable never used:   Dizaine
+>>> Warning 202 "Base CCS.c" Line 21(5,9): Variable never used:   Unit
+      Memory usage:   ROM=5%      RAM=3% - 5%
+      0 Errors,  5 Warnings.

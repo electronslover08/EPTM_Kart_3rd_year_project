@@ -1,0 +1,128 @@
+#include <18F4520.h>
+#include "18F_register.h"
+
+#device HIGH_INTS=TRUE
+#device ICD=TRUE
+#use delay(clock=20000000)
+#use i2c(master,slow,sda=PIN_C4,scl=PIN_C3,FORCE_HW)	//Force à utiliser le Hardware du microcontrôleur
+#fuses NOWDT, HS, NOPUT, NOPROTECT, DEBUG, NOBROWNOUT, NOLVP, NOCPD, NOWRT, NOXINST, NOPBADEN 
+
+#BIT Trigger = PORTD.0
+#BIT Echo = PORTB.0
+#BIT Capteur_ON = PORTD.1
+
+#define I2CADDRESS 0X88						//Adresse de l'écran
+
+//Variables globales
+int indexEcho=0;
+int distance=0;
+int Centaine=0;
+int Dizaine=0;
+int Unit=0;
+
+//Prototypes de fonctions
+void sendPulse(void);
+
+void init(void)
+{	
+	TRISB=0xFF;
+	PORTB=0xFF;					//Interrupt Echo
+	TRISD=0X00;
+	PORTD=0x00;					//PORTD en sortie pour le capteur
+
+	enable_interrupts(INT_EXT);			//Autorise l'interruption RB0
+	enable_interrupts(INT_RB);			//Autorise l'interruption RB
+	disable_interrupts(INT_TIMER0);		//Désactive l'interruption timer
+	ext_int_edge(0,L_to_H);				//Configure RB0 sur le flanc montant
+	enable_interrupts(GLOBAL);			//Autorise globalement les interruptions
+
+	T0CON = 0x88;
+
+	//Initialisation de l'écran
+	i2c_start();
+	i2c_write(0x50);
+	i2c_write(0xFE);
+	i2c_write(0x51);
+	i2c_write(0xFE);	
+	i2c_write(0x52);
+	i2c_write(0x1E);
+	i2c_write(0xFE);
+	i2c_write(0x53);
+	i2c_write(8);
+	i2c_stop();
+	i2c_start();
+	i2c_write(0x50);
+	i2c_write(0xFE);
+	i2c_write(0x45);
+	i2c_write(0x00);
+	i2c_write(0b01000010);
+	i2c_write(0b01101111);
+	i2c_write(0b01101110);
+	i2c_write(0b01101010);
+	i2c_write(0b01101111);
+	i2c_write(0b01110101);
+	i2c_write(0b01110010);
+	i2c_stop();
+	delay_ms(1000);	
+}
+
+
+void Main(void)
+{
+	init();
+
+	while(1)
+	{
+		sendPulse();
+
+		Centaine=distance/100;
+		Dizaine=(distance-100)/10;
+		Unit=(distance-100)-(10*Dizaine);		
+
+		i2c_start();
+		i2c_write(0x31);
+		i2c_write(0x32);
+		i2c_write(0x33);
+		i2c_stop();
+
+		//delay_ms(50);
+	}	
+}
+
+void sendPulse(void)
+{
+	Capteur_ON=1;
+	Trigger=1;
+	//delay_us(10);
+	Trigger=0;
+	Capteur_ON=0;	
+}
+
+#INT_EXT
+void Echo_isr()
+{
+	TMR0H=0xFF;
+	TMR0L=0x06;
+	enable_interrupts(INT_TIMER0);
+}
+
+#INT_TIMER0
+void TIMER0_isr()
+{
+	if(Echo==1)
+	{
+		indexEcho++;
+	 	TMR0H=0xFF;
+		TMR0L=0x06;
+	}
+	else
+	{
+		disable_interrupts(INT_TIMER0);
+		distance = (((indexEcho*0.000050)*340)/2)*100;
+		indexEcho=0;
+	}
+}
+
+
+
+

@@ -1,0 +1,519 @@
+ÀÄ08022017
+   ÃÄMAIN  0/334  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÃÄinit  0/52  Ram=0
+   ³  ÃÄBlockRead  0/54  Ram=2
+   ³  ³  ÃÄstartReading  0/68  Ram=1
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÀÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_READU_1  0/28  Ram=1
+   ³  ³  ÀÄ@I2C_READU_1  0/28  Ram=1
+   ³  ÃÄwriteTabMain  0/212  Ram=0
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÀÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄreinit  0/52  Ram=1
+   ³  ³  ³  ÀÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÀÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÀÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄwriteLine  0/44  Ram=4
+   ³  ³     ÀÄ*
+   ³  ÃÄwriteText  0/126  Ram=2
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiAF  0/50  Ram=3
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÀÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@const1167  0/26  Ram=0
+   ³  ³  ÀÄiDT  0/86  Ram=3
+   ³  ³     ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³     ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³     ÀÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ÃÄTouchFieldMain  0/114  Ram=0
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiTW  0/56  Ram=3
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÀÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄiTH  0/56  Ram=3
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÀÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄiTA  0/48  Ram=2
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÀÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiTW  0/56  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiTH  0/56  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄiTA  0/48  Ram=2
+   ³  ³     ÀÄ*
+   ³  ÃÄVoltageScreen  0/90  Ram=0
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄreinit  0/52  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄwriteText  0/126  Ram=2
+   ³  ³     ÀÄ*
+   ³  ÃÄDrawGraphVoltage  0/984  Ram=2
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiAF  0/50  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@const1168  0/22  Ram=0
+   ³  ³  ÃÄiDT  0/86  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@const1169  0/20  Ram=0
+   ³  ³  ÃÄiDT  0/86  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@const1170  0/20  Ram=0
+   ³  ³  ÃÄiDT  0/86  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@const1171  0/20  Ram=0
+   ³  ³  ÃÄiDT  0/86  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@const1172  0/38  Ram=0
+   ³  ³  ÀÄiDT  0/86  Ram=3
+   ³  ³     ÀÄ*
+   ³  ÃÄWriteVoltageText  0/370  Ram=2
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiAF  0/50  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@const1173  0/22  Ram=0
+   ³  ³  ÃÄiDT  0/86  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiAF  0/50  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@const1174  0/28  Ram=0
+   ³  ³  ÃÄiDT  0/86  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiAF  0/50  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@const1175  0/26  Ram=0
+   ³  ³  ÀÄiDT  0/86  Ram=3
+   ³  ³     ÀÄ*
+   ³  ÃÄTouchFieldVoltage  0/52  Ram=0
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiTW  0/56  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiTH  0/56  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄiTA  0/48  Ram=2
+   ³  ³     ÀÄ*
+   ³  ÃÄspeedScreen  0/90  Ram=0
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄreinit  0/52  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄwriteLine  0/44  Ram=4
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄwriteText  0/126  Ram=2
+   ³  ³     ÀÄ*
+   ³  ÀÄTouchFieldSpeed  0/114  Ram=0
+   ³     ÃÄStartConnection  0/56  Ram=1
+   ³     ³  ÀÄ*
+   ³     ÃÄiCK  0/62  Ram=5
+   ³     ³  ÀÄ*
+   ³     ÃÄiTW  0/56  Ram=3
+   ³     ³  ÀÄ*
+   ³     ÃÄiTH  0/56  Ram=3
+   ³     ³  ÀÄ*
+   ³     ÀÄiTA  0/48  Ram=2
+   ³        ÀÄ*
+   ÃÄTIMER0_isr  0/58  Ram=0
+   ³  ÃÄSaveVoltageData  0/318  Ram=8
+   ³  ³  ÃÄadc_read  0/32  Ram=2
+   ³  ³  ÃÄ@ITOF  0/54  Ram=2
+   ³  ³  ÃÄ@MULFF  0/246  Ram=11
+   ³  ³  ÃÄadc_read  0/32  Ram=2
+   ³  ³  ÃÄ@ITOF  0/54  Ram=2
+   ³  ³  ÃÄ@DIVFF  0/380  Ram=14
+   ³  ³  ÃÄ@MULFF  0/246  Ram=11
+   ³  ³  ÃÄ@ADDFF  0/642  Ram=16
+   ³  ³  ÀÄ@SFTOI  0/60  Ram=4
+   ³  ÃÄClearGraphVoltage  0/48  Ram=0
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄiDe  0/62  Ram=5
+   ³  ³     ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³     ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³     ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³     ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³     ÀÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ÃÄDrawGraphVoltage  0/984  Ram=2
+   ³  ³  ÀÄ*
+   ³  ÃÄDrawGraphVoltageDot  0/800  Ram=4
+   ³  ³  ÃÄ@ITOF  0/54  Ram=2
+   ³  ³  ÃÄ@FLT  0/168  Ram=10
+   ³  ³  ÃÄ@MULFF  0/246  Ram=11
+   ³  ³  ÃÄ@ADDFF  0/642  Ram=16
+   ³  ³  ÃÄ@ITOF  0/54  Ram=2
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@SFTOI  0/60  Ram=4
+   ³  ³  ÃÄ@SFTOI  0/60  Ram=4
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiDC  0/50  Ram=3
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÀÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@ITOF  0/54  Ram=2
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@SFTOI  0/60  Ram=4
+   ³  ³  ÃÄ@SFTOI  0/60  Ram=4
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiDC  0/50  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@MULFF  0/246  Ram=11
+   ³  ³  ÃÄ@ADDFF  0/642  Ram=16
+   ³  ³  ÃÄ@ITOF  0/54  Ram=2
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@SFTOI  0/60  Ram=4
+   ³  ³  ÃÄ@SFTOI  0/60  Ram=4
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiDC  0/50  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@ITOF  0/54  Ram=2
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@SFTOI  0/60  Ram=4
+   ³  ³  ÃÄ@SFTOI  0/60  Ram=4
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄiDC  0/50  Ram=3
+   ³  ³     ÀÄ*
+   ³  ÃÄMesAndWriteVoltage  0/624  Ram=7
+   ³  ³  ÃÄadc_read  0/32  Ram=2
+   ³  ³  ÃÄadc_read  0/32  Ram=2
+   ³  ³  ÃÄ@ITOF  0/54  Ram=2
+   ³  ³  ÃÄ@DIVFF  0/380  Ram=14
+   ³  ³  ÃÄ@MULFF  0/246  Ram=11
+   ³  ³  ÃÄ@ITOF  0/54  Ram=2
+   ³  ³  ÃÄ@ADDFF  0/642  Ram=16
+   ³  ³  ÃÄ@SFTOI  0/60  Ram=4
+   ³  ³  ÃÄ@ITOF  0/54  Ram=2
+   ³  ³  ÃÄ@DIVFF  0/380  Ram=14
+   ³  ³  ÃÄ@SFTOI  0/60  Ram=4
+   ³  ³  ÃÄ@ITOF  0/54  Ram=2
+   ³  ³  ÃÄ@DIVFF  0/380  Ram=14
+   ³  ³  ÃÄ@SFTOI  0/60  Ram=4
+   ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ÃÄ@ITOF  0/54  Ram=2
+   ³  ³  ÃÄ@DIVFF  0/380  Ram=14
+   ³  ³  ÃÄ@SFTOI  0/60  Ram=4
+   ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiAF  0/50  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiDe  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÀÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ÃÄMesAndWriteCurrent  0/282  Ram=1
+   ³  ³  ÃÄadc_read  0/32  Ram=2
+   ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ÃÄ@ITOF  0/54  Ram=2
+   ³  ³  ÃÄ@DIVFF  0/380  Ram=14
+   ³  ³  ÃÄ@SFTOI  0/60  Ram=4
+   ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiAF  0/50  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiDe  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÀÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ÃÄMesAndWriteUri  0/218  Ram=1
+   ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiAF  0/50  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiDe  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÀÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ÃÄTouchFieldVoltage  0/52  Ram=0
+   ³  ³  ÀÄ*
+   ³  ÃÄDrawTensionTimer  0/720  Ram=8
+   ³  ³  ÃÄadc_read  0/32  Ram=2
+   ³  ³  ÃÄ@ITOF  0/54  Ram=2
+   ³  ³  ÃÄ@MULFF  0/246  Ram=11
+   ³  ³  ÃÄadc_read  0/32  Ram=2
+   ³  ³  ÃÄ@ITOF  0/54  Ram=2
+   ³  ³  ÃÄ@DIVFF  0/380  Ram=14
+   ³  ³  ÃÄ@MULFF  0/246  Ram=11
+   ³  ³  ÃÄ@ADDFF  0/642  Ram=16
+   ³  ³  ÃÄ@SFTOI  0/60  Ram=4
+   ³  ³  ÃÄ@ITOF  0/54  Ram=2
+   ³  ³  ÃÄ@DIVFF  0/380  Ram=14
+   ³  ³  ÃÄ@SFTOI  0/60  Ram=4
+   ³  ³  ÃÄ@ITOF  0/54  Ram=2
+   ³  ³  ÃÄ@DIVFF  0/380  Ram=14
+   ³  ³  ÃÄ@SFTOI  0/60  Ram=4
+   ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ÃÄ@ITOF  0/54  Ram=2
+   ³  ³  ÃÄ@DIVFF  0/380  Ram=14
+   ³  ³  ÃÄ@SFTOI  0/60  Ram=4
+   ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiG  0/48  Ram=2
+   ³  ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ³  ÀÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄiG  0/48  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiG  0/48  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiG  0/48  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiG  0/48  Ram=2
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiAF  0/50  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiDe  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÀÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ÃÄDrawSpeedTimer  0/42  Ram=0
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄiG  0/48  Ram=2
+   ³  ³     ÀÄ*
+   ³  ÃÄDrawDistanceTimer  0/230  Ram=1
+   ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ÃÄ@DIV88  0/40  Ram=3
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiAF  0/50  Ram=3
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄStartConnection  0/56  Ram=1
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÃÄiCK  0/62  Ram=5
+   ³  ³  ³  ÀÄ*
+   ³  ³  ÀÄiG  0/48  Ram=2
+   ³  ³     ÀÄ*
+   ³  ÃÄTouchFieldMain  0/114  Ram=0
+   ³  ³  ÀÄ*
+   ³  ÀÄsendPulse  0/20  Ram=0
+   ÃÄALERT  0/18  Ram=0
+   ³  ÀÄBlockRead  0/54  Ram=2
+   ³     ÀÄ*
+   ÃÄTimer1_isr  0/52  Ram=1
+   ÀÄEcho_isr  0/10  Ram=0

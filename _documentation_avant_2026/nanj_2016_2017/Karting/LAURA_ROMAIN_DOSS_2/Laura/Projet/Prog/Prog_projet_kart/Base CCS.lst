@@ -1,0 +1,1066 @@
+CCS PCH C Compiler, Version 4.122, 31826               20-mai-16 14:17
+
+               Filename: N:\1. Mes fichiers\3ème année\Projet\Laura\Projet\Prog\Prog_projet_kart\Base CCS.lst
+
+               ROM used: 1796 bytes (6%)
+                         Largest free fragment is 30136
+               RAM used: 64 (4%) at main() level
+                         85 (6%) worst case
+               Stack:    4 worst case (2 in main + 2 for interrupts)
+
+*
+0000:  GOTO   0564
+*
+0008:  GOTO   00BE
+000C:  NOP   
+000E:  NOP   
+0010:  NOP   
+0012:  NOP   
+0014:  NOP   
+0016:  NOP   
+0018:  MOVWF  04
+001A:  MOVFF  FD8,05
+001E:  MOVFF  FE0,06
+0022:  MOVLB  0
+0024:  MOVFF  FE9,0C
+0028:  MOVFF  FEA,07
+002C:  MOVFF  FE1,08
+0030:  MOVFF  FE2,09
+0034:  MOVFF  FD9,0A
+0038:  MOVFF  FDA,0B
+003C:  MOVFF  FF3,12
+0040:  MOVFF  FF4,13
+0044:  MOVFF  FFA,14
+0048:  MOVFF  FF5,15
+004C:  MOVFF  FF6,16
+0050:  MOVFF  FF7,17
+0054:  MOVFF  00,0E
+0058:  MOVFF  01,0F
+005C:  MOVFF  02,10
+0060:  MOVFF  03,11
+0064:  BTFSS  FF2.5
+0066:  GOTO   0070
+006A:  BTFSC  FF2.2
+006C:  GOTO   038A
+0070:  MOVFF  0E,00
+0074:  MOVFF  0F,01
+0078:  MOVFF  10,02
+007C:  MOVFF  11,03
+0080:  MOVFF  0C,FE9
+0084:  MOVFF  07,FEA
+0088:  BSF    07.7
+008A:  MOVFF  08,FE1
+008E:  MOVFF  09,FE2
+0092:  MOVFF  0A,FD9
+0096:  MOVFF  0B,FDA
+009A:  MOVFF  12,FF3
+009E:  MOVFF  13,FF4
+00A2:  MOVFF  14,FFA
+00A6:  MOVFF  15,FF5
+00AA:  MOVFF  16,FF6
+00AE:  MOVFF  17,FF7
+00B2:  MOVF   04,W
+00B4:  MOVFF  06,FE0
+00B8:  MOVFF  05,FD8
+00BC:  RETFIE 0
+.................... #include <18F4520.h> 
+.................... //////// Standard Header file for the PIC18F4520 device //////////////// 
+.................... #device PIC18F4520 
+.................... #list 
+....................  
+.................... #include "18F_register.h" 
+.................... #byte	RXF6SIDH	=	0x0D60 
+.................... #byte	RXF6SIDL	=	0x0D61 
+.................... #byte	RXF6EIDH	=	0x0D62 
+.................... #byte	RXF6EIDL	=	0x0D63 
+.................... #byte	RXF7SIDH	=	0x0D64 
+.................... #byte	RXF7SIDL	=	0x0D65 
+.................... #byte	RXF7EIDH	=	0x0D66 
+.................... #byte	RXF7EIDL	=	0x0D67 
+.................... #byte	RXF8SIDH	=	0x0D68 
+.................... #byte	RXF8SIDL	=	0x0D69 
+.................... #byte	RXF8EIDH	=	0x0D6A 
+.................... #byte	RXF8EIDL	=	0x0D6B 
+.................... #byte	RXF9SIDH	=	0x0D70 
+.................... #byte	RXF9SIDL	=	0x0D71 
+.................... #byte	RXF9EIDH	=	0x0D72 
+.................... #byte	RXF9EIDL	=	0x0D73 
+.................... #byte	RXF10SIDH	=	0x0D74 
+.................... #byte	RXF10SIDL	=	0x0D75 
+.................... #byte	RXF10EIDH	=	0x0D76 
+.................... #byte	RXF10EIDL	=	0x0D77 
+.................... #byte	RXF11SIDH	=	0x0D78 
+.................... #byte	RXF11SIDL	=	0x0D79 
+.................... #byte	RXF11EIDH	=	0x0D7A 
+.................... #byte	RXF11EIDL	=	0x0D7B 
+.................... #byte	RXF12SIDH	=	0x0D80 
+.................... #byte	RXF12SIDL	=	0x0D81 
+.................... #byte	RXF12EIDH	=	0x0D82 
+.................... #byte	RXF12EIDL	=	0x0D83 
+.................... #byte	RXF13SIDH	=	0x0D84 
+.................... #byte	RXF13SIDL	=	0x0D85 
+.................... #byte	RXF13EIDH	=	0x0D86 
+.................... #byte	RXF13EIDL	=	0x0D87 
+.................... #byte	RXF14SIDH	=	0x0D88 
+.................... #byte	RXF14SIDL	=	0x0D89 
+.................... #byte	RXF14EIDH	=	0x0D8A 
+.................... #byte	RXF14EIDL	=	0x0D8B 
+.................... #byte	RXF15SIDH	=	0x0D90 
+.................... #byte	RXF15SIDL	=	0x0D91 
+.................... #byte	RXF15EIDH	=	0x0D92 
+.................... #byte	RXF15EIDL	=	0x0D93 
+.................... #byte	RXFCON0		=	0x0DD4 
+.................... #byte	RXFCON1		=	0x0DD5 
+.................... #byte	SDFLC		=	0x0DD8 
+.................... #byte	RXFBCON0	=	0x0DE0 
+.................... #byte	RXFBCON1	=	0x0DE1 
+.................... #byte	RXFBCON2	=	0x0DE2 
+.................... #byte	RXFBCON3	=	0x0DE3 
+.................... #byte	RXFBCON4	=	0x0DE4 
+.................... #byte	RXFBCON5	=	0x0DE5 
+.................... #byte	RXFBCON6	=	0x0DE6 
+.................... #byte	RXFBCON7	=	0x0DE7 
+.................... #byte	MSEL0		=	0x0DF0 
+.................... #byte	MSEL1		=	0x0DF1 
+.................... #byte	MSEL2		=	0x0DF2 
+.................... #byte	MSEL3		=	0x0DF3 
+.................... #byte	BSEL0		=	0x0DF8 
+.................... #byte	BIE0		=	0x0DFA 
+.................... #byte	TXBIE		=	0x0DFC 
+.................... #byte	B0CON		=	0x0E20 
+.................... #byte	B0SIDH		=	0x0E21 
+.................... #byte	B0SIDL		=	0x0E22 
+.................... #byte	B0EIDH		=	0x0E23 
+.................... #byte	B0EIDL		=	0x0E24 
+.................... #byte	B0DLC		=	0x0E25 
+.................... #byte	B0D0		=	0x0E26 
+.................... #byte	B0D1		=	0x0E27 
+.................... #byte	B0D2		=	0x0E28 
+.................... #byte	B0D3		=	0x0E29 
+.................... #byte	B0D4		=	0x0E2A 
+.................... #byte	B0D5		=	0x0E2B 
+.................... #byte	B0D6		=	0x0E2C 
+.................... #byte	B0D7		=	0x0E2D 
+.................... #byte	CANSTAT_RO9	=	0x0E2E 
+.................... #byte	CANCON_RO9	=	0x0E2F 
+.................... #byte	B1CON		=	0x0E30 
+.................... #byte	B1SIDH		=	0x0E31 
+.................... #byte	B1SIDL		=	0x0E32 
+.................... #byte	B1EIDH		=	0x0E33 
+.................... #byte	B1EIDL		=	0x0E34 
+.................... #byte	B1DLC		=	0x0E35 
+.................... #byte	B1D0		=	0x0E36 
+.................... #byte	B1D1		=	0x0E37 
+.................... #byte	B1D2		=	0x0E38 
+.................... #byte	B1D3		=	0x0E39 
+.................... #byte	B1D4		=	0x0E3A 
+.................... #byte	B1D5		=	0x0E3B 
+.................... #byte	B1D6		=	0x0E3C 
+.................... #byte	B1D7		=	0x0E3D 
+.................... #byte	CANSTAT_RO8	=	0x0E3E 
+.................... #byte	CANCON_RO8	=	0x0E3F 
+.................... #byte	B2CON		=	0x0E40 
+.................... #byte	B2SIDH		=	0x0E41 
+.................... #byte	B2SIDL		=	0x0E42 
+.................... #byte	B2EIDH		=	0x0E43 
+.................... #byte	B2EIDL		=	0x0E44 
+.................... #byte	B2DLC		=	0x0E45 
+.................... #byte	B2D0		=	0x0E46 
+.................... #byte	B2D1		=	0x0E47 
+.................... #byte	B2D2		=	0x0E48 
+.................... #byte	B2D3		=	0x0E49 
+.................... #byte	B2D4		=	0x0E4A 
+.................... #byte	B2D5		=	0x0E4B 
+.................... #byte	B2D6		=	0x0E4C 
+.................... #byte	B2D7		=	0x0E4D 
+.................... #byte	CANSTAT_RO7	=	0x0E4E 
+.................... #byte	CANCON_RO7	=	0x0E4F 
+.................... #byte	B3CON		=	0x0E50 
+.................... #byte	B3SIDH		=	0x0E51 
+.................... #byte	B3SIDL		=	0x0E52 
+.................... #byte	B3EIDH		=	0x0E53 
+.................... #byte	B3EIDL		=	0x0E54 
+.................... #byte	B3DLC		=	0x0E55 
+.................... #byte	B3D0		=	0x0E56 
+.................... #byte	B3D1		=	0x0E57 
+.................... #byte	B3D2		=	0x0E58 
+.................... #byte	B3D3		=	0x0E59 
+.................... #byte	B3D4		=	0x0E5A 
+.................... #byte	B3D5		=	0x0E5B 
+.................... #byte	B3D6		=	0x0E5C 
+.................... #byte	B3D7		=	0x0E5D 
+.................... #byte	CANSTAT_RO6	=	0x0E5E 
+.................... #byte	CANCON_RO6	=	0x0E5F 
+.................... #byte	B4CON		=	0x0E60 
+.................... #byte	B4SIDH		=	0x0E61 
+.................... #byte	B4SIDL		=	0x0E62 
+.................... #byte	B4EIDH		=	0x0E63 
+.................... #byte	B4EIDL		=	0x0E64 
+.................... #byte	B4DLC		=	0x0E65 
+.................... #byte	B4D0		=	0x0E66 
+.................... #byte	B4D1		=	0x0E67 
+.................... #byte	B4D2		=	0x0E68 
+.................... #byte	B4D3		=	0x0E69 
+.................... #byte	B4D4		=	0x0E6A 
+.................... #byte	B4D5		=	0x0E6B 
+.................... #byte	B4D6		=	0x0E6C 
+.................... #byte	B4D7		=	0x0E6D 
+.................... #byte	CANSTAT_RO5	=	0x0E6E 
+.................... #byte	CANCON_RO5	=	0x0E6F 
+.................... #byte	B5CON		=	0x0E70 
+.................... #byte	B5SIDH		=	0x0E71 
+.................... #byte	B5SIDL		=	0x0E72 
+.................... #byte	B5EIDH		=	0x0E73 
+.................... #byte	B5EIDL		=	0x0E74 
+.................... #byte	B5DLC		=	0x0E75 
+.................... #byte	B5D0		=	0x0E76 
+.................... #byte	B5D1		=	0x0E77 
+.................... #byte	B5D2		=	0x0E78 
+.................... #byte	B5D3		=	0x0E79 
+.................... #byte	B5D4		=	0x0E7A 
+.................... #byte	B5D5		=	0x0E7B 
+.................... #byte	B5D6		=	0x0E7C 
+.................... #byte	B5D7		=	0x0E7D 
+.................... #byte	CANSTAT_RO4	=	0x0E7E 
+.................... #byte	CANCON_RO4	=	0x0E7F 
+.................... #byte	RXF0SIDH	=	0x0F00 
+.................... #byte	RXF0SIDL	=	0x0F01 
+.................... #byte	RXF0EIDH	=	0x0F02 
+.................... #byte	RXF0EIDL	=	0x0F03 
+.................... #byte	RXF1SIDH	=	0x0F04 
+.................... #byte	RXF1SIDL	=	0x0F05 
+.................... #byte	RXF1EIDH	=	0x0F06 
+.................... #byte	RXF1EIDL	=	0x0F07 
+.................... #byte	RXF2SIDH	=	0x0F08 
+.................... #byte	RXF2SIDL	=	0x0F09 
+.................... #byte	RXF2EIDH	=	0x0F0A 
+.................... #byte	RXF2EIDL	=	0x0F0B 
+.................... #byte	RXF3SIDH	=	0x0F0C 
+.................... #byte	RXF3SIDL	=	0x0F0D 
+.................... #byte	RXF3EIDH	=	0x0F0E 
+.................... #byte	RXF3EIDL	=	0x0F0F 
+.................... #byte	RXF4SIDH	=	0x0F10 
+.................... #byte	RXF4SIDL	=	0x0F11 
+.................... #byte	RXF4EIDH	=	0x0F12 
+.................... #byte	RXF4EIDL	=	0x0F13 
+.................... #byte	RXF5SIDH	=	0x0F14 
+.................... #byte	RXF5SIDL	=	0x0F15 
+.................... #byte	RXF5EIDH	=	0x0F16 
+.................... #byte	RXF5EIDL	=	0x0F17 
+.................... #byte	RXM0SIDH	=	0x0F18 
+.................... #byte	RXM0SIDL	=	0x0F19 
+.................... #byte	RXM0EIDH	=	0x0F1A 
+.................... #byte	RXM0EIDL	=	0x0F1B 
+.................... #byte	RXM1SIDH	=	0x0F1C 
+.................... #byte	RXM1SIDL	=	0x0F1D 
+.................... #byte	RXM1EIDH	=	0x0F1E 
+.................... #byte	RXM1EIDL	=	0x0F1F 
+.................... #byte	TXB2CON		=	0x0F20 
+.................... #byte	TXB2SIDH	=	0x0F21 
+.................... #byte	TXB2SIDL	=	0x0F22 
+.................... #byte	TXB2EIDH	=	0x0F23 
+.................... #byte	TXB2EIDL	=	0x0F24 
+.................... #byte	TXB2DLC		=	0x0F25 
+.................... #byte	TXB2D0		=	0x0F26 
+.................... #byte	TXB2D1		=	0x0F27 
+.................... #byte	TXB2D2		=	0x0F28 
+.................... #byte	TXB2D3		=	0x0F29 
+.................... #byte	TXB2D4		=	0x0F2A 
+.................... #byte	TXB2D5		=	0x0F2B 
+.................... #byte	TXB2D6		=	0x0F2C 
+.................... #byte	TXB2D7		=	0x0F2D 
+.................... #byte	CANSTAT_RO3	=	0x0F2E 
+.................... #byte	CANCON_RO3	=	0x0F2F 
+.................... #byte	TXB1CON		=	0x0F30 
+.................... #byte	TXB1SIDH	=	0x0F31 
+.................... #byte	TXB1SIDL	=	0x0F32 
+.................... #byte	TXB1EIDH	=	0x0F33 
+.................... #byte	TXB1EIDL	=	0x0F34 
+.................... #byte	TXB1DLC		=	0x0F35 
+.................... #byte	TXB1D0		=	0x0F36 
+.................... #byte	TXB1D1		=	0x0F37 
+.................... #byte	TXB1D2		=	0x0F38 
+.................... #byte	TXB1D3		=	0x0F39 
+.................... #byte	TXB1D4		=	0x0F3A 
+.................... #byte	TXB1D5		=	0x0F3B 
+.................... #byte	TXB1D6		=	0x0F3C 
+.................... #byte	TXB1D7		=	0x0F3D 
+.................... #byte	CANSTAT_RO2	=	0x0F3E 
+.................... #byte	CANCON_RO2	=	0x0F3F 
+.................... #byte	TXB0CON		=	0x0F40 
+.................... #byte	TXB0SIDH	=	0x0F41 
+.................... #byte	TXB0SIDL	=	0x0F42 
+.................... #byte	TXB0EIDH	=	0x0F43 
+.................... #byte	TXB0EIDL	=	0x0F44 
+.................... #byte	TXB0DLC		=	0x0F45 
+.................... #byte	TXB0D0		=	0x0F46 
+.................... #byte	TXB0D1		=	0x0F47 
+.................... #byte	TXB0D2		=	0x0F48 
+.................... #byte	TXB0D3		=	0x0F49 
+.................... #byte	TXB0D4		=	0x0F4A 
+.................... #byte	TXB0D5		=	0x0F4B 
+.................... #byte	TXB0D6		=	0x0F4C 
+.................... #byte	TXB0D7		=	0x0F4D 
+.................... #byte	CANSTAT_RO1	=	0x0F4E 
+.................... #byte	CANCON_RO1	=	0x0F4F 
+.................... #byte	RXB1CON		=	0x0F50 
+.................... #byte	RXB1SIDH	=	0x0F51 
+.................... #byte	RXB1SIDL	=	0x0F52 
+.................... #byte	RXB1EIDH	=	0x0F53 
+.................... #byte	RXB1EIDL	=	0x0F54 
+.................... #byte	RXB1DLC		=	0x0F55 
+.................... #byte	RXB1D0		=	0x0F56 
+.................... #byte	RXB1D1		=	0x0F57 
+.................... #byte	RXB1D2		=	0x0F58 
+.................... #byte	RXB1D3		=	0x0F59 
+.................... #byte	RXB1D4		=	0x0F5A 
+.................... #byte	RXB1D5		=	0x0F5B 
+.................... #byte	RXB1D6		=	0x0F5C 
+.................... #byte	RXB1D7		=	0x0F5D 
+.................... #byte	CANSTAT_RO0	=	0x0F5E 
+.................... #byte	CANCON_RO0	=	0x0F5F 
+.................... #byte	RXB0CON		=	0x0F60 
+.................... #byte	RXB0SIDH	=	0x0F61 
+.................... #byte	RXB0SIDL	=	0x0F62 
+.................... #byte	RXB0EIDH	=	0x0F63 
+.................... #byte	RXB0EIDL	=	0x0F64 
+.................... #byte	RXB0DLC		=	0x0F65 
+.................... #byte	RXB0D0		=	0x0F66 
+.................... #byte	RXB0D1		=	0x0F67 
+.................... #byte	RXB0D2		=	0x0F68 
+.................... #byte	RXB0D3		=	0x0F69 
+.................... #byte	RXB0D4		=	0x0F6A 
+.................... #byte	RXB0D5		=	0x0F6B 
+.................... #byte	RXB0D6		=	0x0F6C 
+.................... #byte	RXB0D7		=	0x0F6D 
+.................... #byte	CANSTAT		=	0x0F6E 
+.................... #byte	CANCON		=	0x0F6F 
+.................... #byte	BRGCON1		=	0x0F70 
+.................... #byte	BRGCON2		=	0x0F71 
+.................... #byte	BRGCON3		=	0x0F72 
+.................... #byte	CIOCON		=	0x0F73 
+.................... #byte	COMSTAT		=	0x0F74 
+.................... #byte	RXERRCNT	=	0x0F75 
+.................... #byte	TXERRCNT	=	0x0F76 
+.................... #byte	ECANCON		=	0x0F77 
+.................... #byte	PORTA		=	0x0F80 
+.................... #byte	PORTB		=	0x0F81 
+.................... #byte	PORTC		=	0x0F82 
+.................... #byte	PORTD		=	0x0F83 
+.................... #byte	PORTE		=	0x0F84 
+.................... #byte	LATA		=	0x0F89 
+.................... #byte	LATB		=	0x0F8A 
+.................... #byte	LATC		=	0x0F8B 
+.................... #byte	LATD		=	0x0F8C 
+.................... #byte	LATE		=	0x0F8D 
+.................... #byte	DDRA		=	0x0F92 
+.................... #byte	TRISA		=	0x0F92 
+.................... #byte	DDRB		=	0x0F93 
+.................... #byte	TRISB		=	0x0F93 
+.................... #byte	DDRC		=	0x0F94 
+.................... #byte	TRISC		=	0x0F94 
+.................... #byte	DDRD		=	0x0F95 
+.................... #byte	TRISD		=	0x0F95 
+.................... #byte	DDRE		=	0x0F96 
+.................... #byte	TRISE		=	0x0F96 
+.................... #byte	OSCTUNE		=	0x0F9B 
+.................... #byte	PIE1		=	0x0F9D 
+.................... #byte	PIR1		=	0x0F9E 
+.................... #byte	IPR1		=	0x0F9F 
+.................... #byte	PIE2		=	0x0FA0 
+.................... #byte	PIR2		=	0x0FA1 
+.................... #byte	IPR2		=	0x0FA2 
+.................... #byte	PIE3		=	0x0FA3 
+.................... #byte	PIR3		=	0x0FA4 
+.................... #byte	IPR3		=	0x0FA5 
+.................... #byte	EECON1		=	0x0FA6 
+.................... #byte	EECON2		=	0x0FA7 
+.................... #byte	EEDATA		=	0x0FA8 
+.................... #byte	EEADR		=	0x0FA9 
+.................... #byte	EEADRH		=	0x0FAA 
+.................... #byte	RCSTA		=	0x0FAB 
+.................... #byte	TXSTA		=	0x0FAC 
+.................... #byte	TXREG		=	0x0FAD 
+.................... #byte	RCREG		=	0x0FAE 
+.................... #byte	SPBRG		=	0x0FAF 
+.................... #byte	SPBRGH		=	0x0FB0 
+.................... #byte	T3CON		=	0x0FB1 
+.................... #byte	TMR3L		=	0x0FB2 
+.................... #byte	TMR3H		=	0x0FB3 
+.................... #byte	CMCON		=	0x0FB4 
+.................... #byte	CVRCON		=	0x0FB5 
+.................... #byte	ECCP1AS		=	0x0FB6 
+.................... #byte	ECCP1DEL	=	0x0FB7 
+.................... #byte	BAUDCON		=	0x0FB8 
+.................... #byte	ECCP1CON	=	0x0FBA 
+.................... #byte	ECCPR1		=	0x0FBB 
+.................... #byte	ECCPR1L		=	0x0FBB 
+.................... #byte	ECCPR1H		=	0x0FBC 
+.................... #byte	CCP1CON		=	0x0FBD 
+.................... #byte	CCPR1		=	0x0FBE 
+.................... #byte	CCPR1L		=	0x0FBE 
+.................... #byte	CCPR1H		=	0x0FBF 
+.................... #byte	ADCON2		=	0x0FC0 
+.................... #byte	ADCON1		=	0x0FC1 
+.................... #byte	ADCON0		=	0x0FC2 
+.................... #byte	ADRES		=	0x0FC3 
+.................... #byte	ADRESL		=	0x0FC3 
+.................... #byte	ADRESH		=	0x0FC4 
+.................... #byte	SSPCON2		=	0x0FC5 
+.................... #byte	SSPCON1		=	0x0FC6 
+.................... #byte	SSPSTAT		=	0x0FC7 
+.................... #byte	SSPADD		=	0x0FC8 
+.................... #byte	SSPBUF		=	0x0FC9 
+.................... #byte	T2CON		=	0x0FCA 
+.................... #byte	PR2		=	0x0FCB 
+.................... #byte	TMR2		=	0x0FCC 
+.................... #byte	T1CON		=	0x0FCD 
+.................... #byte	TMR1L		=	0x0FCE 
+.................... #byte	TMR1H		=	0x0FCF 
+.................... #byte	RCON		=	0x0FD0 
+.................... #byte	WDTCON		=	0x0FD1 
+.................... #byte	HLVDCON		=	0x0FD2 
+.................... #byte	LVDCON		=	0x0FD2 
+.................... #byte	OSCCON		=	0x0FD3 
+.................... #byte	T0CON		=	0x0FD5 
+.................... #byte	TMR0L		=	0x0FD6 
+.................... #byte	TMR0H		=	0x0FD7 
+.................... #byte	STATUS		=	0x0FD8 
+.................... #byte	FSR2L		=	0x0FD9 
+.................... #byte	FSR2H		=	0x0FDA 
+.................... #byte	PLUSW2		=	0x0FDB 
+.................... #byte	PREINC2		=	0x0FDC 
+.................... #byte	POSTDEC2	=	0x0FDD 
+.................... #byte	POSTINC2	=	0x0FDE 
+.................... #byte	INDF2		=	0x0FDF 
+.................... #byte	BSR		=	0x0FE0 
+.................... #byte	FSR1L		=	0x0FE1 
+.................... #byte	FSR1H		=	0x0FE2 
+.................... #byte	PLUSW1		=	0x0FE3 
+.................... #byte	PREINC1		=	0x0FE4 
+.................... #byte	POSTDEC1	=	0x0FE5 
+.................... #byte	POSTINC1	=	0x0FE6 
+.................... #byte	INDF1		=	0x0FE7 
+.................... #byte	WREG		=	0x0FE8 
+.................... #byte	FSR0L		=	0x0FE9 
+.................... #byte	FSR0H		=	0x0FEA 
+.................... #byte	PLUSW0		=	0x0FEB 
+.................... #byte	PREINC0		=	0x0FEC 
+.................... #byte	POSTDEC0	=	0x0FED 
+.................... #byte	POSTINC0	=	0x0FEE 
+.................... #byte	INDF0		=	0x0FEF 
+.................... #byte	INTCON3		=	0x0FF0 
+.................... #byte	INTCON2		=	0x0FF1 
+.................... #byte	INTCON		=	0x0FF2 
+.................... #byte	PROD		=	0x0FF3 
+.................... #byte	PRODL		=	0x0FF3 
+.................... #byte	PRODH		=	0x0FF4 
+.................... #byte	TABLAT		=	0x0FF5 
+.................... #byte	TBLPTR		=	0x0FF6 
+.................... #byte	TBLPTRL		=	0x0FF6 
+.................... #byte	TBLPTRH		=	0x0FF7 
+.................... #byte	TBLPTRU		=	0x0FF8 
+.................... #byte	PC		=	0x0FF9 
+.................... #byte	PCL		=	0x0FF9 
+.................... #byte	PCLATH		=	0x0FFA 
+.................... #byte	PCLATU		=	0x0FFB 
+.................... #byte	STKPTR		=	0x0FFC 
+.................... #byte	TOS		=	0x0FFD 
+.................... #byte	TOSL		=	0x0FFD 
+.................... #byte	TOSH		=	0x0FFE 
+.................... #byte	TOSU		=	0x0FFF 
+....................  
+....................  
+.................... #device HIGH_INTS=TRUE 
+.................... #device ICD=TRUE 
+.................... #use delay(clock=20000000) 
+*
+053E:  CLRF   FEA
+0540:  MOVLW  3F
+0542:  MOVWF  FE9
+0544:  MOVF   FEF,W
+0546:  BZ    0562
+0548:  MOVLW  06
+054A:  MOVWF  01
+054C:  CLRF   00
+054E:  DECFSZ 00,F
+0550:  BRA    054E
+0552:  DECFSZ 01,F
+0554:  BRA    054C
+0556:  MOVLW  7B
+0558:  MOVWF  00
+055A:  DECFSZ 00,F
+055C:  BRA    055A
+055E:  DECFSZ FEF,F
+0560:  BRA    0548
+0562:  RETURN 0
+.................... #use i2c(master,fast,sda=PIN_C4,scl=PIN_C3,FORCE_HW)	//Force à utiliser le Hardware du microcontrôleur 
+*
+04C0:  BCF    FC6.7
+04C2:  BCF    F9E.3
+04C4:  MOVFF  40,FC9
+04C8:  MOVLW  02
+04CA:  BTFSC  FC6.7
+04CC:  BRA    04D8
+04CE:  BTFSS  F9E.3
+04D0:  BRA    04CE
+04D2:  MOVLW  00
+04D4:  BTFSC  FC5.6
+04D6:  MOVLW  01
+04D8:  MOVWF  01
+04DA:  RETURN 0
+.................... #fuses NOWDT, HS, NOPUT, NOPROTECT, DEBUG, NOBROWNOUT, NOLVP, NOCPD, NOWRT 
+....................  
+.................... //--Assignation des ports qui gèrent le capteur--// 
+.................... #BIT Trigger=PORTD.0	//Pin du capteur où est envoyée une impulsion 
+.................... #BIT Echo=PORTB.0		//Pin du capteur où revient l'echo du signal envoyé 
+....................  
+.................... #define I2CADDRESS 0X88						//Adresse de l'écran 
+....................  
+.................... //------------Variables globales------------// 
+.................... int indexEcho=0; 
+.................... int distance=0; 
+.................... int index=0; 
+.................... int ACK=1; 
+....................  
+.................... int Centaine=0; 
+.................... int Dizaine=0; 
+.................... int Unit=0; 
+....................  
+.................... //------Tableaux de commandes pour iLCD------// 
+.................... int  initTab[3] = {0xAA, 0x21}; 			//Init écran 
+.................... int  setCursorTab[4] = {0xAA, 0x43, 0x4B};	//Set cursor 
+.................... int  writeTextTab[4] = {0xAA, 0x44, 0x54};	//Ecrire un texte - idt_tab 
+.................... int	 capDistTab[20] = {0x43,0x61,0x70,0x74,0x65,0x75,0x72,0x20,0x64,0x65,0x20,0x64,0x69,0x73,0x74,0x61,0x6E,0x63,0x65}; 
+....................  
+.................... //-----------------Fonctions-----------------// 
+.................... void Config_uP(void);						//Configuration du uP 
+.................... void startConnection(int charToSend);		//Démarre la connection avec l'écran 
+.................... void initScreen(void);						//Réinitialise l'écran 
+.................... void setCursor(void);						//Défini le point de départ du curseur - iCK 
+.................... void writeEeprom(int adWrite, int Data);	//Ecris dans l'EEPROM, les paramètres sont l'adresse et la data - iEW  
+.................... void readEeprom(int adRead);				//Lis l'EEPROM, le paramètre est l'adresse de la case à lire - iER 
+.................... void writeText(int textTab[]);				//Ecris un texte - iDT 
+.................... void sendPulse(void);						//Envoie une pulse sur le trigger du capteur 
+.................... void writeCapDistChar(void); 
+.................... void writeText(void); 
+....................  
+....................  
+.................... //------Fonction principale du code------// 
+.................... void Main(void) 
+.................... { 
+*
+0564:  CLRF   FF8
+0566:  BCF    FF1.2
+0568:  BSF    FD0.7
+056A:  BSF    07.7
+056C:  CLRF   FEA
+056E:  CLRF   FE9
+0570:  BSF    F94.3
+0572:  BSF    F94.4
+0574:  MOVLW  0C
+0576:  MOVWF  FC8
+0578:  MOVLW  28
+057A:  MOVWF  FC6
+057C:  BCF    FC7.7
+057E:  BCF    FC7.6
+0580:  CLRF   19
+0582:  CLRF   1A
+0584:  CLRF   1B
+0586:  MOVLW  01
+0588:  MOVWF  1C
+058A:  CLRF   1D
+058C:  CLRF   1E
+058E:  CLRF   1F
+0590:  MOVF   FC1,W
+0592:  ANDLW  C0
+0594:  IORLW  0F
+0596:  MOVWF  FC1
+0598:  MOVLW  07
+059A:  MOVWF  FB4
+059C:  MOVLW  AA
+059E:  MOVWF  20
+05A0:  MOVLW  21
+05A2:  MOVWF  21
+05A4:  CLRF   22
+05A6:  MOVLW  AA
+05A8:  MOVWF  23
+05AA:  MOVLW  43
+05AC:  MOVWF  24
+05AE:  MOVLW  4B
+05B0:  MOVWF  25
+05B2:  CLRF   26
+05B4:  MOVLW  AA
+05B6:  MOVWF  27
+05B8:  MOVLW  44
+05BA:  MOVWF  28
+05BC:  MOVLW  54
+05BE:  MOVWF  29
+05C0:  CLRF   2A
+05C2:  MOVLW  43
+05C4:  MOVWF  2B
+05C6:  MOVLW  61
+05C8:  MOVWF  2C
+05CA:  MOVLW  70
+05CC:  MOVWF  2D
+05CE:  MOVLW  74
+05D0:  MOVWF  2E
+05D2:  MOVLW  65
+05D4:  MOVWF  2F
+05D6:  MOVLW  75
+05D8:  MOVWF  30
+05DA:  MOVLW  72
+05DC:  MOVWF  31
+05DE:  MOVLW  20
+05E0:  MOVWF  32
+05E2:  MOVLW  64
+05E4:  MOVWF  33
+05E6:  MOVLW  65
+05E8:  MOVWF  34
+05EA:  MOVLW  20
+05EC:  MOVWF  35
+05EE:  MOVLW  64
+05F0:  MOVWF  36
+05F2:  MOVLW  69
+05F4:  MOVWF  37
+05F6:  MOVLW  73
+05F8:  MOVWF  38
+05FA:  MOVLW  74
+05FC:  MOVWF  39
+05FE:  MOVLW  61
+0600:  MOVWF  3A
+0602:  MOVLW  6E
+0604:  MOVWF  3B
+0606:  MOVLW  63
+0608:  MOVWF  3C
+060A:  MOVLW  65
+060C:  MOVWF  3D
+060E:  CLRF   3E
+.................... 	Config_uP(); 
+0610:  BRA    046A
+....................  
+.................... 	while(1) 
+.................... 	{ 
+.................... 		sendPulse(); 
+0612:  BRA    0486
+.................... 		 
+.................... 		//Calculs pour ressortir chaque chiffre 
+.................... 		Centaine=distance/100; 
+0614:  MOVFF  1A,40
+0618:  MOVLW  64
+061A:  MOVWF  41
+061C:  RCALL  0498
+061E:  MOVFF  01,1D
+.................... 		Dizaine=(distance/10)%10; 
+0622:  MOVFF  1A,40
+0626:  MOVLW  0A
+0628:  MOVWF  41
+062A:  RCALL  0498
+062C:  MOVFF  01,40
+0630:  MOVLW  0A
+0632:  MOVWF  41
+0634:  RCALL  0498
+0636:  MOVFF  00,1E
+.................... 		Unit=distance%10; 
+063A:  MOVFF  1A,40
+063E:  MOVLW  0A
+0640:  MOVWF  41
+0642:  RCALL  0498
+0644:  MOVFF  00,1F
+.................... 		 
+.................... 		//Envoi de la distance en i2c sur l'écran		 
+.................... 		startConnection(26); 
+0648:  MOVLW  1A
+064A:  MOVWF  3F
+064C:  BRA    04DC
+.................... 		initScreen(); 
+064E:  BRA    0516
+....................  
+.................... 		//Commande : set cursor				/!\ à remplacer par une fonction avec comme paramètres les positions 
+.................... 		i2c_write(0xAA); 
+0650:  MOVLW  AA
+0652:  MOVWF  40
+0654:  RCALL  04C0
+.................... 		i2c_write(0x43); 
+0656:  MOVLW  43
+0658:  MOVWF  40
+065A:  RCALL  04C0
+.................... 		i2c_write(0x4B); 
+065C:  MOVLW  4B
+065E:  MOVWF  40
+0660:  RCALL  04C0
+....................  
+.................... 		//Paramètres : position x y		 
+.................... 		i2c_write(0x00); 
+0662:  CLRF   40
+0664:  RCALL  04C0
+.................... 		i2c_write(0xFA);	//x = 250 
+0666:  MOVLW  FA
+0668:  MOVWF  40
+066A:  RCALL  04C0
+.................... 		i2c_write(0x00); 
+066C:  CLRF   40
+066E:  RCALL  04C0
+.................... 		i2c_write(0xDC);	//y = 220 
+0670:  MOVLW  DC
+0672:  MOVWF  40
+0674:  RCALL  04C0
+....................  
+.................... 		//Commande : write text				/!\ à remplacer par une fonction comme paramètre un tableau contenant les char (en ascii) 
+.................... 		i2c_write(0xAA); 
+0676:  MOVLW  AA
+0678:  MOVWF  40
+067A:  RCALL  04C0
+.................... 		i2c_write(0x44); 
+067C:  MOVLW  44
+067E:  MOVWF  40
+0680:  RCALL  04C0
+.................... 		i2c_write(0x54); 
+0682:  MOVLW  54
+0684:  MOVWF  40
+0686:  RCALL  04C0
+....................  
+.................... 		//Paramètres : chiffres à afficher + 0x00 pour terminer la transmission de caractères 
+.................... 		i2c_write(0x44); 
+0688:  MOVLW  44
+068A:  MOVWF  40
+068C:  RCALL  04C0
+.................... 		i2c_write(0x69); 
+068E:  MOVLW  69
+0690:  MOVWF  40
+0692:  RCALL  04C0
+.................... 		i2c_write(0x73); 
+0694:  MOVLW  73
+0696:  MOVWF  40
+0698:  RCALL  04C0
+.................... 		i2c_write(0x74); 
+069A:  MOVLW  74
+069C:  MOVWF  40
+069E:  RCALL  04C0
+.................... 		i2c_write(0x61); 
+06A0:  MOVLW  61
+06A2:  MOVWF  40
+06A4:  RCALL  04C0
+.................... 		i2c_write(0x6E); 
+06A6:  MOVLW  6E
+06A8:  MOVWF  40
+06AA:  RCALL  04C0
+.................... 		i2c_write(0x63); 
+06AC:  MOVLW  63
+06AE:  MOVWF  40
+06B0:  RCALL  04C0
+.................... 		i2c_write(0x65); 
+06B2:  MOVLW  65
+06B4:  MOVWF  40
+06B6:  RCALL  04C0
+.................... 		i2c_write(0x20); 
+06B8:  MOVLW  20
+06BA:  MOVWF  40
+06BC:  RCALL  04C0
+.................... 		i2c_write(0x3A); 
+06BE:  MOVLW  3A
+06C0:  MOVWF  40
+06C2:  RCALL  04C0
+.................... 		i2c_write(Centaine+0x30); 
+06C4:  MOVLW  30
+06C6:  ADDWF  1D,W
+06C8:  MOVWF  3F
+06CA:  MOVWF  40
+06CC:  RCALL  04C0
+.................... 		delay_ms(10); 
+06CE:  MOVLW  0A
+06D0:  MOVWF  3F
+06D2:  RCALL  053E
+.................... 		i2c_write(Dizaine+0x30); 
+06D4:  MOVLW  30
+06D6:  ADDWF  1E,W
+06D8:  MOVWF  3F
+06DA:  MOVWF  40
+06DC:  RCALL  04C0
+.................... 		delay_ms(10); 
+06DE:  MOVLW  0A
+06E0:  MOVWF  3F
+06E2:  RCALL  053E
+.................... 		i2c_write(Unit+0x30); 
+06E4:  MOVLW  30
+06E6:  ADDWF  1F,W
+06E8:  MOVWF  3F
+06EA:  MOVWF  40
+06EC:  RCALL  04C0
+.................... 		delay_ms(10); 
+06EE:  MOVLW  0A
+06F0:  MOVWF  3F
+06F2:  RCALL  053E
+.................... 		i2c_write(0x00); 
+06F4:  CLRF   40
+06F6:  RCALL  04C0
+....................  
+.................... 		i2c_stop(); 
+06F8:  BSF    FC5.2
+06FA:  BTFSC  FC5.2
+06FC:  BRA    06FA
+.................... 		delay_ms(60); 
+06FE:  MOVLW  3C
+0700:  MOVWF  3F
+0702:  RCALL  053E
+....................  
+.................... 	}	 
+0704:  BRA    0612
+.................... } 
+....................  
+.................... //---Fonction d'initialisation du hardware---// 
+.................... void Config_uP(void) 
+.................... {	 
+0706:  BRA    0706
+.................... 	//Ports hardware 
+.................... 	TRISB=0xFF; 
+*
+046A:  SETF   F93
+.................... 	PORTB=0xFF;							//Interrupt Echo sur RB0 
+046C:  SETF   F81
+.................... 	TRISD=0X00; 
+046E:  CLRF   F95
+.................... 	PORTD=0x00;							//PORTD en sortie pour le capteur 
+0470:  CLRF   F83
+....................  
+.................... 	//Intterupts 
+.................... 	enable_interrupts(INT_EXT);			//Autorise l'interruption RB0 
+0472:  BSF    FF2.4
+.................... 	enable_interrupts(INT_RB);			//Autorise l'interruption RB 
+0474:  BSF    FF2.3
+.................... 	disable_interrupts(INT_TIMER0);		//Désactive l'interruption timer 
+0476:  BCF    FF2.5
+.................... 	ext_int_edge(0,L_to_H);				//Configure RB0 sur le flanc montant 
+0478:  BSF    FF1.6
+.................... 	enable_interrupts(GLOBAL);			//Autorise globalement les interruptions*/ 
+047A:  MOVLW  C0
+047C:  IORWF  FF2,F
+....................  
+.................... 	T0CON = 0x88; 
+047E:  MOVLW  88
+0480:  MOVWF  FD5
+.................... } 
+0482:  GOTO   0612 (RETURN)
+....................  
+.................... //Fonction : démarre la connection avec l'écran 
+.................... void startConnection(int charToSend) 
+.................... { 
+.................... 	i2c_start(); 
+*
+04DC:  BSF    FC5.0
+04DE:  BTFSC  FC5.0
+04E0:  BRA    04DE
+.................... 	do{ACK = i2c_write(I2CADDRESS);}	while(ACK==1);	//Atteindre l'écran 
+04E2:  MOVLW  88
+04E4:  MOVWF  40
+04E6:  RCALL  04C0
+04E8:  MOVFF  01,1C
+04EC:  DECFSZ 1C,W
+04EE:  BRA    04F2
+04F0:  BRA    04E2
+.................... 	do{ACK = i2c_write(0x05);}			while(ACK==1);	//Dire à l'écran que l'on veut lui envoyer des char 
+04F2:  MOVLW  05
+04F4:  MOVWF  40
+04F6:  RCALL  04C0
+04F8:  MOVFF  01,1C
+04FC:  DECFSZ 1C,W
+04FE:  BRA    0502
+0500:  BRA    04F2
+.................... 	do{ACK = i2c_write(charToSend);}	while(ACK==1);	//Dire à l'écran combien de char on lui envoie 	 
+0502:  MOVFF  3F,40
+0506:  RCALL  04C0
+0508:  MOVFF  01,1C
+050C:  DECFSZ 1C,W
+050E:  BRA    0512
+0510:  BRA    0502
+.................... } 
+0512:  GOTO   064E (RETURN)
+....................  
+.................... //Fonction : réinitialise l'écran 
+.................... void initScreen(void) 
+.................... { 
+.................... 	for (index=0; index<2; index++) 
+0516:  CLRF   1B
+0518:  MOVF   1B,W
+051A:  SUBLW  01
+051C:  BNC   053A
+.................... 		{i2c_write(initTab[index]);} 
+051E:  CLRF   03
+0520:  MOVF   1B,W
+0522:  ADDLW  20
+0524:  MOVWF  FE9
+0526:  MOVLW  00
+0528:  ADDWFC 03,W
+052A:  MOVWF  FEA
+052C:  MOVFF  FEF,3F
+0530:  MOVFF  3F,40
+0534:  RCALL  04C0
+0536:  INCF   1B,F
+0538:  BRA    0518
+.................... } 
+053A:  GOTO   0650 (RETURN)
+....................  
+.................... //Fonction : écrire un texte 
+.................... void writeText(void) 
+.................... { 
+.................... 	for (index=0; index<3; index++) 
+.................... 		{i2c_write(writeTextTab[index]);} 
+.................... } 
+....................  
+.................... //Fonction : écrire "Capteur de distance" à l'allumage 
+.................... void writeCapDistChar(void) 
+.................... { 
+.................... 	for (index=0; index<19; index++) 
+.................... 		{i2c_write(capDistTab[index]);} 
+.................... } 
+....................  
+.................... //Fonction : Défini un point de départ 
+.................... void setCursor(void) 
+.................... { 
+.................... 	for (index=0; index<4; index++) 
+.................... 		{i2c_write(setCursorTab[index]);} 
+.................... } 
+....................  
+.................... //Fonction : envoie une impulsion sur le trigger du capteur 
+.................... void sendPulse(void) 
+.................... { 
+.................... 	Trigger=1; 
+*
+0486:  BSF    F83.0
+.................... 	delay_us(10); 
+0488:  MOVLW  10
+048A:  MOVWF  00
+048C:  DECFSZ 00,F
+048E:  BRA    048C
+0490:  NOP   
+.................... 	Trigger=0;	 
+0492:  BCF    F83.0
+.................... } 
+0494:  GOTO   0614 (RETURN)
+....................  
+.................... //Interruption : s'active à chaque fois qu'un signal arrive sur la pin Echo 
+.................... #INT_EXT FAST 
+.................... void Echo_isr() 
+.................... { 
+.................... 	TMR0H=0xFF; 
+*
+00BE:  SETF   FD7
+.................... 	TMR0L=0x06; 
+00C0:  MOVLW  06
+00C2:  MOVWF  FD6
+.................... 	enable_interrupts(INT_TIMER0); 
+00C4:  BSF    FF2.5
+.................... } 
+....................  
+.................... //Timer : sert à mesurer la longueur de la pulse d'Echo et ainsi, à calculer la distance 
+00C6:  BCF    FF2.1
+00C8:  RETFIE 1
+.................... #INT_TIMER0 
+.................... void TIMER0_isr() 
+.................... { 
+.................... 	if(Echo==1) 
+*
+038A:  BTFSS  F81.0
+038C:  BRA    0398
+.................... 	{ 
+.................... 		indexEcho++; 
+038E:  INCF   19,F
+.................... 	 	TMR0H=0xFF; 
+0390:  SETF   FD7
+.................... 		TMR0L=0x06; 
+0392:  MOVLW  06
+0394:  MOVWF  FD6
+.................... 	} 
+.................... 	else 
+0396:  BRA    0464
+.................... 	{ 
+.................... 		disable_interrupts(INT_TIMER0); 
+0398:  BCF    FF2.5
+.................... 		distance = (((indexEcho*0.00005)*340)/2)*100;		//0.000058 sert à avoir un distance en unité européenne  
+039A:  CLRF   44
+039C:  MOVFF  19,43
+03A0:  BRA    00CA
+03A2:  MOVFF  03,4A
+03A6:  MOVFF  02,49
+03AA:  MOVFF  01,48
+03AE:  MOVFF  00,47
+03B2:  MOVLW  17
+03B4:  MOVWF  4E
+03B6:  MOVLW  B7
+03B8:  MOVWF  4D
+03BA:  MOVLW  51
+03BC:  MOVWF  4C
+03BE:  MOVLW  70
+03C0:  MOVWF  4B
+03C2:  RCALL  0102
+03C4:  MOVFF  00,43
+03C8:  MOVFF  01,44
+03CC:  MOVFF  02,45
+03D0:  MOVFF  03,46
+03D4:  MOVFF  03,4A
+03D8:  MOVFF  02,49
+03DC:  MOVFF  01,48
+03E0:  MOVFF  00,47
+03E4:  CLRF   4E
+03E6:  CLRF   4D
+03E8:  MOVLW  2A
+03EA:  MOVWF  4C
+03EC:  MOVLW  87
+03EE:  MOVWF  4B
+03F0:  RCALL  0102
+03F2:  MOVFF  00,43
+03F6:  MOVFF  01,44
+03FA:  MOVFF  02,45
+03FE:  MOVFF  03,46
+0402:  MOVFF  03,4A
+0406:  MOVFF  02,49
+040A:  MOVFF  01,48
+040E:  MOVFF  00,47
+0412:  CLRF   4E
+0414:  CLRF   4D
+0416:  CLRF   4C
+0418:  MOVLW  80
+041A:  MOVWF  4B
+041C:  BRA    01F4
+041E:  MOVFF  00,43
+0422:  MOVFF  01,44
+0426:  MOVFF  02,45
+042A:  MOVFF  03,46
+042E:  MOVFF  03,4A
+0432:  MOVFF  02,49
+0436:  MOVFF  01,48
+043A:  MOVFF  00,47
+043E:  CLRF   4E
+0440:  CLRF   4D
+0442:  MOVLW  48
+0444:  MOVWF  4C
+0446:  MOVLW  85
+0448:  MOVWF  4B
+044A:  RCALL  0102
+044C:  MOVFF  03,46
+0450:  MOVFF  02,45
+0454:  MOVFF  01,44
+0458:  MOVFF  00,43
+045C:  BRA    0350
+045E:  MOVFF  01,1A
+.................... 		indexEcho=0; 
+0462:  CLRF   19
+.................... 	} 
+.................... } 
+....................  
+....................  
+....................  
+....................  
+0464:  BCF    FF2.2
+0466:  GOTO   0070
+
+Configuration Fuses:
+   Word  1: C200   HS FCMEN IESO
+   Word  2: 1E19   NOPUT NOBROWNOUT BORV20 NOWDT WDT32768
+   Word  3: 8700   CCP2C1 PBADEN LPT1OSC MCLR
+   Word  4: 0000   NOSTVREN NOLVP NOXINST DEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB
+
+   Some fuses have been forced to be compatible with the ICD debugger.

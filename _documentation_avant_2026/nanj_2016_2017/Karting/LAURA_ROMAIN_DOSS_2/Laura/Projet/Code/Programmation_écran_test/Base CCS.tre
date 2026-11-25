@@ -1,0 +1,20 @@
+ÀÄBase CCS
+   ÃÄmain  0/108  Ram=0
+   ³  ÃÄ??0??
+   ³  ÀÄConfig_uP  0/38  Ram=0
+   ÀÄRB0_isr  0/62  Ram=2
+      ÃÄstartConnection  0/58  Ram=1
+      ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+      ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+      ³  ÀÄ@I2C_WRITEU_1  0/28  Ram=1
+      ÃÄstartPointScreen  0/64  Ram=5
+      ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+      ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+      ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+      ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+      ³  ÀÄ@I2C_WRITEU_1  0/28  Ram=1
+      ÃÄ@const505  0/34  Ram=0
+      ÀÄwriteText  0/92  Ram=3
+         ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+         ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+         ÀÄ@I2C_WRITEU_1  0/28  Ram=1

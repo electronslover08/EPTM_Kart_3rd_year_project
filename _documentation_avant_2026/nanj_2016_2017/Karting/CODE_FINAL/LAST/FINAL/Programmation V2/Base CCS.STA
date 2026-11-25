@@ -1,0 +1,92 @@
+
+ROM used:   9080/31936 (28%)
+            9080/31936 (28%) including unused fragments
+
+            4.1 Average locations per line
+            19.1 Average locations per statement
+
+RAM used:   242/1524 (16%) at main() level
+            271/1524 (18%) worst case
+
+Stack used: 7 worst case (3 in main + 4 for interrupts)
+Stack size: 30
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  945   475 100  Base CCS.c
+  843     0   0  ..\..\..\..\Program Files (x86)\PICC\devices\18F4520.h
+  401     0   0  18F_register.h
+----- -----
+ 2189   475 Total
+
+Page ROM  %  RAM    Vol Diff  Functions:
+---- --- --- ---    --- ----  ----------
+0     28   0    1             @I2C_WRITEU_1
+0     28   0    1             @I2C_READU_1
+0    690   4    2   1277  6.8  Main
+0     22   0    0             @const1151
+0     28   0    0             @const1152
+0     26   0    0             @const1153
+0     52   0    0    399  2.8  init
+0     32   0    2    127  4.2  adc_read
+0     56   0    1    233  3.1  StartConnection
+0     52   0    1     93  3.3  reinit
+0     62   0    5    240  4.7  iCK
+0     44   0    2    120  3.4  iG
+0     50   0    3    160  4.2  iTW
+0     50   0    3    160  4.2  iTH
+0     44   0    2    120  3.4  iTA
+0     50   0    3    160  4.2  iAF
+0     86   0    3    247  4.6  iDT
+0     44   0    4    190  2.1  writeLine
+0    212   1    0    391  1.9  writeTab
+0   3402  19    8   9026  9.4  TIMER0_isr
+0     54   0    2             @ITOF
+0    246   1   11             @MULFF
+0    380   2   14             @DIVFF
+0    642   4   16             @ADDFF
+0     60   0    4             @SFTOI
+0    168   1   10             @FLT
+0     40   0    3             @DIV88
+0    180   1    0    318  1.9  VoltageScreen
+0    126   1    2    165  1.7  writeText
+0     26   0    0             @const1177
+0    106   1    0    365  1.9  TouchFieldMain
+0    984   5    2   4471  2.0  DrawGraphVoltage
+0     22   0    0             @const1178
+0     20   0    0             @const1179
+0     20   0    0             @const1180
+0     20   0    0             @const1181
+0     38   0    0             @const1182
+0     54   0    2    172  3.5  BlockRead
+0     18   0    0     82  2.8  ALERT
+0     68   0    1    277  3.7  startReading
+0     62   0    5    240  4.7  iDe
+0     50   0    3    160  4.2  iDC
+0    180   1    0    318  1.9  speedScreen
+0     52   0    1    357  4.7  Timer1_isr
+0     10   0    0     32  1.0  Echo_isr
+0     20   0    0     74  1.6  sendPulse
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               28
+    Statements              475
+    Comments                597
+    Volume (V)              29882
+    Difficulty (D)          100.9
+    Effort to implement (E) 3014792
+    Time to implement (T)   46 hours, 31 minutes
+    Est Delivered Bugs (B)  7
+    Cyclomatic Complexity   39
+    Maintainability (MI)    127
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-0017A   372  0  
+0017C-07CBE  8704  22852  
+
+
+

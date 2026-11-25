@@ -1,0 +1,14 @@
+>>> Warning 203 "08022017.c" Line 139(1,1): Condition always TRUE
+>>> Warning 229 "08022017.c" Line 466(1,1): Subscript out of range
+>>> Warning 225 "08022017.c" Line 776(1,1): Interrupt level changed  EXT: NORMAL=>HIGH
+>>> Warning 208 "08022017.c" Line 630(57,67): Function not void and does not return a value  TIMER0_isr
+>>> Warning 208 "08022017.c" Line 792(1,11): Function not void and does not return a value  Timer1_isr
+>>> Warning 202 "C:\Users\73JN\Desktop\PROGTEST\FonctionsEcran.c" Line 9(5,12): Variable never used:   iew_tab
+>>> Warning 202 "C:\Users\73JN\Desktop\PROGTEST\FonctionsEcran.c" Line 10(5,12): Variable never used:   ier_tab
+>>> Warning 202 "C:\Users\73JN\Desktop\PROGTEST\FonctionsEcran.c" Line 11(5,12): Variable never used:   iit_tab
+>>> Warning 202 "C:\Users\73JN\Desktop\PROGTEST\FonctionsEcran.c" Line 12(5,12): Variable never used:   iid_tab
+>>> Warning 202 "C:\Users\73JN\Desktop\PROGTEST\FonctionsEcran.c" Line 13(5,12): Variable never used:   ici_tab
+>>> Warning 202 "C:\Users\73JN\Desktop\PROGTEST\FonctionsEcran.c" Line 14(5,12): Variable never used:   icb_tab
+>>> Warning 202 "08022017.c" Line 54(5,14): Variable never used:   indexTIME
+C:\Users\73JN\Desktop\PROGTEST\08022017.o ===>  0 Errors,  12 Warnings.
+Build Successful.

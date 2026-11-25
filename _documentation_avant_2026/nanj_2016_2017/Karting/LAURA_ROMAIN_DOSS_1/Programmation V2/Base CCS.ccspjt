@@ -1,0 +1,14 @@
+[PROJECT]
+Target=Base CCS.hex
+Processor_Text=PIC18F4520
+CCSVersion=5.030
+Compiler=PCH
+[Target Data]
+FileList=Base CCS.c
+[Base CCS.c]
+Type=4
+[mru-list]
+1=Base CCS.c
+[Units]
+Count=1
+1=Base CCS (main)

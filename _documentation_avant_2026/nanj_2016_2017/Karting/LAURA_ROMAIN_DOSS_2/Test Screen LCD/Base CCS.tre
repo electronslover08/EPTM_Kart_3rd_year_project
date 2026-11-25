@@ -1,0 +1,8 @@
+ÀÄBase CCS
+   ÃÄmain  0/44  Ram=0
+   ³  ÃÄ??0??
+   ³  ÀÄinit  0/38  Ram=0
+   ÃÄRB0_isr  0/8  Ram=0
+   ³  ÀÄfct_1  0/8  Ram=1
+   ÀÄRB1_isr  0/8  Ram=0
+      ÀÄfct_2  0/8  Ram=1
