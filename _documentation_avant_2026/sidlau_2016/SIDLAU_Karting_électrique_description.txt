@@ -1,0 +1,12 @@
+Notre projet allie mécanique et électricité. Nous avons débuté avec un karting à motorisation essence
+et après plusieurs semaines de travail, notre karting électrique est né.
+
+Le moteur utilisé est à courant continu et /i/brushless/i/, ce qui veut dire que la conduction d'électricité
+se fait sans balais comme dans les moteurs DC habituels. Pour l'utilisation de ce genre de moteur, il faut
+donc un système qui contrôle le courant. J'utilise donc ici un contrôleur BAC-0501. 
+
+La partie électronique contient un affichage -écran graphique LCD- qui permet de visualiser la distance 
+mesurée par le capteur à ultrasons à l'avant. L'écran est contrôlé par un micro contrôleur PIC18F et la
+liaison est faite grâce au protocole I2C.
+
+Le tout est alimenté par quatre batteries au plomb du même type que celles présentes dans les voitures.

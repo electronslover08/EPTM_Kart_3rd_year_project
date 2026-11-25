@@ -21,7 +21,7 @@ Si l'année ou l'auteur sont incertains, indique-le dans le tableau ci-dessous p
 
 | Dossier | Élève(s) | Année | Sujet | Accord de publication |
 |---|---|---|---|---|
-| … | … | … | … | … |
+| [`sidlau_2016/`](sidlau_2016/) | Élève(s) non précisé(s) (code « SIDLAU ») | ≈ 2016 (d'après la date des fichiers, à confirmer) | Karting électrique : commande de puissance du moteur, afficheur LCD, détection d'obstacles | Accord déclaré par Nathanaël Bachelard le 25.11.2026 (qui l'a donné n'est pas précisé) |
 
 ## ⚠️ Droits d'auteur : à vérifier avant d'ajouter un document
 
