@@ -1,0 +1,3406 @@
+CCS PCH C Compiler, Version 4.122, 31826               08-juin-16 14:54
+
+               Filename: N:\1. Mes fichiers\3ème année\Projet\Programmation V2\Base CCS.lst
+
+               ROM used: 6920 bytes (22%)
+                         Largest free fragment is 25012
+               RAM used: 92 (6%) at main() level
+                         127 (8%) worst case
+               Stack:    7 worst case (3 in main + 4 for interrupts)
+
+*
+0000:  GOTO   19C6
+*
+0008:  NOP   
+000A:  NOP   
+000C:  NOP   
+000E:  NOP   
+0010:  NOP   
+0012:  NOP   
+0014:  NOP   
+0016:  NOP   
+0018:  MOVWF  04
+001A:  MOVFF  FD8,05
+001E:  MOVFF  FE0,06
+0022:  MOVLB  0
+0024:  MOVFF  FE9,0C
+0028:  MOVFF  FEA,07
+002C:  MOVFF  FE1,08
+0030:  MOVFF  FE2,09
+0034:  MOVFF  FD9,0A
+0038:  MOVFF  FDA,0B
+003C:  MOVFF  FF3,12
+0040:  MOVFF  FF4,13
+0044:  MOVFF  FFA,14
+0048:  MOVFF  FF5,15
+004C:  MOVFF  FF6,16
+0050:  MOVFF  FF7,17
+0054:  MOVFF  00,0E
+0058:  MOVFF  01,0F
+005C:  MOVFF  02,10
+0060:  MOVFF  03,11
+0064:  BTFSS  F9D.0
+0066:  GOTO   0070
+006A:  BTFSC  F9E.0
+006C:  GOTO   04EC
+0070:  BTFSS  F9D.1
+0072:  GOTO   007C
+0076:  BTFSC  F9E.1
+0078:  GOTO   0992
+007C:  BTFSS  FF0.4
+007E:  GOTO   0088
+0082:  BTFSC  FF0.1
+0084:  GOTO   00D6
+0088:  MOVFF  0E,00
+008C:  MOVFF  0F,01
+0090:  MOVFF  10,02
+0094:  MOVFF  11,03
+0098:  MOVFF  0C,FE9
+009C:  MOVFF  07,FEA
+00A0:  BSF    07.7
+00A2:  MOVFF  08,FE1
+00A6:  MOVFF  09,FE2
+00AA:  MOVFF  0A,FD9
+00AE:  MOVFF  0B,FDA
+00B2:  MOVFF  12,FF3
+00B6:  MOVFF  13,FF4
+00BA:  MOVFF  14,FFA
+00BE:  MOVFF  15,FF5
+00C2:  MOVFF  16,FF6
+00C6:  MOVFF  17,FF7
+00CA:  MOVF   04,W
+00CC:  MOVFF  06,FE0
+00D0:  MOVFF  05,FD8
+00D4:  RETFIE 0
+.................... /* ========================================================================= 
+.................... ====    ()_()                                                  ()_()    ==== 
+.................... ====    (o.0)         EMVs - Ecole des métiers du Valais       (0.o)    ==== 
+.................... ====    (m)(m)                                                (m)(m)    ==== 
+.................... ============================================================================ 
+.................... ====                                                                    ==== 
+.................... ====                     Programmation en langage C                     ==== 
+.................... ====                     --------------------------                     ==== 
+.................... ====                                                                    ==== 
+.................... ====--------------------------------------------------------------------==== 
+.................... ==== Nom du programme                  : projet_kart	                ==== 
+.................... ==== Version                           : V2.0                           ==== 
+.................... ==== Nom du(des) fichier(s) source     : 18F_register.h & Base CCS.c    ==== 
+.................... ====--------------------------------------------------------------------==== 
+.................... ==== Créateur (Nom, Prénom, Localité)  : Sierro Romain, Troistorrents   ==== 
+.................... ====									 Sidler Laura, Sion				==== 
+.................... ==== Classe                            : EL3							==== 
+.................... ==== Date de création                  : ??.??.2015                     ==== 
+.................... ==== Date de la dernière modification  : 02.06.2016                     ==== 
+.................... ====--------------------------------------------------------------------==== 
+.................... ==== Description succincte du programme:                                ==== 
+.................... ==== ----------------------------------                                 ==== 
+.................... ====Programme pour faire fonctionner l'écran tactile du projet du kart  ==== 
+.................... ====électrique. Doit afficher la distance captée par des capteurs ultra ==== 
+.................... ====son. Doit afficher le niveau des batteries du karting ainsi que la  ==== 
+.................... ====vitesse à laquel nous roulons. 										====	 
+.................... ============================================================================ 
+.................... *///------------------------------------------------------------------------ 
+.................... //-------------------------------------------------------------------------- 
+....................  
+.................... #include <18F4520.h> 
+.................... //////// Standard Header file for the PIC18F4520 device //////////////// 
+.................... #device PIC18F4520 
+.................... #list 
+....................  
+.................... #include "18F_register.h" 
+.................... #byte	RXF6SIDH	=	0x0D60 
+.................... #byte	RXF6SIDL	=	0x0D61 
+.................... #byte	RXF6EIDH	=	0x0D62 
+.................... #byte	RXF6EIDL	=	0x0D63 
+.................... #byte	RXF7SIDH	=	0x0D64 
+.................... #byte	RXF7SIDL	=	0x0D65 
+.................... #byte	RXF7EIDH	=	0x0D66 
+.................... #byte	RXF7EIDL	=	0x0D67 
+.................... #byte	RXF8SIDH	=	0x0D68 
+.................... #byte	RXF8SIDL	=	0x0D69 
+.................... #byte	RXF8EIDH	=	0x0D6A 
+.................... #byte	RXF8EIDL	=	0x0D6B 
+.................... #byte	RXF9SIDH	=	0x0D70 
+.................... #byte	RXF9SIDL	=	0x0D71 
+.................... #byte	RXF9EIDH	=	0x0D72 
+.................... #byte	RXF9EIDL	=	0x0D73 
+.................... #byte	RXF10SIDH	=	0x0D74 
+.................... #byte	RXF10SIDL	=	0x0D75 
+.................... #byte	RXF10EIDH	=	0x0D76 
+.................... #byte	RXF10EIDL	=	0x0D77 
+.................... #byte	RXF11SIDH	=	0x0D78 
+.................... #byte	RXF11SIDL	=	0x0D79 
+.................... #byte	RXF11EIDH	=	0x0D7A 
+.................... #byte	RXF11EIDL	=	0x0D7B 
+.................... #byte	RXF12SIDH	=	0x0D80 
+.................... #byte	RXF12SIDL	=	0x0D81 
+.................... #byte	RXF12EIDH	=	0x0D82 
+.................... #byte	RXF12EIDL	=	0x0D83 
+.................... #byte	RXF13SIDH	=	0x0D84 
+.................... #byte	RXF13SIDL	=	0x0D85 
+.................... #byte	RXF13EIDH	=	0x0D86 
+.................... #byte	RXF13EIDL	=	0x0D87 
+.................... #byte	RXF14SIDH	=	0x0D88 
+.................... #byte	RXF14SIDL	=	0x0D89 
+.................... #byte	RXF14EIDH	=	0x0D8A 
+.................... #byte	RXF14EIDL	=	0x0D8B 
+.................... #byte	RXF15SIDH	=	0x0D90 
+.................... #byte	RXF15SIDL	=	0x0D91 
+.................... #byte	RXF15EIDH	=	0x0D92 
+.................... #byte	RXF15EIDL	=	0x0D93 
+.................... #byte	RXFCON0		=	0x0DD4 
+.................... #byte	RXFCON1		=	0x0DD5 
+.................... #byte	SDFLC		=	0x0DD8 
+.................... #byte	RXFBCON0	=	0x0DE0 
+.................... #byte	RXFBCON1	=	0x0DE1 
+.................... #byte	RXFBCON2	=	0x0DE2 
+.................... #byte	RXFBCON3	=	0x0DE3 
+.................... #byte	RXFBCON4	=	0x0DE4 
+.................... #byte	RXFBCON5	=	0x0DE5 
+.................... #byte	RXFBCON6	=	0x0DE6 
+.................... #byte	RXFBCON7	=	0x0DE7 
+.................... #byte	MSEL0		=	0x0DF0 
+.................... #byte	MSEL1		=	0x0DF1 
+.................... #byte	MSEL2		=	0x0DF2 
+.................... #byte	MSEL3		=	0x0DF3 
+.................... #byte	BSEL0		=	0x0DF8 
+.................... #byte	BIE0		=	0x0DFA 
+.................... #byte	TXBIE		=	0x0DFC 
+.................... #byte	B0CON		=	0x0E20 
+.................... #byte	B0SIDH		=	0x0E21 
+.................... #byte	B0SIDL		=	0x0E22 
+.................... #byte	B0EIDH		=	0x0E23 
+.................... #byte	B0EIDL		=	0x0E24 
+.................... #byte	B0DLC		=	0x0E25 
+.................... #byte	B0D0		=	0x0E26 
+.................... #byte	B0D1		=	0x0E27 
+.................... #byte	B0D2		=	0x0E28 
+.................... #byte	B0D3		=	0x0E29 
+.................... #byte	B0D4		=	0x0E2A 
+.................... #byte	B0D5		=	0x0E2B 
+.................... #byte	B0D6		=	0x0E2C 
+.................... #byte	B0D7		=	0x0E2D 
+.................... #byte	CANSTAT_RO9	=	0x0E2E 
+.................... #byte	CANCON_RO9	=	0x0E2F 
+.................... #byte	B1CON		=	0x0E30 
+.................... #byte	B1SIDH		=	0x0E31 
+.................... #byte	B1SIDL		=	0x0E32 
+.................... #byte	B1EIDH		=	0x0E33 
+.................... #byte	B1EIDL		=	0x0E34 
+.................... #byte	B1DLC		=	0x0E35 
+.................... #byte	B1D0		=	0x0E36 
+.................... #byte	B1D1		=	0x0E37 
+.................... #byte	B1D2		=	0x0E38 
+.................... #byte	B1D3		=	0x0E39 
+.................... #byte	B1D4		=	0x0E3A 
+.................... #byte	B1D5		=	0x0E3B 
+.................... #byte	B1D6		=	0x0E3C 
+.................... #byte	B1D7		=	0x0E3D 
+.................... #byte	CANSTAT_RO8	=	0x0E3E 
+.................... #byte	CANCON_RO8	=	0x0E3F 
+.................... #byte	B2CON		=	0x0E40 
+.................... #byte	B2SIDH		=	0x0E41 
+.................... #byte	B2SIDL		=	0x0E42 
+.................... #byte	B2EIDH		=	0x0E43 
+.................... #byte	B2EIDL		=	0x0E44 
+.................... #byte	B2DLC		=	0x0E45 
+.................... #byte	B2D0		=	0x0E46 
+.................... #byte	B2D1		=	0x0E47 
+.................... #byte	B2D2		=	0x0E48 
+.................... #byte	B2D3		=	0x0E49 
+.................... #byte	B2D4		=	0x0E4A 
+.................... #byte	B2D5		=	0x0E4B 
+.................... #byte	B2D6		=	0x0E4C 
+.................... #byte	B2D7		=	0x0E4D 
+.................... #byte	CANSTAT_RO7	=	0x0E4E 
+.................... #byte	CANCON_RO7	=	0x0E4F 
+.................... #byte	B3CON		=	0x0E50 
+.................... #byte	B3SIDH		=	0x0E51 
+.................... #byte	B3SIDL		=	0x0E52 
+.................... #byte	B3EIDH		=	0x0E53 
+.................... #byte	B3EIDL		=	0x0E54 
+.................... #byte	B3DLC		=	0x0E55 
+.................... #byte	B3D0		=	0x0E56 
+.................... #byte	B3D1		=	0x0E57 
+.................... #byte	B3D2		=	0x0E58 
+.................... #byte	B3D3		=	0x0E59 
+.................... #byte	B3D4		=	0x0E5A 
+.................... #byte	B3D5		=	0x0E5B 
+.................... #byte	B3D6		=	0x0E5C 
+.................... #byte	B3D7		=	0x0E5D 
+.................... #byte	CANSTAT_RO6	=	0x0E5E 
+.................... #byte	CANCON_RO6	=	0x0E5F 
+.................... #byte	B4CON		=	0x0E60 
+.................... #byte	B4SIDH		=	0x0E61 
+.................... #byte	B4SIDL		=	0x0E62 
+.................... #byte	B4EIDH		=	0x0E63 
+.................... #byte	B4EIDL		=	0x0E64 
+.................... #byte	B4DLC		=	0x0E65 
+.................... #byte	B4D0		=	0x0E66 
+.................... #byte	B4D1		=	0x0E67 
+.................... #byte	B4D2		=	0x0E68 
+.................... #byte	B4D3		=	0x0E69 
+.................... #byte	B4D4		=	0x0E6A 
+.................... #byte	B4D5		=	0x0E6B 
+.................... #byte	B4D6		=	0x0E6C 
+.................... #byte	B4D7		=	0x0E6D 
+.................... #byte	CANSTAT_RO5	=	0x0E6E 
+.................... #byte	CANCON_RO5	=	0x0E6F 
+.................... #byte	B5CON		=	0x0E70 
+.................... #byte	B5SIDH		=	0x0E71 
+.................... #byte	B5SIDL		=	0x0E72 
+.................... #byte	B5EIDH		=	0x0E73 
+.................... #byte	B5EIDL		=	0x0E74 
+.................... #byte	B5DLC		=	0x0E75 
+.................... #byte	B5D0		=	0x0E76 
+.................... #byte	B5D1		=	0x0E77 
+.................... #byte	B5D2		=	0x0E78 
+.................... #byte	B5D3		=	0x0E79 
+.................... #byte	B5D4		=	0x0E7A 
+.................... #byte	B5D5		=	0x0E7B 
+.................... #byte	B5D6		=	0x0E7C 
+.................... #byte	B5D7		=	0x0E7D 
+.................... #byte	CANSTAT_RO4	=	0x0E7E 
+.................... #byte	CANCON_RO4	=	0x0E7F 
+.................... #byte	RXF0SIDH	=	0x0F00 
+.................... #byte	RXF0SIDL	=	0x0F01 
+.................... #byte	RXF0EIDH	=	0x0F02 
+.................... #byte	RXF0EIDL	=	0x0F03 
+.................... #byte	RXF1SIDH	=	0x0F04 
+.................... #byte	RXF1SIDL	=	0x0F05 
+.................... #byte	RXF1EIDH	=	0x0F06 
+.................... #byte	RXF1EIDL	=	0x0F07 
+.................... #byte	RXF2SIDH	=	0x0F08 
+.................... #byte	RXF2SIDL	=	0x0F09 
+.................... #byte	RXF2EIDH	=	0x0F0A 
+.................... #byte	RXF2EIDL	=	0x0F0B 
+.................... #byte	RXF3SIDH	=	0x0F0C 
+.................... #byte	RXF3SIDL	=	0x0F0D 
+.................... #byte	RXF3EIDH	=	0x0F0E 
+.................... #byte	RXF3EIDL	=	0x0F0F 
+.................... #byte	RXF4SIDH	=	0x0F10 
+.................... #byte	RXF4SIDL	=	0x0F11 
+.................... #byte	RXF4EIDH	=	0x0F12 
+.................... #byte	RXF4EIDL	=	0x0F13 
+.................... #byte	RXF5SIDH	=	0x0F14 
+.................... #byte	RXF5SIDL	=	0x0F15 
+.................... #byte	RXF5EIDH	=	0x0F16 
+.................... #byte	RXF5EIDL	=	0x0F17 
+.................... #byte	RXM0SIDH	=	0x0F18 
+.................... #byte	RXM0SIDL	=	0x0F19 
+.................... #byte	RXM0EIDH	=	0x0F1A 
+.................... #byte	RXM0EIDL	=	0x0F1B 
+.................... #byte	RXM1SIDH	=	0x0F1C 
+.................... #byte	RXM1SIDL	=	0x0F1D 
+.................... #byte	RXM1EIDH	=	0x0F1E 
+.................... #byte	RXM1EIDL	=	0x0F1F 
+.................... #byte	TXB2CON		=	0x0F20 
+.................... #byte	TXB2SIDH	=	0x0F21 
+.................... #byte	TXB2SIDL	=	0x0F22 
+.................... #byte	TXB2EIDH	=	0x0F23 
+.................... #byte	TXB2EIDL	=	0x0F24 
+.................... #byte	TXB2DLC		=	0x0F25 
+.................... #byte	TXB2D0		=	0x0F26 
+.................... #byte	TXB2D1		=	0x0F27 
+.................... #byte	TXB2D2		=	0x0F28 
+.................... #byte	TXB2D3		=	0x0F29 
+.................... #byte	TXB2D4		=	0x0F2A 
+.................... #byte	TXB2D5		=	0x0F2B 
+.................... #byte	TXB2D6		=	0x0F2C 
+.................... #byte	TXB2D7		=	0x0F2D 
+.................... #byte	CANSTAT_RO3	=	0x0F2E 
+.................... #byte	CANCON_RO3	=	0x0F2F 
+.................... #byte	TXB1CON		=	0x0F30 
+.................... #byte	TXB1SIDH	=	0x0F31 
+.................... #byte	TXB1SIDL	=	0x0F32 
+.................... #byte	TXB1EIDH	=	0x0F33 
+.................... #byte	TXB1EIDL	=	0x0F34 
+.................... #byte	TXB1DLC		=	0x0F35 
+.................... #byte	TXB1D0		=	0x0F36 
+.................... #byte	TXB1D1		=	0x0F37 
+.................... #byte	TXB1D2		=	0x0F38 
+.................... #byte	TXB1D3		=	0x0F39 
+.................... #byte	TXB1D4		=	0x0F3A 
+.................... #byte	TXB1D5		=	0x0F3B 
+.................... #byte	TXB1D6		=	0x0F3C 
+.................... #byte	TXB1D7		=	0x0F3D 
+.................... #byte	CANSTAT_RO2	=	0x0F3E 
+.................... #byte	CANCON_RO2	=	0x0F3F 
+.................... #byte	TXB0CON		=	0x0F40 
+.................... #byte	TXB0SIDH	=	0x0F41 
+.................... #byte	TXB0SIDL	=	0x0F42 
+.................... #byte	TXB0EIDH	=	0x0F43 
+.................... #byte	TXB0EIDL	=	0x0F44 
+.................... #byte	TXB0DLC		=	0x0F45 
+.................... #byte	TXB0D0		=	0x0F46 
+.................... #byte	TXB0D1		=	0x0F47 
+.................... #byte	TXB0D2		=	0x0F48 
+.................... #byte	TXB0D3		=	0x0F49 
+.................... #byte	TXB0D4		=	0x0F4A 
+.................... #byte	TXB0D5		=	0x0F4B 
+.................... #byte	TXB0D6		=	0x0F4C 
+.................... #byte	TXB0D7		=	0x0F4D 
+.................... #byte	CANSTAT_RO1	=	0x0F4E 
+.................... #byte	CANCON_RO1	=	0x0F4F 
+.................... #byte	RXB1CON		=	0x0F50 
+.................... #byte	RXB1SIDH	=	0x0F51 
+.................... #byte	RXB1SIDL	=	0x0F52 
+.................... #byte	RXB1EIDH	=	0x0F53 
+.................... #byte	RXB1EIDL	=	0x0F54 
+.................... #byte	RXB1DLC		=	0x0F55 
+.................... #byte	RXB1D0		=	0x0F56 
+.................... #byte	RXB1D1		=	0x0F57 
+.................... #byte	RXB1D2		=	0x0F58 
+.................... #byte	RXB1D3		=	0x0F59 
+.................... #byte	RXB1D4		=	0x0F5A 
+.................... #byte	RXB1D5		=	0x0F5B 
+.................... #byte	RXB1D6		=	0x0F5C 
+.................... #byte	RXB1D7		=	0x0F5D 
+.................... #byte	CANSTAT_RO0	=	0x0F5E 
+.................... #byte	CANCON_RO0	=	0x0F5F 
+.................... #byte	RXB0CON		=	0x0F60 
+.................... #byte	RXB0SIDH	=	0x0F61 
+.................... #byte	RXB0SIDL	=	0x0F62 
+.................... #byte	RXB0EIDH	=	0x0F63 
+.................... #byte	RXB0EIDL	=	0x0F64 
+.................... #byte	RXB0DLC		=	0x0F65 
+.................... #byte	RXB0D0		=	0x0F66 
+.................... #byte	RXB0D1		=	0x0F67 
+.................... #byte	RXB0D2		=	0x0F68 
+.................... #byte	RXB0D3		=	0x0F69 
+.................... #byte	RXB0D4		=	0x0F6A 
+.................... #byte	RXB0D5		=	0x0F6B 
+.................... #byte	RXB0D6		=	0x0F6C 
+.................... #byte	RXB0D7		=	0x0F6D 
+.................... #byte	CANSTAT		=	0x0F6E 
+.................... #byte	CANCON		=	0x0F6F 
+.................... #byte	BRGCON1		=	0x0F70 
+.................... #byte	BRGCON2		=	0x0F71 
+.................... #byte	BRGCON3		=	0x0F72 
+.................... #byte	CIOCON		=	0x0F73 
+.................... #byte	COMSTAT		=	0x0F74 
+.................... #byte	RXERRCNT	=	0x0F75 
+.................... #byte	TXERRCNT	=	0x0F76 
+.................... #byte	ECANCON		=	0x0F77 
+.................... #byte	PORTA		=	0x0F80 
+.................... #byte	PORTB		=	0x0F81 
+.................... #byte	PORTC		=	0x0F82 
+.................... #byte	PORTD		=	0x0F83 
+.................... #byte	PORTE		=	0x0F84 
+.................... #byte	LATA		=	0x0F89 
+.................... #byte	LATB		=	0x0F8A 
+.................... #byte	LATC		=	0x0F8B 
+.................... #byte	LATD		=	0x0F8C 
+.................... #byte	LATE		=	0x0F8D 
+.................... #byte	DDRA		=	0x0F92 
+.................... #byte	TRISA		=	0x0F92 
+.................... #byte	DDRB		=	0x0F93 
+.................... #byte	TRISB		=	0x0F93 
+.................... #byte	DDRC		=	0x0F94 
+.................... #byte	TRISC		=	0x0F94 
+.................... #byte	DDRD		=	0x0F95 
+.................... #byte	TRISD		=	0x0F95 
+.................... #byte	DDRE		=	0x0F96 
+.................... #byte	TRISE		=	0x0F96 
+.................... #byte	OSCTUNE		=	0x0F9B 
+.................... #byte	PIE1		=	0x0F9D 
+.................... #byte	PIR1		=	0x0F9E 
+.................... #byte	IPR1		=	0x0F9F 
+.................... #byte	PIE2		=	0x0FA0 
+.................... #byte	PIR2		=	0x0FA1 
+.................... #byte	IPR2		=	0x0FA2 
+.................... #byte	PIE3		=	0x0FA3 
+.................... #byte	PIR3		=	0x0FA4 
+.................... #byte	IPR3		=	0x0FA5 
+.................... #byte	EECON1		=	0x0FA6 
+.................... #byte	EECON2		=	0x0FA7 
+.................... #byte	EEDATA		=	0x0FA8 
+.................... #byte	EEADR		=	0x0FA9 
+.................... #byte	EEADRH		=	0x0FAA 
+.................... #byte	RCSTA		=	0x0FAB 
+.................... #byte	TXSTA		=	0x0FAC 
+.................... #byte	TXREG		=	0x0FAD 
+.................... #byte	RCREG		=	0x0FAE 
+.................... #byte	SPBRG		=	0x0FAF 
+.................... #byte	SPBRGH		=	0x0FB0 
+.................... #byte	T3CON		=	0x0FB1 
+.................... #byte	TMR3L		=	0x0FB2 
+.................... #byte	TMR3H		=	0x0FB3 
+.................... #byte	CMCON		=	0x0FB4 
+.................... #byte	CVRCON		=	0x0FB5 
+.................... #byte	ECCP1AS		=	0x0FB6 
+.................... #byte	ECCP1DEL	=	0x0FB7 
+.................... #byte	BAUDCON		=	0x0FB8 
+.................... #byte	ECCP1CON	=	0x0FBA 
+.................... #byte	ECCPR1		=	0x0FBB 
+.................... #byte	ECCPR1L		=	0x0FBB 
+.................... #byte	ECCPR1H		=	0x0FBC 
+.................... #byte	CCP1CON		=	0x0FBD 
+.................... #byte	CCPR1		=	0x0FBE 
+.................... #byte	CCPR1L		=	0x0FBE 
+.................... #byte	CCPR1H		=	0x0FBF 
+.................... #byte	ADCON2		=	0x0FC0 
+.................... #byte	ADCON1		=	0x0FC1 
+.................... #byte	ADCON0		=	0x0FC2 
+.................... #byte	ADRES		=	0x0FC3 
+.................... #byte	ADRESL		=	0x0FC3 
+.................... #byte	ADRESH		=	0x0FC4 
+.................... #byte	SSPCON2		=	0x0FC5 
+.................... #byte	SSPCON1		=	0x0FC6 
+.................... #byte	SSPSTAT		=	0x0FC7 
+.................... #byte	SSPADD		=	0x0FC8 
+.................... #byte	SSPBUF		=	0x0FC9 
+.................... #byte	T2CON		=	0x0FCA 
+.................... #byte	PR2		=	0x0FCB 
+.................... #byte	TMR2		=	0x0FCC 
+.................... #byte	T1CON		=	0x0FCD 
+.................... #byte	TMR1L		=	0x0FCE 
+.................... #byte	TMR1H		=	0x0FCF 
+.................... #byte	RCON		=	0x0FD0 
+.................... #byte	WDTCON		=	0x0FD1 
+.................... #byte	HLVDCON		=	0x0FD2 
+.................... #byte	LVDCON		=	0x0FD2 
+.................... #byte	OSCCON		=	0x0FD3 
+.................... #byte	T0CON		=	0x0FD5 
+.................... #byte	TMR0L		=	0x0FD6 
+.................... #byte	TMR0H		=	0x0FD7 
+.................... #byte	STATUS		=	0x0FD8 
+.................... #byte	FSR2L		=	0x0FD9 
+.................... #byte	FSR2H		=	0x0FDA 
+.................... #byte	PLUSW2		=	0x0FDB 
+.................... #byte	PREINC2		=	0x0FDC 
+.................... #byte	POSTDEC2	=	0x0FDD 
+.................... #byte	POSTINC2	=	0x0FDE 
+.................... #byte	INDF2		=	0x0FDF 
+.................... #byte	BSR		=	0x0FE0 
+.................... #byte	FSR1L		=	0x0FE1 
+.................... #byte	FSR1H		=	0x0FE2 
+.................... #byte	PLUSW1		=	0x0FE3 
+.................... #byte	PREINC1		=	0x0FE4 
+.................... #byte	POSTDEC1	=	0x0FE5 
+.................... #byte	POSTINC1	=	0x0FE6 
+.................... #byte	INDF1		=	0x0FE7 
+.................... #byte	WREG		=	0x0FE8 
+.................... #byte	FSR0L		=	0x0FE9 
+.................... #byte	FSR0H		=	0x0FEA 
+.................... #byte	PLUSW0		=	0x0FEB 
+.................... #byte	PREINC0		=	0x0FEC 
+.................... #byte	POSTDEC0	=	0x0FED 
+.................... #byte	POSTINC0	=	0x0FEE 
+.................... #byte	INDF0		=	0x0FEF 
+.................... #byte	INTCON3		=	0x0FF0 
+.................... #byte	INTCON2		=	0x0FF1 
+.................... #byte	INTCON		=	0x0FF2 
+.................... #byte	PROD		=	0x0FF3 
+.................... #byte	PRODL		=	0x0FF3 
+.................... #byte	PRODH		=	0x0FF4 
+.................... #byte	TABLAT		=	0x0FF5 
+.................... #byte	TBLPTR		=	0x0FF6 
+.................... #byte	TBLPTRL		=	0x0FF6 
+.................... #byte	TBLPTRH		=	0x0FF7 
+.................... #byte	TBLPTRU		=	0x0FF8 
+.................... #byte	PC		=	0x0FF9 
+.................... #byte	PCL		=	0x0FF9 
+.................... #byte	PCLATH		=	0x0FFA 
+.................... #byte	PCLATU		=	0x0FFB 
+.................... #byte	STKPTR		=	0x0FFC 
+.................... #byte	TOS		=	0x0FFD 
+.................... #byte	TOSL		=	0x0FFD 
+.................... #byte	TOSH		=	0x0FFE 
+.................... #byte	TOSU		=	0x0FFF 
+....................  
+....................  
+.................... #device HIGH_INTS=TRUE 
+.................... #device ICD=TRUE 
+.................... #use delay(clock=20000000) 
+*
+0A56:  CLRF   FEA
+0A58:  MOVLW  5C
+0A5A:  MOVWF  FE9
+0A5C:  MOVF   FEF,W
+0A5E:  BZ    0A7A
+0A60:  MOVLW  06
+0A62:  MOVWF  01
+0A64:  CLRF   00
+0A66:  DECFSZ 00,F
+0A68:  BRA    0A66
+0A6A:  DECFSZ 01,F
+0A6C:  BRA    0A64
+0A6E:  MOVLW  7B
+0A70:  MOVWF  00
+0A72:  DECFSZ 00,F
+0A74:  BRA    0A72
+0A76:  DECFSZ FEF,F
+0A78:  BRA    0A60
+0A7A:  RETURN 0
+.................... #use i2c(master,fast,sda=PIN_C4,scl=PIN_C3,FORCE_HW)	//Force à utiliser le Hardware du microcontrôleur 
+*
+0774:  BCF    FC6.7
+0776:  BCF    F9E.3
+0778:  MOVFF  75,FC9
+077C:  MOVLW  02
+077E:  BTFSC  FC6.7
+0780:  BRA    078C
+0782:  BTFSS  F9E.3
+0784:  BRA    0782
+0786:  MOVLW  00
+0788:  BTFSC  FC5.6
+078A:  MOVLW  01
+078C:  MOVWF  01
+078E:  RETURN 0
+.................... #fuses NOWDT, HS, NOPUT, NOPROTECT, DEBUG, NOBROWNOUT, NOLVP, NOCPD, NOWRT 
+....................  
+.................... //--Assignation des ports qui gèrent le capteur--// 
+.................... #BIT Trigger=PORTD.1	//Pin du capteur où est envoyée une impulsion 
+.................... #BIT Echo=PORTB.2		//Pin du capteur où revient l'echo du signal envoyé 
+.................... #BIT ADGO=ADCON0.1		//Bit pour le fonctionnement de convertisseur A/D 
+....................  
+.................... #define I2CADDRESS 0X88						//Adresse de l'écran 
+....................  
+.................... //========================================================================== 
+.................... //Variables globales :												======== 
+.................... //--------------------												======== 
+.................... double indexEcho=0;	//Variable pour calculer la durée de l'echo		======== 
+.................... int16 distance=0;		//Variable pour stocker la distance caclulée======== 
+.................... unsigned int8 ACK=1;			//Variable pour vérifier l'état de la connection======== 
+.................... int Cent=0;			//Variable pour stocker les mètres 				======== 
+.................... int Dix=0;			//Variable pour stocker les centimètres			======== 
+.................... int Unit=0;			//Variable pour stocker les milimètres			========	 
+.................... double tension=0;	//Variable pour stocker la mesure de tension	========	 
+.................... double courant=0;	//Variable pour stocker la mesure de courant	========									 
+.................... //========================================================================== 
+....................  
+.................... //========================================================================== 
+.................... //Tableaux de commandes pour iLCD :									======== 
+.................... //---------------------------------									======== 
+.................... int	textStart[8]={0x65,0x4B,0x61,0x72,0x74,0x69,0x6E,0x67};	//eKarting====== 
+.................... int textDist[11]={0x50,0x72,0x6F,0x78,0x69,0x6D,0x69,0x74,0x65,0x20,0x3A};	//Distance : 
+.................... int textTension[9]={0x54,0x65,0x6E,0x73,0x69,0x6F,0x6E,0x20,0x3A};	//Tension :  
+.................... int textCourant[9]={0x43,0x6F,0x75,0x72,0x61,0x6E,0x74,0x20,0x3A};	//Courant : 
+.................... int textVitesse[9]={0x56,0x69,0x74,0x65,0x73,0x73,0x65,0x20,0x3a};	//Vitesse : 
+.................... //========================================================================== 
+.................... //Prototypes : 														======== 
+.................... //------------														======== 
+.................... void init(void);		//Configuration du uP						======== 
+.................... void initScreen(void);		//Réinitialise l'écran					========	 
+.................... void startConnection(int charToSend);	//Démarre la connection avec l'écran 
+.................... void setCursor(int xh, int xl, int yh, int yl);	//Défini position curseur=== 
+.................... void drawImage(int idx_x, int idx_y);	//Affiche l'image choisie	======== 
+.................... void setFont(int font_x, int font_y);	//Choisi la police entrée	======== 
+.................... void writeText(int textTab[], int taille);	//Ecris un texte - iDT	======== 
+.................... int  adc_read(int channel);	//Convertit le canal entré en analogique======== 
+.................... void writeLine(int end_xh, int end_xl, int end_yh, int end_yl);	//Affiche une ligne	 
+.................... void writeTitre(void);		//Ecrit le titre des éléments			======== 
+.................... void sendPulse(void);		//Envoie une impulsion au capteur		======== 
+.................... void fctdistance(void);		//Calcul la distance et l'affiche		======== 
+.................... void afficheDist(void);		//Affiche le dessin du capteur			======== 
+.................... void mesTension(void);		//Mesure la tension des batteries		======== 
+.................... void afficheTension(void);	//Affiche le dessin de la batterie		======== 
+.................... void mesCourant(void);		//Mesure le courant des batteries		======== 
+.................... void mesVitesse(void);		//Mesure et affiche la vitesse			======== 
+.................... //========================================================================== 
+....................  
+.................... //------Fonction principale du code------// 
+.................... void Main(void) 
+.................... { 
+*
+19C6:  CLRF   FF8
+19C8:  BCF    F9F.0
+19CA:  BCF    F9F.1
+19CC:  BCF    FF0.7
+19CE:  BSF    FD0.7
+19D0:  BSF    07.7
+19D2:  CLRF   FEA
+19D4:  CLRF   FE9
+19D6:  BSF    F94.3
+19D8:  BSF    F94.4
+19DA:  MOVLW  0C
+19DC:  MOVWF  FC8
+19DE:  MOVLW  28
+19E0:  MOVWF  FC6
+19E2:  BCF    FC7.7
+19E4:  BCF    FC7.6
+19E6:  CLRF   1D
+19E8:  CLRF   1C
+19EA:  CLRF   1B
+19EC:  CLRF   1A
+19EE:  CLRF   1F
+19F0:  CLRF   1E
+19F2:  MOVLW  01
+19F4:  MOVWF  20
+19F6:  CLRF   21
+19F8:  CLRF   22
+19FA:  CLRF   23
+19FC:  CLRF   27
+19FE:  CLRF   26
+1A00:  CLRF   25
+1A02:  CLRF   24
+1A04:  CLRF   2B
+1A06:  CLRF   2A
+1A08:  CLRF   29
+1A0A:  CLRF   28
+1A0C:  MOVF   FC1,W
+1A0E:  ANDLW  C0
+1A10:  IORLW  0F
+1A12:  MOVWF  FC1
+1A14:  MOVLW  07
+1A16:  MOVWF  FB4
+1A18:  MOVLW  65
+1A1A:  MOVWF  2C
+1A1C:  MOVLW  4B
+1A1E:  MOVWF  2D
+1A20:  MOVLW  61
+1A22:  MOVWF  2E
+1A24:  MOVLW  72
+1A26:  MOVWF  2F
+1A28:  MOVLW  74
+1A2A:  MOVWF  30
+1A2C:  MOVLW  69
+1A2E:  MOVWF  31
+1A30:  MOVLW  6E
+1A32:  MOVWF  32
+1A34:  MOVLW  67
+1A36:  MOVWF  33
+1A38:  MOVLW  50
+1A3A:  MOVWF  34
+1A3C:  MOVLW  72
+1A3E:  MOVWF  35
+1A40:  MOVLW  6F
+1A42:  MOVWF  36
+1A44:  MOVLW  78
+1A46:  MOVWF  37
+1A48:  MOVLW  69
+1A4A:  MOVWF  38
+1A4C:  MOVLW  6D
+1A4E:  MOVWF  39
+1A50:  MOVLW  69
+1A52:  MOVWF  3A
+1A54:  MOVLW  74
+1A56:  MOVWF  3B
+1A58:  MOVLW  65
+1A5A:  MOVWF  3C
+1A5C:  MOVLW  20
+1A5E:  MOVWF  3D
+1A60:  MOVLW  3A
+1A62:  MOVWF  3E
+1A64:  MOVLW  54
+1A66:  MOVWF  3F
+1A68:  MOVLW  65
+1A6A:  MOVWF  40
+1A6C:  MOVLW  6E
+1A6E:  MOVWF  41
+1A70:  MOVLW  73
+1A72:  MOVWF  42
+1A74:  MOVLW  69
+1A76:  MOVWF  43
+1A78:  MOVLW  6F
+1A7A:  MOVWF  44
+1A7C:  MOVLW  6E
+1A7E:  MOVWF  45
+1A80:  MOVLW  20
+1A82:  MOVWF  46
+1A84:  MOVLW  3A
+1A86:  MOVWF  47
+1A88:  MOVLW  43
+1A8A:  MOVWF  48
+1A8C:  MOVLW  6F
+1A8E:  MOVWF  49
+1A90:  MOVLW  75
+1A92:  MOVWF  4A
+1A94:  MOVLW  72
+1A96:  MOVWF  4B
+1A98:  MOVLW  61
+1A9A:  MOVWF  4C
+1A9C:  MOVLW  6E
+1A9E:  MOVWF  4D
+1AA0:  MOVLW  74
+1AA2:  MOVWF  4E
+1AA4:  MOVLW  20
+1AA6:  MOVWF  4F
+1AA8:  MOVLW  3A
+1AAA:  MOVWF  50
+1AAC:  MOVLW  56
+1AAE:  MOVWF  51
+1AB0:  MOVLW  69
+1AB2:  MOVWF  52
+1AB4:  MOVLW  74
+1AB6:  MOVWF  53
+1AB8:  MOVLW  65
+1ABA:  MOVWF  54
+1ABC:  MOVLW  73
+1ABE:  MOVWF  55
+1AC0:  MOVWF  56
+1AC2:  MOVLW  65
+1AC4:  MOVWF  57
+1AC6:  MOVLW  20
+1AC8:  MOVWF  58
+1ACA:  MOVLW  3A
+1ACC:  MOVWF  59
+1ACE:  CLRF   5A
+.................... 	init(); 
+1AD0:  GOTO   0A7C
+.................... 	TMR0H=TMR0L=0; 
+1AD4:  CLRF   FD6
+1AD6:  MOVFF  FD6,FD7
+.................... 	writeTitre();	//Ecrit les infos de base 
+1ADA:  GOTO   0C62
+....................  
+.................... 	while(1) 
+.................... 	{ 
+.................... 		enable_interrupts(INT_EXT2);	//Autorise l'interruption RB2 
+1ADE:  BSF    FF0.4
+.................... 		sendPulse();	//Envoie une impulsion sur le capteur de distance 
+1AE0:  GOTO   0EBC
+.................... 		delay_ms(500);	//Pour pas faire trop clignoter 
+1AE4:  MOVLW  02
+1AE6:  MOVWF  5B
+1AE8:  MOVLW  FA
+1AEA:  MOVWF  5C
+1AEC:  CALL   0A56
+1AF0:  DECFSZ 5B,F
+1AF2:  BRA    1AE8
+.................... 		fctdistance();	//Calcul la distance et l'affiche sur l'écran 
+1AF4:  GOTO   0F10
+.................... 		afficheDist();	//Affiche les barres de couleurs pour indiquer la proximité 
+1AF8:  GOTO   10E4
+.................... 		mesTension();	//Mesure et affiche la tension des batteries 
+1AFC:  GOTO   11A2
+.................... 		afficheTension();//Affiche le logo de la batterie et son nniveau de charge 
+1B00:  BRA    14FC
+.................... 		mesCourant();	//Mesure et affiche le courant des batteries 
+1B02:  BRA    16A8
+.................... 		distance=0;		//Remet distance à 0 
+1B04:  CLRF   1F
+1B06:  CLRF   1E
+.................... 	}	 
+1B08:  BRA    1ADE
+.................... } 
+....................  
+.................... /*========================================================================== 
+.................... ====Fonction     : Config_uP	                                        ==== 
+.................... ====Sierro Romain: 11.03.2016                                           ==== 
+.................... ====--------------------------------------------------------------------==== 
+.................... ====Lance la routine d'initialisation du microprocesseur		 		==== 
+.................... ============================================================================*/ 
+.................... void init(void) 
+.................... {	 
+1B0A:  BRA    1B0A
+.................... 	//Ports hardware 
+.................... 	TRISA=TRISA|0b00010011;	//RA0,1 et 4 en entrée 
+*
+0A7C:  MOVLW  13
+0A7E:  IORWF  F92,F
+.................... 	TRISB=0xFF;		//PORTB en entrée 
+0A80:  SETF   F93
+.................... 	TRISD=0X00;		//PORTD en sortie pour le capteur 
+0A82:  CLRF   F95
+.................... 	PORTD=0b00111000;	//Commande des capteurs à 1				 
+0A84:  MOVLW  38
+0A86:  MOVWF  F83
+....................  
+.................... 	//Configuration des registres 
+.................... 	ADCON0=0b00000001;	//module CAD actif,channel 0: AN0 multiplexé sur l'A/D 
+0A88:  MOVLW  01
+0A8A:  MOVWF  FC2
+.................... 	ADCON1=0b00001101;	//AN0 et AN1 en analogique 
+0A8C:  MOVLW  0D
+0A8E:  MOVWF  FC1
+.................... 	ADCON2=0b00011101;	//TAD = Fosc/16 car fCPU = 20MHz 
+0A90:  MOVLW  1D
+0A92:  MOVWF  FC0
+....................  
+.................... 	//Intterupts 
+.................... 	//enable_interrupts(INT_EXT2);		//Autorise l'interruption RB2 
+.................... 	enable_interrupts(INT_TIMER0);		//Active le timer0 
+0A94:  BSF    FF2.5
+.................... 	disable_interrupts(INT_TIMER1);		//Désactive l'interruption timer 
+0A96:  BCF    F9D.0
+.................... 	enable_interrupts(INT_TIMER2);		//Active le timer2 
+0A98:  BSF    F9D.1
+.................... 	ext_int_edge(2,L_to_H);				//Configure RB2 sur le flanc montant 
+0A9A:  BSF    FF1.4
+.................... 	enable_interrupts(GLOBAL);			//Autorise globalement les interruptions 
+0A9C:  MOVLW  C0
+0A9E:  IORWF  FF2,F
+....................  
+.................... 	T0CON=0b10101000;	//S'incrément chaque L to H 
+0AA0:  MOVLW  A8
+0AA2:  MOVWF  FD5
+.................... 	T1CON=0b10000001;	//Timer de 50µs 
+0AA4:  MOVLW  81
+0AA6:  MOVWF  FCD
+0AA8:  CLRF   19
+0AAA:  BTFSC  FF2.6
+0AAC:  BSF    19.6
+0AAE:  BCF    FF2.6
+0AB0:  BTFSC  FF2.7
+0AB2:  BSF    19.7
+0AB4:  BCF    FF2.7
+....................  
+.................... 	//Initialisation de l'écran  
+.................... 	startConnection(15);	//Dit à l'écran combien de caractère on lui envoie  
+0AB6:  MOVLW  0F
+0AB8:  MOVWF  71
+0ABA:  RCALL  0790
+0ABC:  BTFSC  19.6
+0ABE:  BSF    FF2.6
+0AC0:  BTFSC  19.7
+0AC2:  BSF    FF2.7
+.................... 	initScreen();			//Efface l'écran 
+0AC4:  RCALL  09AA
+0AC6:  CLRF   19
+0AC8:  BTFSC  FF2.6
+0ACA:  BSF    19.6
+0ACC:  BCF    FF2.6
+0ACE:  BTFSC  FF2.7
+0AD0:  BSF    19.7
+0AD2:  BCF    FF2.7
+.................... 	 
+.................... 	setCursor(0x00,0xF7,0x00,0x9D);	//Positionne le curseur 
+0AD4:  CLRF   71
+0AD6:  MOVLW  F7
+0AD8:  MOVWF  72
+0ADA:  CLRF   73
+0ADC:  MOVLW  9D
+0ADE:  MOVWF  74
+0AE0:  RCALL  07E8
+0AE2:  BTFSC  19.6
+0AE4:  BSF    FF2.6
+0AE6:  BTFSC  19.7
+0AE8:  BSF    FF2.7
+.................... 	drawImage(0x00,0x00);	//Dessine l'image contune à l'emplacement 0 
+0AEA:  CLRF   5B
+0AEC:  CLRF   5C
+0AEE:  RCALL  09E4
+....................  
+.................... 	delay_ms(2500);	//Attend 2.5s 
+0AF0:  MOVLW  0A
+0AF2:  MOVWF  5B
+0AF4:  MOVLW  FA
+0AF6:  MOVWF  5C
+0AF8:  RCALL  0A56
+0AFA:  DECFSZ 5B,F
+0AFC:  BRA    0AF4
+.................... 	i2c_stop();	 
+0AFE:  BSF    FC5.2
+0B00:  BTFSC  FC5.2
+0B02:  BRA    0B00
+....................  
+.................... 	T2CON=0b01100110;	//Timer de 10ms 
+0B04:  MOVLW  66
+0B06:  MOVWF  FCA
+....................  
+.................... } 
+0B08:  GOTO   1AD4 (RETURN)
+....................  
+.................... /*========================================================================== 
+.................... ====Fonction     : initScreen		                                    ==== 
+.................... ====Sierro Romain: 11.03.2016                                           ==== 
+.................... ====--------------------------------------------------------------------==== 
+.................... ====Réinitialise l'écran			vaut i!						 		==== 
+.................... ============================================================================*/ 
+.................... void initScreen(void) 
+.................... { 
+*
+09AA:  CLRF   19
+09AC:  BTFSC  FF2.6
+09AE:  BSF    19.6
+09B0:  BCF    FF2.6
+09B2:  BTFSC  FF2.7
+09B4:  BSF    19.7
+09B6:  BCF    FF2.7
+.................... 	i2c_write(0xAA);	//Commande de l'écran 
+09B8:  MOVLW  AA
+09BA:  MOVWF  75
+09BC:  RCALL  0774
+09BE:  BTFSC  19.6
+09C0:  BSF    FF2.6
+09C2:  BTFSC  19.7
+09C4:  BSF    FF2.7
+09C6:  CLRF   19
+09C8:  BTFSC  FF2.6
+09CA:  BSF    19.6
+09CC:  BCF    FF2.6
+09CE:  BTFSC  FF2.7
+09D0:  BSF    19.7
+09D2:  BCF    FF2.7
+.................... 	i2c_write(0x21);	//Réinitialise l'écran; vaut i! dans le programme de iLCD 
+09D4:  MOVLW  21
+09D6:  MOVWF  75
+09D8:  RCALL  0774
+09DA:  BTFSC  19.6
+09DC:  BSF    FF2.6
+09DE:  BTFSC  19.7
+09E0:  BSF    FF2.7
+.................... } 
+09E2:  RETURN 0
+....................  
+.................... /*========================================================================== 
+.................... ====Fonction     : startConnection                                      ==== 
+.................... ====Sierro Romain: 11.03.2016                                           ==== 
+.................... ====--------------------------------------------------------------------==== 
+.................... ====Démarre la connection avec l'écran							 		==== 
+.................... ============================================================================*/ 
+.................... void startConnection(int charToSend) 
+.................... { 
+.................... 	i2c_start(); 
+*
+0790:  BSF    FC5.0
+0792:  BTFSC  FC5.0
+0794:  BRA    0792
+.................... 	do{ACK = i2c_write(I2CADDRESS);}	while(ACK==1);	//Atteindre l'écran 
+0796:  MOVLW  88
+0798:  MOVWF  75
+079A:  RCALL  0774
+079C:  MOVFF  01,20
+07A0:  DECFSZ 20,W
+07A2:  BRA    07A6
+07A4:  BRA    0796
+.................... 	do{ACK = i2c_write(0x05);}			while(ACK==1);	//Dire à l'écran que l'on veut lui envoyer qqch 
+07A6:  MOVLW  05
+07A8:  MOVWF  75
+07AA:  RCALL  0774
+07AC:  MOVFF  01,20
+07B0:  DECFSZ 20,W
+07B2:  BRA    07B6
+07B4:  BRA    07A6
+.................... 	do{ACK = i2c_write(charToSend);}	while(ACK==1);	//Dire à l'écran combien de char on lui envoie 	 
+07B6:  MOVFF  71,75
+07BA:  RCALL  0774
+07BC:  MOVFF  01,20
+07C0:  DECFSZ 20,W
+07C2:  BRA    07C6
+07C4:  BRA    07B6
+.................... } 
+07C6:  RETURN 0
+....................  
+.................... /*========================================================================== 
+.................... ====Fonction     : setCursor		                                    ==== 
+.................... ====Sierro Romain: 18.03.2016                                           ==== 
+.................... ====--------------------------------------------------------------------==== 
+.................... ====Met le curseur à des coordonnées voulues	vaut iCK		 		==== 
+.................... ============================================================================*/ 
+.................... void setCursor(int xh, int xl, int yh, int yl) 
+.................... { 
+.................... 	i2c_write(0xAA);//Commande de l'écran 
+*
+07E8:  MOVLW  AA
+07EA:  MOVWF  75
+07EC:  RCALL  0774
+.................... 	i2c_write(0x43);//Commande pour les paramètres de l'écran 
+07EE:  MOVLW  43
+07F0:  MOVWF  75
+07F2:  RCALL  0774
+.................... 	i2c_write(0x4B);//Commande pour le curseur 
+07F4:  MOVLW  4B
+07F6:  MOVWF  75
+07F8:  RCALL  0774
+.................... 	i2c_write(xh);	//Comme l'écran est grand, sa taille se donne sur  
+07FA:  MOVFF  71,75
+07FE:  RCALL  0774
+.................... 	i2c_write(xl);	//2 Byte. C'est pour ça que les coordonnées sont en 2 fois 
+0800:  MOVFF  72,75
+0804:  RCALL  0774
+.................... 	i2c_write(yh); 
+0806:  MOVFF  73,75
+080A:  RCALL  0774
+.................... 	i2c_write(yl); 
+080C:  MOVFF  74,75
+0810:  RCALL  0774
+.................... } 
+0812:  RETURN 0
+....................  
+.................... /*========================================================================== 
+.................... ====Fonction     : drawImage		                                    ==== 
+.................... ====Sierro Romain: 19.05.2016                                           ==== 
+.................... ====--------------------------------------------------------------------==== 
+.................... ====Affiche l'image entrée en paramètre			vaut iG			 		==== 
+.................... ============================================================================*/ 
+.................... void drawImage(int idx_x, int idx_y) 
+.................... { 
+*
+09E4:  CLRF   19
+09E6:  BTFSC  FF2.6
+09E8:  BSF    19.6
+09EA:  BCF    FF2.6
+09EC:  BTFSC  FF2.7
+09EE:  BSF    19.7
+09F0:  BCF    FF2.7
+.................... 	i2c_write(0xAA);	//Commande de l'écran 
+09F2:  MOVLW  AA
+09F4:  MOVWF  75
+09F6:  RCALL  0774
+09F8:  BTFSC  19.6
+09FA:  BSF    FF2.6
+09FC:  BTFSC  19.7
+09FE:  BSF    FF2.7
+0A00:  CLRF   19
+0A02:  BTFSC  FF2.6
+0A04:  BSF    19.6
+0A06:  BCF    FF2.6
+0A08:  BTFSC  FF2.7
+0A0A:  BSF    19.7
+0A0C:  BCF    FF2.7
+.................... 	i2c_write(0x47);	//Commande pour dessiner 
+0A0E:  MOVLW  47
+0A10:  MOVWF  75
+0A12:  RCALL  0774
+0A14:  BTFSC  19.6
+0A16:  BSF    FF2.6
+0A18:  BTFSC  19.7
+0A1A:  BSF    FF2.7
+0A1C:  CLRF   19
+0A1E:  BTFSC  FF2.6
+0A20:  BSF    19.6
+0A22:  BCF    FF2.6
+0A24:  BTFSC  FF2.7
+0A26:  BSF    19.7
+0A28:  BCF    FF2.7
+.................... 	i2c_write(idx_x);	//Index de l'image contenue dans l'écran 
+0A2A:  MOVFF  5B,75
+0A2E:  RCALL  0774
+0A30:  BTFSC  19.6
+0A32:  BSF    FF2.6
+0A34:  BTFSC  19.7
+0A36:  BSF    FF2.7
+0A38:  CLRF   19
+0A3A:  BTFSC  FF2.6
+0A3C:  BSF    19.6
+0A3E:  BCF    FF2.6
+0A40:  BTFSC  FF2.7
+0A42:  BSF    19.7
+0A44:  BCF    FF2.7
+.................... 	i2c_write(idx_y); 
+0A46:  MOVFF  5C,75
+0A4A:  RCALL  0774
+0A4C:  BTFSC  19.6
+0A4E:  BSF    FF2.6
+0A50:  BTFSC  19.7
+0A52:  BSF    FF2.7
+.................... } 
+0A54:  RETURN 0
+....................  
+.................... /*========================================================================== 
+.................... ====Fonction     : setFont			                                    ==== 
+.................... ====Sierro Romain: 13.05.2016                                           ==== 
+.................... ====--------------------------------------------------------------------==== 
+.................... ====Sélectionne une police d'écriture 			vaut iAF		 		==== 
+.................... ============================================================================*/ 
+.................... void setFont(int font_x, int font_y) 
+.................... { 
+.................... 	i2c_write(0xAA);	//Commande de l'écran  
+*
+07C8:  MOVLW  AA
+07CA:  MOVWF  75
+07CC:  RCALL  0774
+.................... 	i2c_write(0x41);	//Commande pour les options d'écriture 
+07CE:  MOVLW  41
+07D0:  MOVWF  75
+07D2:  RCALL  0774
+.................... 	i2c_write(0x46);	//Commande pour les paramètres de police 
+07D4:  MOVLW  46
+07D6:  MOVWF  75
+07D8:  RCALL  0774
+.................... 	i2c_write(font_x);	//Index du style d'écriture 
+07DA:  MOVFF  71,75
+07DE:  RCALL  0774
+.................... 	i2c_write(font_y); 
+07E0:  MOVFF  72,75
+07E4:  RCALL  0774
+.................... } 
+07E6:  RETURN 0
+....................  
+.................... /*========================================================================== 
+.................... ====Fonction     : writeText		                                    ==== 
+.................... ====Sierro Romain: 11.03.2016                                           ==== 
+.................... ====--------------------------------------------------------------------==== 
+.................... ====Ecrit un texte à l'écran		vaut iDT					 		==== 
+.................... ============================================================================*/ 
+.................... void writeText(int textTab[], int taille) 
+.................... { 
+*
+0B0C:  CLRF   19
+0B0E:  BTFSC  FF2.6
+0B10:  BSF    19.6
+0B12:  BCF    FF2.6
+0B14:  BTFSC  FF2.7
+0B16:  BSF    19.7
+0B18:  BCF    FF2.7
+.................... 	int i;	//Index pour la boucle d'écriture 
+....................  
+.................... 	i2c_write(0xAA);	//Commande de l'écran 
+0B1A:  MOVLW  AA
+0B1C:  MOVWF  75
+0B1E:  RCALL  0774
+0B20:  BTFSC  19.6
+0B22:  BSF    FF2.6
+0B24:  BTFSC  19.7
+0B26:  BSF    FF2.7
+0B28:  CLRF   19
+0B2A:  BTFSC  FF2.6
+0B2C:  BSF    19.6
+0B2E:  BCF    FF2.6
+0B30:  BTFSC  FF2.7
+0B32:  BSF    19.7
+0B34:  BCF    FF2.7
+.................... 	i2c_write(0x44);	//Commande pour dessiner 
+0B36:  MOVLW  44
+0B38:  MOVWF  75
+0B3A:  RCALL  0774
+0B3C:  BTFSC  19.6
+0B3E:  BSF    FF2.6
+0B40:  BTFSC  19.7
+0B42:  BSF    FF2.7
+0B44:  CLRF   19
+0B46:  BTFSC  FF2.6
+0B48:  BSF    19.6
+0B4A:  BCF    FF2.6
+0B4C:  BTFSC  FF2.7
+0B4E:  BSF    19.7
+0B50:  BCF    FF2.7
+.................... 	i2c_write(0x54);	//Commande pour écrire du texte 
+0B52:  MOVLW  54
+0B54:  MOVWF  75
+0B56:  RCALL  0774
+0B58:  BTFSC  19.6
+0B5A:  BSF    FF2.6
+0B5C:  BTFSC  19.7
+0B5E:  BSF    FF2.7
+....................  
+.................... 	for (i=0; i<taille; i++)	//Nous affichons 1 à 1 les caractères 
+0B60:  CLRF   5E
+0B62:  MOVF   5D,W
+0B64:  SUBWF  5E,W
+0B66:  BC    0B9A
+.................... 		{i2c_write(textTab[i]);}//contenus dans le tableau entré 
+0B68:  CLRF   03
+0B6A:  MOVF   5E,W
+0B6C:  ADDWF  5B,W
+0B6E:  MOVWF  FE9
+0B70:  MOVF   5C,W
+0B72:  ADDWFC 03,W
+0B74:  MOVWF  FEA
+0B76:  MOVFF  FEF,5F
+0B7A:  CLRF   19
+0B7C:  BTFSC  FF2.6
+0B7E:  BSF    19.6
+0B80:  BCF    FF2.6
+0B82:  BTFSC  FF2.7
+0B84:  BSF    19.7
+0B86:  BCF    FF2.7
+0B88:  MOVFF  5F,75
+0B8C:  RCALL  0774
+0B8E:  BTFSC  19.6
+0B90:  BSF    FF2.6
+0B92:  BTFSC  19.7
+0B94:  BSF    FF2.7
+0B96:  INCF   5E,F
+0B98:  BRA    0B62
+.................... } 
+0B9A:  RETURN 0
+....................  
+.................... /* ========================================================================= 
+.................... ====Fonction     : Adc_read                                             ==== 
+.................... ====Sierro Romain: 07.01.2014                                           ==== 
+.................... ====--------------------------------------------------------------------==== 
+.................... ==== Fonction: int Adc_read(int channel) 
+.................... ==== Déscription: Convertit en digital 8 bits le canal analog.          ==== 
+.................... ==== passé en param. Paramètres d'entrée: channel: soit le canal        ==== 
+.................... ==== à convertir Paramètres de sortie: valeur num. 8 bits de l'entrée   ==== 
+.................... ==== analog. AN0                                                        ==== 
+.................... ============================================================================ */ 
+.................... int adc_read(int channel) 
+.................... { 
+.................... 	ADCON0 = (channel << 2) + 0b00000001; 
+*
+1182:  RLCF   5B,W
+1184:  MOVWF  00
+1186:  RLCF   00,F
+1188:  MOVLW  FC
+118A:  ANDWF  00,F
+118C:  MOVF   00,W
+118E:  ADDLW  01
+1190:  MOVWF  FC2
+....................  
+.................... 	ADGO = 1; 
+1192:  BSF    FC2.1
+.................... 	while(ADGO==1) 
+.................... 		continue; 
+1194:  BTFSS  FC2.1
+1196:  BRA    119C
+1198:  BRA    1194
+119A:  BRA    1194
+.................... 	return (ADRESH); 
+119C:  MOVFF  FC4,01
+.................... } 
+11A0:  RETURN 0
+....................  
+.................... /*========================================================================== 
+.................... ====Fonction     : writeLine		                                    ==== 
+.................... ====Sierro Romain: 13.05.2016                                           ==== 
+.................... ====--------------------------------------------------------------------==== 
+.................... ====Affiche une ligne sur l'écran			 					 		==== 
+.................... ============================================================================*/ 
+.................... void writeLine(int end_xh,int end_xl, int end_yh, int end_yl) 
+.................... { 
+*
+0B9C:  CLRF   19
+0B9E:  BTFSC  FF2.6
+0BA0:  BSF    19.6
+0BA2:  BCF    FF2.6
+0BA4:  BTFSC  FF2.7
+0BA6:  BSF    19.7
+0BA8:  BCF    FF2.7
+.................... 	i2c_write(0xAA);	//Commande de l'écran 
+0BAA:  MOVLW  AA
+0BAC:  MOVWF  75
+0BAE:  RCALL  0774
+0BB0:  BTFSC  19.6
+0BB2:  BSF    FF2.6
+0BB4:  BTFSC  19.7
+0BB6:  BSF    FF2.7
+0BB8:  CLRF   19
+0BBA:  BTFSC  FF2.6
+0BBC:  BSF    19.6
+0BBE:  BCF    FF2.6
+0BC0:  BTFSC  FF2.7
+0BC2:  BSF    19.7
+0BC4:  BCF    FF2.7
+.................... 	i2c_write(0x44);	//Commande pour dessiner 
+0BC6:  MOVLW  44
+0BC8:  MOVWF  75
+0BCA:  RCALL  0774
+0BCC:  BTFSC  19.6
+0BCE:  BSF    FF2.6
+0BD0:  BTFSC  19.7
+0BD2:  BSF    FF2.7
+0BD4:  CLRF   19
+0BD6:  BTFSC  FF2.6
+0BD8:  BSF    19.6
+0BDA:  BCF    FF2.6
+0BDC:  BTFSC  FF2.7
+0BDE:  BSF    19.7
+0BE0:  BCF    FF2.7
+.................... 	i2c_write(0x4C);	//Commande pour dessiner un trait 
+0BE2:  MOVLW  4C
+0BE4:  MOVWF  75
+0BE6:  RCALL  0774
+0BE8:  BTFSC  19.6
+0BEA:  BSF    FF2.6
+0BEC:  BTFSC  19.7
+0BEE:  BSF    FF2.7
+0BF0:  CLRF   19
+0BF2:  BTFSC  FF2.6
+0BF4:  BSF    19.6
+0BF6:  BCF    FF2.6
+0BF8:  BTFSC  FF2.7
+0BFA:  BSF    19.7
+0BFC:  BCF    FF2.7
+.................... 	i2c_write(end_xh);	//Comme l'écran est grand, sa taille se donne sur  
+0BFE:  MOVFF  5B,75
+0C02:  RCALL  0774
+0C04:  BTFSC  19.6
+0C06:  BSF    FF2.6
+0C08:  BTFSC  19.7
+0C0A:  BSF    FF2.7
+0C0C:  CLRF   19
+0C0E:  BTFSC  FF2.6
+0C10:  BSF    19.6
+0C12:  BCF    FF2.6
+0C14:  BTFSC  FF2.7
+0C16:  BSF    19.7
+0C18:  BCF    FF2.7
+.................... 	i2c_write(end_xl);	//2 Byte. C'est pour ça que les coordonnées sont en 2 fois 
+0C1A:  MOVFF  5C,75
+0C1E:  RCALL  0774
+0C20:  BTFSC  19.6
+0C22:  BSF    FF2.6
+0C24:  BTFSC  19.7
+0C26:  BSF    FF2.7
+0C28:  CLRF   19
+0C2A:  BTFSC  FF2.6
+0C2C:  BSF    19.6
+0C2E:  BCF    FF2.6
+0C30:  BTFSC  FF2.7
+0C32:  BSF    19.7
+0C34:  BCF    FF2.7
+.................... 	i2c_write(end_yh);	//La ligne part de la position du curseur jusqu'à la position  
+0C36:  MOVFF  5D,75
+0C3A:  RCALL  0774
+0C3C:  BTFSC  19.6
+0C3E:  BSF    FF2.6
+0C40:  BTFSC  19.7
+0C42:  BSF    FF2.7
+0C44:  CLRF   19
+0C46:  BTFSC  FF2.6
+0C48:  BSF    19.6
+0C4A:  BCF    FF2.6
+0C4C:  BTFSC  FF2.7
+0C4E:  BSF    19.7
+0C50:  BCF    FF2.7
+.................... 	i2c_write(end_yl);	//entrée dans la fonction 
+0C52:  MOVFF  5E,75
+0C56:  RCALL  0774
+0C58:  BTFSC  19.6
+0C5A:  BSF    FF2.6
+0C5C:  BTFSC  19.7
+0C5E:  BSF    FF2.7
+.................... } 
+0C60:  RETURN 0
+....................  
+.................... /*========================================================================== 
+.................... ====Fonction     : writeTitre		                                    ==== 
+.................... ====Sierro Romain: 11.05.2016                                           ==== 
+.................... ====--------------------------------------------------------------------==== 
+.................... ====Ecrit le squelette de l'affichage		 					 		==== 
+.................... ============================================================================*/ 
+.................... void writeTitre(void) 
+.................... { 
+0C62:  CLRF   19
+0C64:  BTFSC  FF2.6
+0C66:  BSF    19.6
+0C68:  BCF    FF2.6
+0C6A:  BTFSC  FF2.7
+0C6C:  BSF    19.7
+0C6E:  BCF    FF2.7
+.................... 	startConnection(165);				//Envoie le nombre de caractère qu'il va recevoir 
+0C70:  MOVLW  A5
+0C72:  MOVWF  71
+0C74:  RCALL  0790
+0C76:  BTFSC  19.6
+0C78:  BSF    FF2.6
+0C7A:  BTFSC  19.7
+0C7C:  BSF    FF2.7
+.................... 	initScreen();						//Efface l'écran 
+0C7E:  RCALL  09AA
+0C80:  CLRF   19
+0C82:  BTFSC  FF2.6
+0C84:  BSF    19.6
+0C86:  BCF    FF2.6
+0C88:  BTFSC  FF2.7
+0C8A:  BSF    19.7
+0C8C:  BCF    FF2.7
+.................... 	setCursor(0x01, 0x10, 0x00, 0x25);	//Met le curseur pour centrer le texte en haut au milieu 
+0C8E:  MOVLW  01
+0C90:  MOVWF  71
+0C92:  MOVLW  10
+0C94:  MOVWF  72
+0C96:  CLRF   73
+0C98:  MOVLW  25
+0C9A:  MOVWF  74
+0C9C:  RCALL  07E8
+0C9E:  BTFSC  19.6
+0CA0:  BSF    FF2.6
+0CA2:  BTFSC  19.7
+0CA4:  BSF    FF2.7
+0CA6:  CLRF   19
+0CA8:  BTFSC  FF2.6
+0CAA:  BSF    19.6
+0CAC:  BCF    FF2.6
+0CAE:  BTFSC  FF2.7
+0CB0:  BSF    19.7
+0CB2:  BCF    FF2.7
+.................... 	setFont(0x00, 0x01);				//Sélectionne la police du titre 
+0CB4:  CLRF   71
+0CB6:  MOVLW  01
+0CB8:  MOVWF  72
+0CBA:  RCALL  07C8
+0CBC:  BTFSC  19.6
+0CBE:  BSF    FF2.6
+0CC0:  BTFSC  19.7
+0CC2:  BSF    FF2.7
+.................... 	writeText(textStart, 8);			//Ecrit <<eKarting>> 
+0CC4:  CLRF   5C
+0CC6:  MOVLW  2C
+0CC8:  MOVWF  5B
+0CCA:  MOVLW  08
+0CCC:  MOVWF  5D
+0CCE:  RCALL  0B0C
+0CD0:  CLRF   19
+0CD2:  BTFSC  FF2.6
+0CD4:  BSF    19.6
+0CD6:  BCF    FF2.6
+0CD8:  BTFSC  FF2.7
+0CDA:  BSF    19.7
+0CDC:  BCF    FF2.7
+....................  
+.................... 	setCursor(0x00, 0x30, 0x00, 0xA5);	//Met le curseur pour centrer le texte en haut au milieu 
+0CDE:  CLRF   71
+0CE0:  MOVLW  30
+0CE2:  MOVWF  72
+0CE4:  CLRF   73
+0CE6:  MOVLW  A5
+0CE8:  MOVWF  74
+0CEA:  RCALL  07E8
+0CEC:  BTFSC  19.6
+0CEE:  BSF    FF2.6
+0CF0:  BTFSC  19.7
+0CF2:  BSF    FF2.7
+0CF4:  CLRF   19
+0CF6:  BTFSC  FF2.6
+0CF8:  BSF    19.6
+0CFA:  BCF    FF2.6
+0CFC:  BTFSC  FF2.7
+0CFE:  BSF    19.7
+0D00:  BCF    FF2.7
+.................... 	setFont(0x00, 0x02);				//Sélectionne la police du titre 
+0D02:  CLRF   71
+0D04:  MOVLW  02
+0D06:  MOVWF  72
+0D08:  RCALL  07C8
+0D0A:  BTFSC  19.6
+0D0C:  BSF    FF2.6
+0D0E:  BTFSC  19.7
+0D10:  BSF    FF2.7
+.................... 	writeText(textDist, 11);			//Ecrit <<Proximité>> 
+0D12:  CLRF   5C
+0D14:  MOVLW  34
+0D16:  MOVWF  5B
+0D18:  MOVLW  0B
+0D1A:  MOVWF  5D
+0D1C:  RCALL  0B0C
+0D1E:  CLRF   19
+0D20:  BTFSC  FF2.6
+0D22:  BSF    19.6
+0D24:  BCF    FF2.6
+0D26:  BTFSC  FF2.7
+0D28:  BSF    19.7
+0D2A:  BCF    FF2.7
+....................  
+.................... 	setCursor(0x01, 0x40, 0x00, 0xA5);	//Met le curseur pour centrer le texte en haut au milieu 
+0D2C:  MOVLW  01
+0D2E:  MOVWF  71
+0D30:  MOVLW  40
+0D32:  MOVWF  72
+0D34:  CLRF   73
+0D36:  MOVLW  A5
+0D38:  MOVWF  74
+0D3A:  RCALL  07E8
+0D3C:  BTFSC  19.6
+0D3E:  BSF    FF2.6
+0D40:  BTFSC  19.7
+0D42:  BSF    FF2.7
+0D44:  CLRF   19
+0D46:  BTFSC  FF2.6
+0D48:  BSF    19.6
+0D4A:  BCF    FF2.6
+0D4C:  BTFSC  FF2.7
+0D4E:  BSF    19.7
+0D50:  BCF    FF2.7
+.................... 	setFont(0x00, 0x02);				//Sélectionne la police du titre 
+0D52:  CLRF   71
+0D54:  MOVLW  02
+0D56:  MOVWF  72
+0D58:  RCALL  07C8
+0D5A:  BTFSC  19.6
+0D5C:  BSF    FF2.6
+0D5E:  BTFSC  19.7
+0D60:  BSF    FF2.7
+.................... 	writeText(textTension, 9);			//Ecrit <<Tension>> 
+0D62:  CLRF   5C
+0D64:  MOVLW  3F
+0D66:  MOVWF  5B
+0D68:  MOVLW  09
+0D6A:  MOVWF  5D
+0D6C:  RCALL  0B0C
+0D6E:  CLRF   19
+0D70:  BTFSC  FF2.6
+0D72:  BSF    19.6
+0D74:  BCF    FF2.6
+0D76:  BTFSC  FF2.7
+0D78:  BSF    19.7
+0D7A:  BCF    FF2.7
+....................  
+.................... 	setCursor(0x01, 0x40, 0x01, 0x80);	//Met le curseur pour centrer le texte en haut au milieu 
+0D7C:  MOVLW  01
+0D7E:  MOVWF  71
+0D80:  MOVLW  40
+0D82:  MOVWF  72
+0D84:  MOVLW  01
+0D86:  MOVWF  73
+0D88:  MOVLW  80
+0D8A:  MOVWF  74
+0D8C:  RCALL  07E8
+0D8E:  BTFSC  19.6
+0D90:  BSF    FF2.6
+0D92:  BTFSC  19.7
+0D94:  BSF    FF2.7
+0D96:  CLRF   19
+0D98:  BTFSC  FF2.6
+0D9A:  BSF    19.6
+0D9C:  BCF    FF2.6
+0D9E:  BTFSC  FF2.7
+0DA0:  BSF    19.7
+0DA2:  BCF    FF2.7
+.................... 	setFont(0x00, 0x02);				//Sélectionne la police du titre 
+0DA4:  CLRF   71
+0DA6:  MOVLW  02
+0DA8:  MOVWF  72
+0DAA:  RCALL  07C8
+0DAC:  BTFSC  19.6
+0DAE:  BSF    FF2.6
+0DB0:  BTFSC  19.7
+0DB2:  BSF    FF2.7
+.................... 	writeText(textCourant, 9);			//Ecrit <<Courant>> 
+0DB4:  CLRF   5C
+0DB6:  MOVLW  48
+0DB8:  MOVWF  5B
+0DBA:  MOVLW  09
+0DBC:  MOVWF  5D
+0DBE:  RCALL  0B0C
+0DC0:  CLRF   19
+0DC2:  BTFSC  FF2.6
+0DC4:  BSF    19.6
+0DC6:  BCF    FF2.6
+0DC8:  BTFSC  FF2.7
+0DCA:  BSF    19.7
+0DCC:  BCF    FF2.7
+....................  
+.................... 	setCursor(0x02, 0x45, 0x00, 0xA5);	//Met le curseur pour centrer le texte en haut au milieu 
+0DCE:  MOVLW  02
+0DD0:  MOVWF  71
+0DD2:  MOVLW  45
+0DD4:  MOVWF  72
+0DD6:  CLRF   73
+0DD8:  MOVLW  A5
+0DDA:  MOVWF  74
+0DDC:  RCALL  07E8
+0DDE:  BTFSC  19.6
+0DE0:  BSF    FF2.6
+0DE2:  BTFSC  19.7
+0DE4:  BSF    FF2.7
+0DE6:  CLRF   19
+0DE8:  BTFSC  FF2.6
+0DEA:  BSF    19.6
+0DEC:  BCF    FF2.6
+0DEE:  BTFSC  FF2.7
+0DF0:  BSF    19.7
+0DF2:  BCF    FF2.7
+.................... 	setFont(0x00, 0x02);				//Sélectionne la police du titre 
+0DF4:  CLRF   71
+0DF6:  MOVLW  02
+0DF8:  MOVWF  72
+0DFA:  RCALL  07C8
+0DFC:  BTFSC  19.6
+0DFE:  BSF    FF2.6
+0E00:  BTFSC  19.7
+0E02:  BSF    FF2.7
+.................... 	writeText(textVitesse, 9);			//Ecrit <<Vitesse>> 
+0E04:  CLRF   5C
+0E06:  MOVLW  51
+0E08:  MOVWF  5B
+0E0A:  MOVLW  09
+0E0C:  MOVWF  5D
+0E0E:  RCALL  0B0C
+0E10:  CLRF   19
+0E12:  BTFSC  FF2.6
+0E14:  BSF    19.6
+0E16:  BCF    FF2.6
+0E18:  BTFSC  FF2.7
+0E1A:  BSF    19.7
+0E1C:  BCF    FF2.7
+....................  
+.................... 	setCursor(0x00, 0x00, 0x00, 0xA0);	//Positionne le curseur à 1/3 de la hauteur 
+0E1E:  CLRF   71
+0E20:  CLRF   72
+0E22:  CLRF   73
+0E24:  MOVLW  A0
+0E26:  MOVWF  74
+0E28:  RCALL  07E8
+0E2A:  BTFSC  19.6
+0E2C:  BSF    FF2.6
+0E2E:  BTFSC  19.7
+0E30:  BSF    FF2.7
+.................... 	writeLine(0x03, 0x1F, 0x00, 0xA0);	//Fait une ligne horizontal en travers de l'écran 
+0E32:  MOVLW  03
+0E34:  MOVWF  5B
+0E36:  MOVLW  1F
+0E38:  MOVWF  5C
+0E3A:  CLRF   5D
+0E3C:  MOVLW  A0
+0E3E:  MOVWF  5E
+0E40:  RCALL  0B9C
+0E42:  CLRF   19
+0E44:  BTFSC  FF2.6
+0E46:  BSF    19.6
+0E48:  BCF    FF2.6
+0E4A:  BTFSC  FF2.7
+0E4C:  BSF    19.7
+0E4E:  BCF    FF2.7
+.................... 	setCursor(0x01, 0x0A, 0x00, 0xA0);	//Positionne le curseur à 1/3 de la largeur 
+0E50:  MOVLW  01
+0E52:  MOVWF  71
+0E54:  MOVLW  0A
+0E56:  MOVWF  72
+0E58:  CLRF   73
+0E5A:  MOVLW  A0
+0E5C:  MOVWF  74
+0E5E:  RCALL  07E8
+0E60:  BTFSC  19.6
+0E62:  BSF    FF2.6
+0E64:  BTFSC  19.7
+0E66:  BSF    FF2.7
+.................... 	writeLine(0x01, 0x0A, 0x01, 0xDF);	//Fait une ligne verticale à 1/3 de l'écran 
+0E68:  MOVLW  01
+0E6A:  MOVWF  5B
+0E6C:  MOVLW  0A
+0E6E:  MOVWF  5C
+0E70:  MOVLW  01
+0E72:  MOVWF  5D
+0E74:  MOVLW  DF
+0E76:  MOVWF  5E
+0E78:  RCALL  0B9C
+0E7A:  CLRF   19
+0E7C:  BTFSC  FF2.6
+0E7E:  BSF    19.6
+0E80:  BCF    FF2.6
+0E82:  BTFSC  FF2.7
+0E84:  BSF    19.7
+0E86:  BCF    FF2.7
+.................... 	setCursor(0x02, 0x16, 0x00, 0xA0);	//Positionne le curseur à 2/3 de la largeur 
+0E88:  MOVLW  02
+0E8A:  MOVWF  71
+0E8C:  MOVLW  16
+0E8E:  MOVWF  72
+0E90:  CLRF   73
+0E92:  MOVLW  A0
+0E94:  MOVWF  74
+0E96:  RCALL  07E8
+0E98:  BTFSC  19.6
+0E9A:  BSF    FF2.6
+0E9C:  BTFSC  19.7
+0E9E:  BSF    FF2.7
+.................... 	writeLine(0x02, 0x16, 0x01, 0xDF);	//Fait une ligne verticale à 2/3 de l'écran 
+0EA0:  MOVLW  02
+0EA2:  MOVWF  5B
+0EA4:  MOVLW  16
+0EA6:  MOVWF  5C
+0EA8:  MOVLW  01
+0EAA:  MOVWF  5D
+0EAC:  MOVLW  DF
+0EAE:  MOVWF  5E
+0EB0:  RCALL  0B9C
+.................... 	i2c_stop(); 
+0EB2:  BSF    FC5.2
+0EB4:  BTFSC  FC5.2
+0EB6:  BRA    0EB4
+.................... } 
+0EB8:  GOTO   1ADE (RETURN)
+....................  
+.................... /*========================================================================== 
+.................... ====Fonction     : sendPulse		                                    ==== 
+.................... ====Sierro Romain: 11.05.2016                                           ==== 
+.................... ====--------------------------------------------------------------------==== 
+.................... ====Envoie une impulsion sur le trigger du capteur				 		==== 
+.................... ============================================================================*/ 
+.................... void sendPulse(void) 
+.................... { 
+.................... 	Trigger=1;		//On allume l'émetteur du capteur 
+0EBC:  BSF    F83.1
+.................... 	delay_us(10);	//pendant 10µs 
+0EBE:  MOVLW  10
+0EC0:  MOVWF  00
+0EC2:  DECFSZ 00,F
+0EC4:  BRA    0EC2
+0EC6:  NOP   
+.................... 	Trigger=0;		//Puis on l'éteint 
+0EC8:  BCF    F83.1
+.................... } 
+0ECA:  GOTO   1AE4 (RETURN)
+....................  
+.................... /*========================================================================== 
+.................... ====Fonction     : distance			                                    ==== 
+.................... ====Sierro Romain: 12.05.2016                                           ==== 
+.................... ====--------------------------------------------------------------------==== 
+.................... ====Convertit la valeur du timer en distance et l'envoi pour l'afficher	==== 
+.................... ============================================================================*/ 
+.................... void fctdistance(void) 
+.................... { 
+.................... 		//Calculs pour ressortir chaque chiffre 
+.................... 		Cent=distance/100;	 
+*
+0F10:  MOVFF  1F,5E
+0F14:  MOVFF  1E,5D
+0F18:  CLRF   60
+0F1A:  MOVLW  64
+0F1C:  MOVWF  5F
+0F1E:  RCALL  0ECE
+0F20:  MOVFF  01,21
+.................... 		Dix=(distance/10)%10; 
+0F24:  MOVFF  1F,5E
+0F28:  MOVFF  1E,5D
+0F2C:  CLRF   60
+0F2E:  MOVLW  0A
+0F30:  MOVWF  5F
+0F32:  RCALL  0ECE
+0F34:  MOVFF  02,5C
+0F38:  MOVFF  01,5B
+0F3C:  MOVFF  02,5E
+0F40:  MOVFF  01,5D
+0F44:  CLRF   60
+0F46:  MOVLW  0A
+0F48:  MOVWF  5F
+0F4A:  RCALL  0ECE
+0F4C:  MOVFF  00,22
+.................... 		Unit=distance%10; 
+0F50:  MOVFF  1F,5E
+0F54:  MOVFF  1E,5D
+0F58:  CLRF   60
+0F5A:  MOVLW  0A
+0F5C:  MOVWF  5F
+0F5E:  RCALL  0ECE
+0F60:  MOVFF  00,23
+0F64:  CLRF   19
+0F66:  BTFSC  FF2.6
+0F68:  BSF    19.6
+0F6A:  BCF    FF2.6
+0F6C:  BTFSC  FF2.7
+0F6E:  BSF    19.7
+0F70:  BCF    FF2.7
+.................... 			 
+.................... 		startConnection(21);	//Dit à l'écran le nombre de caractère qu'on lui envoie 
+0F72:  MOVLW  15
+0F74:  MOVWF  71
+0F76:  RCALL  0790
+0F78:  BTFSC  19.6
+0F7A:  BSF    FF2.6
+0F7C:  BTFSC  19.7
+0F7E:  BSF    FF2.7
+0F80:  CLRF   19
+0F82:  BTFSC  FF2.6
+0F84:  BSF    19.6
+0F86:  BCF    FF2.6
+0F88:  BTFSC  FF2.7
+0F8A:  BSF    19.7
+0F8C:  BCF    FF2.7
+.................... 		setFont(0x00, 0x00);	//Sélectionne la police d'écriture	 
+0F8E:  CLRF   71
+0F90:  CLRF   72
+0F92:  RCALL  07C8
+0F94:  BTFSC  19.6
+0F96:  BSF    FF2.6
+0F98:  BTFSC  19.7
+0F9A:  BSF    FF2.7
+0F9C:  CLRF   19
+0F9E:  BTFSC  FF2.6
+0FA0:  BSF    19.6
+0FA2:  BCF    FF2.6
+0FA4:  BTFSC  FF2.7
+0FA6:  BSF    19.7
+0FA8:  BCF    FF2.7
+.................... 		setCursor(0x00, 0x50, 0x00, 0xD5);	//Positionne le curseur 
+0FAA:  CLRF   71
+0FAC:  MOVLW  50
+0FAE:  MOVWF  72
+0FB0:  CLRF   73
+0FB2:  MOVLW  D5
+0FB4:  MOVWF  74
+0FB6:  RCALL  07E8
+0FB8:  BTFSC  19.6
+0FBA:  BSF    FF2.6
+0FBC:  BTFSC  19.7
+0FBE:  BSF    FF2.7
+0FC0:  CLRF   19
+0FC2:  BTFSC  FF2.6
+0FC4:  BSF    19.6
+0FC6:  BCF    FF2.6
+0FC8:  BTFSC  FF2.7
+0FCA:  BSF    19.7
+0FCC:  BCF    FF2.7
+.................... 		 
+.................... 		i2c_write(0xAA);		//Commande de l'écran 
+0FCE:  MOVLW  AA
+0FD0:  MOVWF  75
+0FD2:  CALL   0774
+0FD6:  BTFSC  19.6
+0FD8:  BSF    FF2.6
+0FDA:  BTFSC  19.7
+0FDC:  BSF    FF2.7
+0FDE:  CLRF   19
+0FE0:  BTFSC  FF2.6
+0FE2:  BSF    19.6
+0FE4:  BCF    FF2.6
+0FE6:  BTFSC  FF2.7
+0FE8:  BSF    19.7
+0FEA:  BCF    FF2.7
+.................... 		i2c_write(0x44);		//Commande pour dessiner  
+0FEC:  MOVLW  44
+0FEE:  MOVWF  75
+0FF0:  CALL   0774
+0FF4:  BTFSC  19.6
+0FF6:  BSF    FF2.6
+0FF8:  BTFSC  19.7
+0FFA:  BSF    FF2.7
+0FFC:  CLRF   19
+0FFE:  BTFSC  FF2.6
+1000:  BSF    19.6
+1002:  BCF    FF2.6
+1004:  BTFSC  FF2.7
+1006:  BSF    19.7
+1008:  BCF    FF2.7
+.................... 		i2c_write(0x54);		//Commande pour écrire du texte 
+100A:  MOVLW  54
+100C:  MOVWF  75
+100E:  CALL   0774
+1012:  BTFSC  19.6
+1014:  BSF    FF2.6
+1016:  BTFSC  19.7
+1018:  BSF    FF2.7
+.................... 		i2c_write(Cent+0x30);	//Affiche les mètres 
+101A:  MOVLW  30
+101C:  ADDWF  21,W
+101E:  MOVWF  5B
+1020:  CLRF   19
+1022:  BTFSC  FF2.6
+1024:  BSF    19.6
+1026:  BCF    FF2.6
+1028:  BTFSC  FF2.7
+102A:  BSF    19.7
+102C:  BCF    FF2.7
+102E:  MOVWF  75
+1030:  CALL   0774
+1034:  BTFSC  19.6
+1036:  BSF    FF2.6
+1038:  BTFSC  19.7
+103A:  BSF    FF2.7
+.................... 		i2c_write(Dix+0x30);	//Affiche les centimètres 
+103C:  MOVLW  30
+103E:  ADDWF  22,W
+1040:  MOVWF  5B
+1042:  CLRF   19
+1044:  BTFSC  FF2.6
+1046:  BSF    19.6
+1048:  BCF    FF2.6
+104A:  BTFSC  FF2.7
+104C:  BSF    19.7
+104E:  BCF    FF2.7
+1050:  MOVWF  75
+1052:  CALL   0774
+1056:  BTFSC  19.6
+1058:  BSF    FF2.6
+105A:  BTFSC  19.7
+105C:  BSF    FF2.7
+.................... 		i2c_write(Unit+0x30);	//Affiche les milimètre  
+105E:  MOVLW  30
+1060:  ADDWF  23,W
+1062:  MOVWF  5B
+1064:  CLRF   19
+1066:  BTFSC  FF2.6
+1068:  BSF    19.6
+106A:  BCF    FF2.6
+106C:  BTFSC  FF2.7
+106E:  BSF    19.7
+1070:  BCF    FF2.7
+1072:  MOVWF  75
+1074:  CALL   0774
+1078:  BTFSC  19.6
+107A:  BSF    FF2.6
+107C:  BTFSC  19.7
+107E:  BSF    FF2.7
+1080:  CLRF   19
+1082:  BTFSC  FF2.6
+1084:  BSF    19.6
+1086:  BCF    FF2.6
+1088:  BTFSC  FF2.7
+108A:  BSF    19.7
+108C:  BCF    FF2.7
+.................... 		i2c_write(0x20);		//Espace 
+108E:  MOVLW  20
+1090:  MOVWF  75
+1092:  CALL   0774
+1096:  BTFSC  19.6
+1098:  BSF    FF2.6
+109A:  BTFSC  19.7
+109C:  BSF    FF2.7
+109E:  CLRF   19
+10A0:  BTFSC  FF2.6
+10A2:  BSF    19.6
+10A4:  BCF    FF2.6
+10A6:  BTFSC  FF2.7
+10A8:  BSF    19.7
+10AA:  BCF    FF2.7
+.................... 		i2c_write(0x63);		//c 
+10AC:  MOVLW  63
+10AE:  MOVWF  75
+10B0:  CALL   0774
+10B4:  BTFSC  19.6
+10B6:  BSF    FF2.6
+10B8:  BTFSC  19.7
+10BA:  BSF    FF2.7
+10BC:  CLRF   19
+10BE:  BTFSC  FF2.6
+10C0:  BSF    19.6
+10C2:  BCF    FF2.6
+10C4:  BTFSC  FF2.7
+10C6:  BSF    19.7
+10C8:  BCF    FF2.7
+.................... 		i2c_write(0x6D);		//m 
+10CA:  MOVLW  6D
+10CC:  MOVWF  75
+10CE:  CALL   0774
+10D2:  BTFSC  19.6
+10D4:  BSF    FF2.6
+10D6:  BTFSC  19.7
+10D8:  BSF    FF2.7
+.................... 		i2c_stop(); 
+10DA:  BSF    FC5.2
+10DC:  BTFSC  FC5.2
+10DE:  BRA    10DC
+.................... } 
+10E0:  GOTO   1AF8 (RETURN)
+....................  
+.................... /*========================================================================== 
+.................... ====Fonction     : afficheDist		                                    ==== 
+.................... ====Sierro Romain: 19.05.2016                                           ==== 
+.................... ====--------------------------------------------------------------------==== 
+.................... ====Affiche le dessin pour le capteur de proximité avec les barres 		==== 
+.................... ============================================================================*/ 
+.................... void afficheDist(void) 
+.................... { 
+10E4:  CLRF   19
+10E6:  BTFSC  FF2.6
+10E8:  BSF    19.6
+10EA:  BCF    FF2.6
+10EC:  BTFSC  FF2.7
+10EE:  BSF    19.7
+10F0:  BCF    FF2.7
+.................... 	startConnection(11);	//Dit à l'écran le nombre de Byte qu'on lui envoie 
+10F2:  MOVLW  0B
+10F4:  MOVWF  71
+10F6:  CALL   0790
+10FA:  BTFSC  19.6
+10FC:  BSF    FF2.6
+10FE:  BTFSC  19.7
+1100:  BSF    FF2.7
+1102:  CLRF   19
+1104:  BTFSC  FF2.6
+1106:  BSF    19.6
+1108:  BCF    FF2.6
+110A:  BTFSC  FF2.7
+110C:  BSF    19.7
+110E:  BCF    FF2.7
+.................... 	setCursor(0x00, 0x55, 0x01, 0x22);	//Positionne le curseur 
+1110:  CLRF   71
+1112:  MOVLW  55
+1114:  MOVWF  72
+1116:  MOVLW  01
+1118:  MOVWF  73
+111A:  MOVLW  22
+111C:  MOVWF  74
+111E:  CALL   07E8
+1122:  BTFSC  19.6
+1124:  BSF    FF2.6
+1126:  BTFSC  19.7
+1128:  BSF    FF2.7
+.................... 	if(distance>=90)	//Si la distance est plus grande que 90 
+112A:  MOVF   1F,F
+112C:  BNZ   1134
+112E:  MOVF   1E,W
+1130:  SUBLW  59
+1132:  BC    113E
+.................... 	{ 
+.................... 		drawImage(0x00, 0x02);	//On affiche l'icone tout gris 
+1134:  CLRF   5B
+1136:  MOVLW  02
+1138:  MOVWF  5C
+113A:  RCALL  09E4
+.................... 	} 
+.................... 	else if(distance>=60)	//Si la distance est plus grande que60 
+113C:  BRA    1178
+113E:  MOVF   1F,F
+1140:  BNZ   1148
+1142:  MOVF   1E,W
+1144:  SUBLW  3B
+1146:  BC    1152
+.................... 	{ 
+.................... 		drawImage(0x00, 0x03);	//On affiche l'icone jaune 
+1148:  CLRF   5B
+114A:  MOVLW  03
+114C:  MOVWF  5C
+114E:  RCALL  09E4
+.................... 	} 
+.................... 	else if(distance>=30)	//Si la distance est plus grande que 30 
+1150:  BRA    1178
+1152:  MOVF   1F,F
+1154:  BNZ   115C
+1156:  MOVF   1E,W
+1158:  SUBLW  1D
+115A:  BC    1166
+.................... 	{ 
+.................... 		drawImage(0x00, 0x04);	//On affiche l'icone jaune orange 
+115C:  CLRF   5B
+115E:  MOVLW  04
+1160:  MOVWF  5C
+1162:  RCALL  09E4
+.................... 	} 
+.................... 	else if(distance<30)	//Si la distance est plus petite que 30 
+1164:  BRA    1178
+1166:  MOVF   1F,F
+1168:  BNZ   1178
+116A:  MOVF   1E,W
+116C:  SUBLW  1D
+116E:  BNC   1178
+.................... 	{ 
+.................... 		drawImage(0x00, 0x05);	//On affiche l'icone jaune orange rouge 
+1170:  CLRF   5B
+1172:  MOVLW  05
+1174:  MOVWF  5C
+1176:  RCALL  09E4
+.................... 	} 
+.................... 	i2c_stop(); 
+1178:  BSF    FC5.2
+117A:  BTFSC  FC5.2
+117C:  BRA    117A
+.................... } 
+117E:  GOTO   1AFC (RETURN)
+....................  
+.................... /*========================================================================== 
+.................... ====Fonction     : mesTension		                                    ==== 
+.................... ====Sierro Romain: 12.05.2016                                           ==== 
+.................... ====--------------------------------------------------------------------==== 
+.................... ====Prend la tension des batteries mesurée sur AN1 et l'affiche 		==== 
+.................... ============================================================================*/ 
+.................... void mesTension(void) 
+.................... {	 
+.................... 	tension=adc_read(1);	//Lit la mesure de AN1 
+*
+11A2:  MOVLW  01
+11A4:  MOVWF  5B
+11A6:  RCALL  1182
+11A8:  CLRF   19
+11AA:  BTFSC  FF2.6
+11AC:  BSF    19.6
+11AE:  BCF    FF2.6
+11B0:  BTFSC  FF2.7
+11B2:  BSF    19.7
+11B4:  BCF    FF2.7
+11B6:  CLRF   72
+11B8:  MOVFF  01,71
+11BC:  CALL   05BC
+11C0:  BTFSC  19.6
+11C2:  BSF    FF2.6
+11C4:  BTFSC  19.7
+11C6:  BSF    FF2.7
+11C8:  MOVFF  03,27
+11CC:  MOVFF  02,26
+11D0:  MOVFF  01,25
+11D4:  MOVFF  00,24
+11D8:  CLRF   19
+11DA:  BTFSC  FF2.6
+11DC:  BSF    19.6
+11DE:  BCF    FF2.6
+11E0:  BTFSC  FF2.7
+11E2:  BSF    19.7
+11E4:  BCF    FF2.7
+.................... 	Cent=tension/51;		//Convertit pour garder la centaine 
+11E6:  MOVFF  27,74
+11EA:  MOVFF  26,73
+11EE:  MOVFF  25,72
+11F2:  MOVFF  24,71
+11F6:  CLRF   78
+11F8:  CLRF   77
+11FA:  MOVLW  4C
+11FC:  MOVWF  76
+11FE:  MOVLW  84
+1200:  MOVWF  75
+1202:  CALL   05F2
+1206:  BTFSC  19.6
+1208:  BSF    FF2.6
+120A:  BTFSC  19.7
+120C:  BSF    FF2.7
+120E:  CLRF   19
+1210:  BTFSC  FF2.6
+1212:  BSF    19.6
+1214:  BCF    FF2.6
+1216:  BTFSC  FF2.7
+1218:  BSF    19.7
+121A:  BCF    FF2.7
+121C:  MOVFF  03,74
+1220:  MOVFF  02,73
+1224:  MOVFF  01,72
+1228:  MOVFF  00,71
+122C:  CALL   04B4
+1230:  BTFSC  19.6
+1232:  BSF    FF2.6
+1234:  BTFSC  19.7
+1236:  BSF    FF2.7
+1238:  MOVFF  01,21
+123C:  CLRF   19
+123E:  BTFSC  FF2.6
+1240:  BSF    19.6
+1242:  BCF    FF2.6
+1244:  BTFSC  FF2.7
+1246:  BSF    19.7
+1248:  BCF    FF2.7
+.................... 	Dix=tension/5.1;		//Convertit pour garder la dizaine 
+124A:  MOVFF  27,74
+124E:  MOVFF  26,73
+1252:  MOVFF  25,72
+1256:  MOVFF  24,71
+125A:  MOVLW  33
+125C:  MOVWF  78
+125E:  MOVWF  77
+1260:  MOVLW  23
+1262:  MOVWF  76
+1264:  MOVLW  81
+1266:  MOVWF  75
+1268:  CALL   05F2
+126C:  BTFSC  19.6
+126E:  BSF    FF2.6
+1270:  BTFSC  19.7
+1272:  BSF    FF2.7
+1274:  CLRF   19
+1276:  BTFSC  FF2.6
+1278:  BSF    19.6
+127A:  BCF    FF2.6
+127C:  BTFSC  FF2.7
+127E:  BSF    19.7
+1280:  BCF    FF2.7
+1282:  MOVFF  03,74
+1286:  MOVFF  02,73
+128A:  MOVFF  01,72
+128E:  MOVFF  00,71
+1292:  CALL   04B4
+1296:  BTFSC  19.6
+1298:  BSF    FF2.6
+129A:  BTFSC  19.7
+129C:  BSF    FF2.7
+129E:  MOVFF  01,22
+12A2:  CLRF   19
+12A4:  BTFSC  FF2.6
+12A6:  BSF    19.6
+12A8:  BCF    FF2.6
+12AA:  BTFSC  FF2.7
+12AC:  BSF    19.7
+12AE:  BCF    FF2.7
+.................... 	Dix=Dix%10; 
+12B0:  MOVFF  22,71
+12B4:  MOVLW  0A
+12B6:  MOVWF  72
+12B8:  CALL   074C
+12BC:  BTFSC  19.6
+12BE:  BSF    FF2.6
+12C0:  BTFSC  19.7
+12C2:  BSF    FF2.7
+12C4:  MOVFF  00,22
+12C8:  CLRF   19
+12CA:  BTFSC  FF2.6
+12CC:  BSF    19.6
+12CE:  BCF    FF2.6
+12D0:  BTFSC  FF2.7
+12D2:  BSF    19.7
+12D4:  BCF    FF2.7
+.................... 	Unit=tension/0.51;		//Convertit pour garder l'unité 
+12D6:  MOVFF  27,74
+12DA:  MOVFF  26,73
+12DE:  MOVFF  25,72
+12E2:  MOVFF  24,71
+12E6:  MOVLW  5C
+12E8:  MOVWF  78
+12EA:  MOVLW  8F
+12EC:  MOVWF  77
+12EE:  MOVLW  02
+12F0:  MOVWF  76
+12F2:  MOVLW  7E
+12F4:  MOVWF  75
+12F6:  CALL   05F2
+12FA:  BTFSC  19.6
+12FC:  BSF    FF2.6
+12FE:  BTFSC  19.7
+1300:  BSF    FF2.7
+1302:  CLRF   19
+1304:  BTFSC  FF2.6
+1306:  BSF    19.6
+1308:  BCF    FF2.6
+130A:  BTFSC  FF2.7
+130C:  BSF    19.7
+130E:  BCF    FF2.7
+1310:  MOVFF  03,74
+1314:  MOVFF  02,73
+1318:  MOVFF  01,72
+131C:  MOVFF  00,71
+1320:  CALL   04B4
+1324:  BTFSC  19.6
+1326:  BSF    FF2.6
+1328:  BTFSC  19.7
+132A:  BSF    FF2.7
+132C:  MOVFF  01,23
+1330:  CLRF   19
+1332:  BTFSC  FF2.6
+1334:  BSF    19.6
+1336:  BCF    FF2.6
+1338:  BTFSC  FF2.7
+133A:  BSF    19.7
+133C:  BCF    FF2.7
+.................... 	Unit=Unit%10; 
+133E:  MOVFF  23,71
+1342:  MOVLW  0A
+1344:  MOVWF  72
+1346:  CALL   074C
+134A:  BTFSC  19.6
+134C:  BSF    FF2.6
+134E:  BTFSC  19.7
+1350:  BSF    FF2.7
+1352:  MOVFF  00,23
+1356:  CLRF   19
+1358:  BTFSC  FF2.6
+135A:  BSF    19.6
+135C:  BCF    FF2.6
+135E:  BTFSC  FF2.7
+1360:  BSF    19.7
+1362:  BCF    FF2.7
+....................  
+.................... 	startConnection(22);			//Dit combien de caractère on envoi 
+1364:  MOVLW  16
+1366:  MOVWF  71
+1368:  CALL   0790
+136C:  BTFSC  19.6
+136E:  BSF    FF2.6
+1370:  BTFSC  19.7
+1372:  BSF    FF2.7
+1374:  CLRF   19
+1376:  BTFSC  FF2.6
+1378:  BSF    19.6
+137A:  BCF    FF2.6
+137C:  BTFSC  FF2.7
+137E:  BSF    19.7
+1380:  BCF    FF2.7
+.................... 	setFont(0x00, 0x00);			//Sélectionne la police d'écriture 
+1382:  CLRF   71
+1384:  CLRF   72
+1386:  CALL   07C8
+138A:  BTFSC  19.6
+138C:  BSF    FF2.6
+138E:  BTFSC  19.7
+1390:  BSF    FF2.7
+1392:  CLRF   19
+1394:  BTFSC  FF2.6
+1396:  BSF    19.6
+1398:  BCF    FF2.6
+139A:  BTFSC  FF2.7
+139C:  BSF    19.7
+139E:  BCF    FF2.7
+.................... 	setCursor(0x01, 0x70, 0x00, 0xD5);	//Positionne le curseur  
+13A0:  MOVLW  01
+13A2:  MOVWF  71
+13A4:  MOVLW  70
+13A6:  MOVWF  72
+13A8:  CLRF   73
+13AA:  MOVLW  D5
+13AC:  MOVWF  74
+13AE:  CALL   07E8
+13B2:  BTFSC  19.6
+13B4:  BSF    FF2.6
+13B6:  BTFSC  19.7
+13B8:  BSF    FF2.7
+13BA:  CLRF   19
+13BC:  BTFSC  FF2.6
+13BE:  BSF    19.6
+13C0:  BCF    FF2.6
+13C2:  BTFSC  FF2.7
+13C4:  BSF    19.7
+13C6:  BCF    FF2.7
+....................  
+.................... 	i2c_write(0xAA);		//Commande de l'écran 
+13C8:  MOVLW  AA
+13CA:  MOVWF  75
+13CC:  CALL   0774
+13D0:  BTFSC  19.6
+13D2:  BSF    FF2.6
+13D4:  BTFSC  19.7
+13D6:  BSF    FF2.7
+13D8:  CLRF   19
+13DA:  BTFSC  FF2.6
+13DC:  BSF    19.6
+13DE:  BCF    FF2.6
+13E0:  BTFSC  FF2.7
+13E2:  BSF    19.7
+13E4:  BCF    FF2.7
+.................... 	i2c_write(0x44);		//Commande pour dessiner  
+13E6:  MOVLW  44
+13E8:  MOVWF  75
+13EA:  CALL   0774
+13EE:  BTFSC  19.6
+13F0:  BSF    FF2.6
+13F2:  BTFSC  19.7
+13F4:  BSF    FF2.7
+13F6:  CLRF   19
+13F8:  BTFSC  FF2.6
+13FA:  BSF    19.6
+13FC:  BCF    FF2.6
+13FE:  BTFSC  FF2.7
+1400:  BSF    19.7
+1402:  BCF    FF2.7
+.................... 	i2c_write(0x54);		//Commande pour écrire du texte 
+1404:  MOVLW  54
+1406:  MOVWF  75
+1408:  CALL   0774
+140C:  BTFSC  19.6
+140E:  BSF    FF2.6
+1410:  BTFSC  19.7
+1412:  BSF    FF2.7
+.................... 	i2c_write(Cent+0x30);	//Affiche les centaines 
+1414:  MOVLW  30
+1416:  ADDWF  21,W
+1418:  MOVWF  5B
+141A:  CLRF   19
+141C:  BTFSC  FF2.6
+141E:  BSF    19.6
+1420:  BCF    FF2.6
+1422:  BTFSC  FF2.7
+1424:  BSF    19.7
+1426:  BCF    FF2.7
+1428:  MOVWF  75
+142A:  CALL   0774
+142E:  BTFSC  19.6
+1430:  BSF    FF2.6
+1432:  BTFSC  19.7
+1434:  BSF    FF2.7
+.................... 	i2c_write(Dix+0x30);	//Affiche les dizaine 
+1436:  MOVLW  30
+1438:  ADDWF  22,W
+143A:  MOVWF  5B
+143C:  CLRF   19
+143E:  BTFSC  FF2.6
+1440:  BSF    19.6
+1442:  BCF    FF2.6
+1444:  BTFSC  FF2.7
+1446:  BSF    19.7
+1448:  BCF    FF2.7
+144A:  MOVWF  75
+144C:  CALL   0774
+1450:  BTFSC  19.6
+1452:  BSF    FF2.6
+1454:  BTFSC  19.7
+1456:  BSF    FF2.7
+1458:  CLRF   19
+145A:  BTFSC  FF2.6
+145C:  BSF    19.6
+145E:  BCF    FF2.6
+1460:  BTFSC  FF2.7
+1462:  BSF    19.7
+1464:  BCF    FF2.7
+.................... 	i2c_write(0x2E);		//. 
+1466:  MOVLW  2E
+1468:  MOVWF  75
+146A:  CALL   0774
+146E:  BTFSC  19.6
+1470:  BSF    FF2.6
+1472:  BTFSC  19.7
+1474:  BSF    FF2.7
+.................... 	i2c_write(Unit+0x30);	//Affiche les unités 
+1476:  MOVLW  30
+1478:  ADDWF  23,W
+147A:  MOVWF  5B
+147C:  CLRF   19
+147E:  BTFSC  FF2.6
+1480:  BSF    19.6
+1482:  BCF    FF2.6
+1484:  BTFSC  FF2.7
+1486:  BSF    19.7
+1488:  BCF    FF2.7
+148A:  MOVWF  75
+148C:  CALL   0774
+1490:  BTFSC  19.6
+1492:  BSF    FF2.6
+1494:  BTFSC  19.7
+1496:  BSF    FF2.7
+1498:  CLRF   19
+149A:  BTFSC  FF2.6
+149C:  BSF    19.6
+149E:  BCF    FF2.6
+14A0:  BTFSC  FF2.7
+14A2:  BSF    19.7
+14A4:  BCF    FF2.7
+.................... 	i2c_write(0x5B);		//[ 
+14A6:  MOVLW  5B
+14A8:  MOVWF  75
+14AA:  CALL   0774
+14AE:  BTFSC  19.6
+14B0:  BSF    FF2.6
+14B2:  BTFSC  19.7
+14B4:  BSF    FF2.7
+14B6:  CLRF   19
+14B8:  BTFSC  FF2.6
+14BA:  BSF    19.6
+14BC:  BCF    FF2.6
+14BE:  BTFSC  FF2.7
+14C0:  BSF    19.7
+14C2:  BCF    FF2.7
+.................... 	i2c_write(0x56);		//V 
+14C4:  MOVLW  56
+14C6:  MOVWF  75
+14C8:  CALL   0774
+14CC:  BTFSC  19.6
+14CE:  BSF    FF2.6
+14D0:  BTFSC  19.7
+14D2:  BSF    FF2.7
+14D4:  CLRF   19
+14D6:  BTFSC  FF2.6
+14D8:  BSF    19.6
+14DA:  BCF    FF2.6
+14DC:  BTFSC  FF2.7
+14DE:  BSF    19.7
+14E0:  BCF    FF2.7
+.................... 	i2c_write(0x5D);		//] 
+14E2:  MOVLW  5D
+14E4:  MOVWF  75
+14E6:  CALL   0774
+14EA:  BTFSC  19.6
+14EC:  BSF    FF2.6
+14EE:  BTFSC  19.7
+14F0:  BSF    FF2.7
+.................... 	i2c_stop(); 
+14F2:  BSF    FC5.2
+14F4:  BTFSC  FC5.2
+14F6:  BRA    14F4
+.................... } 
+14F8:  GOTO   1B00 (RETURN)
+....................  
+.................... /*========================================================================== 
+.................... ====Fonction     : afficheTension	                                    ==== 
+.................... ====Sierro Romain: 20.05.2016                                           ==== 
+.................... ====--------------------------------------------------------------------==== 
+.................... ====Affiche le dessin de la batterie pour savoir le niveau de charge	==== 
+.................... ============================================================================*/ 
+.................... void afficheTension(void) 
+.................... { 
+14FC:  CLRF   19
+14FE:  BTFSC  FF2.6
+1500:  BSF    19.6
+1502:  BCF    FF2.6
+1504:  BTFSC  FF2.7
+1506:  BSF    19.7
+1508:  BCF    FF2.7
+.................... 	startConnection(11); 
+150A:  MOVLW  0B
+150C:  MOVWF  71
+150E:  CALL   0790
+1512:  BTFSC  19.6
+1514:  BSF    FF2.6
+1516:  BTFSC  19.7
+1518:  BSF    FF2.7
+151A:  CLRF   19
+151C:  BTFSC  FF2.6
+151E:  BSF    19.6
+1520:  BCF    FF2.6
+1522:  BTFSC  FF2.7
+1524:  BSF    19.7
+1526:  BCF    FF2.7
+.................... 	setCursor(0x01, 0x0B, 0x01, 0x0B); 
+1528:  MOVLW  01
+152A:  MOVWF  71
+152C:  MOVLW  0B
+152E:  MOVWF  72
+1530:  MOVLW  01
+1532:  MOVWF  73
+1534:  MOVLW  0B
+1536:  MOVWF  74
+1538:  CALL   07E8
+153C:  BTFSC  19.6
+153E:  BSF    FF2.6
+1540:  BTFSC  19.7
+1542:  BSF    FF2.7
+1544:  CLRF   19
+1546:  BTFSC  FF2.6
+1548:  BSF    19.6
+154A:  BCF    FF2.6
+154C:  BTFSC  FF2.7
+154E:  BSF    19.7
+1550:  BCF    FF2.7
+.................... 	if(tension>=228)	//Si la tension est plus grande que 45V 
+1552:  CLRF   6C
+1554:  CLRF   6B
+1556:  MOVLW  64
+1558:  MOVWF  6A
+155A:  MOVLW  86
+155C:  MOVWF  69
+155E:  MOVFF  27,70
+1562:  MOVFF  26,6F
+1566:  MOVFF  25,6E
+156A:  MOVFF  24,6D
+156E:  CALL   034C
+1572:  BTFSC  19.6
+1574:  BSF    FF2.6
+1576:  BTFSC  19.7
+1578:  BSF    FF2.7
+157A:  BC    157E
+157C:  BNZ   158A
+.................... 	{ 
+.................... 		drawImage(0x00, 0x06);	//Dessine la batterie verte 
+157E:  CLRF   5B
+1580:  MOVLW  06
+1582:  MOVWF  5C
+1584:  CALL   09E4
+.................... 	} 
+.................... 	else if(tension>=152)	//Si la tension est plus grande que 30V 
+1588:  BRA    169E
+158A:  CLRF   19
+158C:  BTFSC  FF2.6
+158E:  BSF    19.6
+1590:  BCF    FF2.6
+1592:  BTFSC  FF2.7
+1594:  BSF    19.7
+1596:  BCF    FF2.7
+1598:  CLRF   6C
+159A:  CLRF   6B
+159C:  MOVLW  18
+159E:  MOVWF  6A
+15A0:  MOVLW  86
+15A2:  MOVWF  69
+15A4:  MOVFF  27,70
+15A8:  MOVFF  26,6F
+15AC:  MOVFF  25,6E
+15B0:  MOVFF  24,6D
+15B4:  CALL   034C
+15B8:  BTFSC  19.6
+15BA:  BSF    FF2.6
+15BC:  BTFSC  19.7
+15BE:  BSF    FF2.7
+15C0:  BC    15C4
+15C2:  BNZ   15D0
+.................... 	{ 
+.................... 		drawImage(0x00, 0x07);	//Dessine la batterie jaune 
+15C4:  CLRF   5B
+15C6:  MOVLW  07
+15C8:  MOVWF  5C
+15CA:  CALL   09E4
+.................... 	} 
+.................... 	else if(tension>=102)	//Si la tension est plus grande que 20V 
+15CE:  BRA    169E
+15D0:  CLRF   19
+15D2:  BTFSC  FF2.6
+15D4:  BSF    19.6
+15D6:  BCF    FF2.6
+15D8:  BTFSC  FF2.7
+15DA:  BSF    19.7
+15DC:  BCF    FF2.7
+15DE:  CLRF   6C
+15E0:  CLRF   6B
+15E2:  MOVLW  4C
+15E4:  MOVWF  6A
+15E6:  MOVLW  85
+15E8:  MOVWF  69
+15EA:  MOVFF  27,70
+15EE:  MOVFF  26,6F
+15F2:  MOVFF  25,6E
+15F6:  MOVFF  24,6D
+15FA:  CALL   034C
+15FE:  BTFSC  19.6
+1600:  BSF    FF2.6
+1602:  BTFSC  19.7
+1604:  BSF    FF2.7
+1606:  BC    160A
+1608:  BNZ   1616
+.................... 	{ 
+.................... 		drawImage(0x00, 0x08);	//Dessine la batterie orange 
+160A:  CLRF   5B
+160C:  MOVLW  08
+160E:  MOVWF  5C
+1610:  CALL   09E4
+.................... 	} 
+.................... 	else if(tension>=51)	//Si la tension est plus grande que 10V 
+1614:  BRA    169E
+1616:  CLRF   19
+1618:  BTFSC  FF2.6
+161A:  BSF    19.6
+161C:  BCF    FF2.6
+161E:  BTFSC  FF2.7
+1620:  BSF    19.7
+1622:  BCF    FF2.7
+1624:  CLRF   6C
+1626:  CLRF   6B
+1628:  MOVLW  4C
+162A:  MOVWF  6A
+162C:  MOVLW  84
+162E:  MOVWF  69
+1630:  MOVFF  27,70
+1634:  MOVFF  26,6F
+1638:  MOVFF  25,6E
+163C:  MOVFF  24,6D
+1640:  CALL   034C
+1644:  BTFSC  19.6
+1646:  BSF    FF2.6
+1648:  BTFSC  19.7
+164A:  BSF    FF2.7
+164C:  BC    1650
+164E:  BNZ   165C
+.................... 	{ 
+.................... 		drawImage(0x00, 0x09);	//Dessine la batterie rouge 
+1650:  CLRF   5B
+1652:  MOVLW  09
+1654:  MOVWF  5C
+1656:  CALL   09E4
+.................... 	} 
+.................... 	else if(tension<51)	//Si la tension est plus petite que 10V 
+165A:  BRA    169E
+165C:  CLRF   19
+165E:  BTFSC  FF2.6
+1660:  BSF    19.6
+1662:  BCF    FF2.6
+1664:  BTFSC  FF2.7
+1666:  BSF    19.7
+1668:  BCF    FF2.7
+166A:  MOVFF  27,6C
+166E:  MOVFF  26,6B
+1672:  MOVFF  25,6A
+1676:  MOVFF  24,69
+167A:  CLRF   70
+167C:  CLRF   6F
+167E:  MOVLW  4C
+1680:  MOVWF  6E
+1682:  MOVLW  84
+1684:  MOVWF  6D
+1686:  CALL   034C
+168A:  BTFSC  19.6
+168C:  BSF    FF2.6
+168E:  BTFSC  19.7
+1690:  BSF    FF2.7
+1692:  BNC   169E
+.................... 	{ 
+.................... 		drawImage(0x00, 0x0A);	//Dessine la batterie vide 
+1694:  CLRF   5B
+1696:  MOVLW  0A
+1698:  MOVWF  5C
+169A:  CALL   09E4
+.................... 	} 
+....................  
+.................... 	i2c_stop();	 
+169E:  BSF    FC5.2
+16A0:  BTFSC  FC5.2
+16A2:  BRA    16A0
+.................... } 
+16A4:  GOTO   1B02 (RETURN)
+....................  
+.................... /*========================================================================== 
+.................... ====Fonction     : mesCourant		                                    ==== 
+.................... ====Sierro Romain: 13.05.2016                                           ==== 
+.................... ====--------------------------------------------------------------------==== 
+.................... ====Prend le courant des batteries mesurée sur AN0 et l'affiche 		==== 
+.................... ============================================================================*/ 
+.................... void mesCourant(void) 
+.................... {	 
+.................... 	courant=adc_read(0);	//Lit la mesure de AN1 
+16A8:  CLRF   5B
+16AA:  RCALL  1182
+16AC:  CLRF   19
+16AE:  BTFSC  FF2.6
+16B0:  BSF    19.6
+16B2:  BCF    FF2.6
+16B4:  BTFSC  FF2.7
+16B6:  BSF    19.7
+16B8:  BCF    FF2.7
+16BA:  CLRF   72
+16BC:  MOVFF  01,71
+16C0:  CALL   05BC
+16C4:  BTFSC  19.6
+16C6:  BSF    FF2.6
+16C8:  BTFSC  19.7
+16CA:  BSF    FF2.7
+16CC:  MOVFF  03,2B
+16D0:  MOVFF  02,2A
+16D4:  MOVFF  01,29
+16D8:  MOVFF  00,28
+16DC:  CLRF   19
+16DE:  BTFSC  FF2.6
+16E0:  BSF    19.6
+16E2:  BCF    FF2.6
+16E4:  BTFSC  FF2.7
+16E6:  BSF    19.7
+16E8:  BCF    FF2.7
+.................... 	Cent=courant/85;		 
+16EA:  MOVFF  2B,74
+16EE:  MOVFF  2A,73
+16F2:  MOVFF  29,72
+16F6:  MOVFF  28,71
+16FA:  CLRF   78
+16FC:  CLRF   77
+16FE:  MOVLW  2A
+1700:  MOVWF  76
+1702:  MOVLW  85
+1704:  MOVWF  75
+1706:  CALL   05F2
+170A:  BTFSC  19.6
+170C:  BSF    FF2.6
+170E:  BTFSC  19.7
+1710:  BSF    FF2.7
+1712:  CLRF   19
+1714:  BTFSC  FF2.6
+1716:  BSF    19.6
+1718:  BCF    FF2.6
+171A:  BTFSC  FF2.7
+171C:  BSF    19.7
+171E:  BCF    FF2.7
+1720:  MOVFF  03,74
+1724:  MOVFF  02,73
+1728:  MOVFF  01,72
+172C:  MOVFF  00,71
+1730:  CALL   04B4
+1734:  BTFSC  19.6
+1736:  BSF    FF2.6
+1738:  BTFSC  19.7
+173A:  BSF    FF2.7
+173C:  MOVFF  01,21
+1740:  CLRF   19
+1742:  BTFSC  FF2.6
+1744:  BSF    19.6
+1746:  BCF    FF2.6
+1748:  BTFSC  FF2.7
+174A:  BSF    19.7
+174C:  BCF    FF2.7
+.................... 	Dix=courant/8.5;		 
+174E:  MOVFF  2B,74
+1752:  MOVFF  2A,73
+1756:  MOVFF  29,72
+175A:  MOVFF  28,71
+175E:  CLRF   78
+1760:  CLRF   77
+1762:  MOVLW  08
+1764:  MOVWF  76
+1766:  MOVLW  82
+1768:  MOVWF  75
+176A:  CALL   05F2
+176E:  BTFSC  19.6
+1770:  BSF    FF2.6
+1772:  BTFSC  19.7
+1774:  BSF    FF2.7
+1776:  CLRF   19
+1778:  BTFSC  FF2.6
+177A:  BSF    19.6
+177C:  BCF    FF2.6
+177E:  BTFSC  FF2.7
+1780:  BSF    19.7
+1782:  BCF    FF2.7
+1784:  MOVFF  03,74
+1788:  MOVFF  02,73
+178C:  MOVFF  01,72
+1790:  MOVFF  00,71
+1794:  CALL   04B4
+1798:  BTFSC  19.6
+179A:  BSF    FF2.6
+179C:  BTFSC  19.7
+179E:  BSF    FF2.7
+17A0:  MOVFF  01,22
+17A4:  CLRF   19
+17A6:  BTFSC  FF2.6
+17A8:  BSF    19.6
+17AA:  BCF    FF2.6
+17AC:  BTFSC  FF2.7
+17AE:  BSF    19.7
+17B0:  BCF    FF2.7
+.................... 	Dix=Dix%10;				//-Je fais un modulo par la suite 
+17B2:  MOVFF  22,71
+17B6:  MOVLW  0A
+17B8:  MOVWF  72
+17BA:  CALL   074C
+17BE:  BTFSC  19.6
+17C0:  BSF    FF2.6
+17C2:  BTFSC  19.7
+17C4:  BSF    FF2.7
+17C6:  MOVFF  00,22
+17CA:  CLRF   19
+17CC:  BTFSC  FF2.6
+17CE:  BSF    19.6
+17D0:  BCF    FF2.6
+17D2:  BTFSC  FF2.7
+17D4:  BSF    19.7
+17D6:  BCF    FF2.7
+.................... 	Unit=courant;			// 	car on ne peut pas le faire sur un double 
+17D8:  MOVFF  2B,74
+17DC:  MOVFF  2A,73
+17E0:  MOVFF  29,72
+17E4:  MOVFF  28,71
+17E8:  CALL   04B4
+17EC:  BTFSC  19.6
+17EE:  BSF    FF2.6
+17F0:  BTFSC  19.7
+17F2:  BSF    FF2.7
+17F4:  MOVFF  01,23
+17F8:  CLRF   19
+17FA:  BTFSC  FF2.6
+17FC:  BSF    19.6
+17FE:  BCF    FF2.6
+1800:  BTFSC  FF2.7
+1802:  BSF    19.7
+1804:  BCF    FF2.7
+.................... 	Unit=Unit%10;			// 
+1806:  MOVFF  23,71
+180A:  MOVLW  0A
+180C:  MOVWF  72
+180E:  CALL   074C
+1812:  BTFSC  19.6
+1814:  BSF    FF2.6
+1816:  BTFSC  19.7
+1818:  BSF    FF2.7
+181A:  MOVFF  00,23
+181E:  CLRF   19
+1820:  BTFSC  FF2.6
+1822:  BSF    19.6
+1824:  BCF    FF2.6
+1826:  BTFSC  FF2.7
+1828:  BSF    19.7
+182A:  BCF    FF2.7
+....................  
+.................... 	startConnection(22);			//Dit combien de caractère on envoi 
+182C:  MOVLW  16
+182E:  MOVWF  71
+1830:  CALL   0790
+1834:  BTFSC  19.6
+1836:  BSF    FF2.6
+1838:  BTFSC  19.7
+183A:  BSF    FF2.7
+183C:  CLRF   19
+183E:  BTFSC  FF2.6
+1840:  BSF    19.6
+1842:  BCF    FF2.6
+1844:  BTFSC  FF2.7
+1846:  BSF    19.7
+1848:  BCF    FF2.7
+.................... 	setFont(0x00, 0x00);			//Sélectionne la police d'écriture 
+184A:  CLRF   71
+184C:  CLRF   72
+184E:  CALL   07C8
+1852:  BTFSC  19.6
+1854:  BSF    FF2.6
+1856:  BTFSC  19.7
+1858:  BSF    FF2.7
+185A:  CLRF   19
+185C:  BTFSC  FF2.6
+185E:  BSF    19.6
+1860:  BCF    FF2.6
+1862:  BTFSC  FF2.7
+1864:  BSF    19.7
+1866:  BCF    FF2.7
+.................... 	setCursor(0x01, 0x70, 0x01, 0xB0);	//Positionne le curseur  
+1868:  MOVLW  01
+186A:  MOVWF  71
+186C:  MOVLW  70
+186E:  MOVWF  72
+1870:  MOVLW  01
+1872:  MOVWF  73
+1874:  MOVLW  B0
+1876:  MOVWF  74
+1878:  CALL   07E8
+187C:  BTFSC  19.6
+187E:  BSF    FF2.6
+1880:  BTFSC  19.7
+1882:  BSF    FF2.7
+1884:  CLRF   19
+1886:  BTFSC  FF2.6
+1888:  BSF    19.6
+188A:  BCF    FF2.6
+188C:  BTFSC  FF2.7
+188E:  BSF    19.7
+1890:  BCF    FF2.7
+....................  
+.................... 	i2c_write(0xAA);		//Commande de l'écran 
+1892:  MOVLW  AA
+1894:  MOVWF  75
+1896:  CALL   0774
+189A:  BTFSC  19.6
+189C:  BSF    FF2.6
+189E:  BTFSC  19.7
+18A0:  BSF    FF2.7
+18A2:  CLRF   19
+18A4:  BTFSC  FF2.6
+18A6:  BSF    19.6
+18A8:  BCF    FF2.6
+18AA:  BTFSC  FF2.7
+18AC:  BSF    19.7
+18AE:  BCF    FF2.7
+.................... 	i2c_write(0x44);		//Commande pour dessiner  
+18B0:  MOVLW  44
+18B2:  MOVWF  75
+18B4:  CALL   0774
+18B8:  BTFSC  19.6
+18BA:  BSF    FF2.6
+18BC:  BTFSC  19.7
+18BE:  BSF    FF2.7
+18C0:  CLRF   19
+18C2:  BTFSC  FF2.6
+18C4:  BSF    19.6
+18C6:  BCF    FF2.6
+18C8:  BTFSC  FF2.7
+18CA:  BSF    19.7
+18CC:  BCF    FF2.7
+.................... 	i2c_write(0x54);		//Commande pour écrire du texte 
+18CE:  MOVLW  54
+18D0:  MOVWF  75
+18D2:  CALL   0774
+18D6:  BTFSC  19.6
+18D8:  BSF    FF2.6
+18DA:  BTFSC  19.7
+18DC:  BSF    FF2.7
+.................... 	i2c_write(Cent+0x30);	//Affiche les centaines 
+18DE:  MOVLW  30
+18E0:  ADDWF  21,W
+18E2:  MOVWF  5B
+18E4:  CLRF   19
+18E6:  BTFSC  FF2.6
+18E8:  BSF    19.6
+18EA:  BCF    FF2.6
+18EC:  BTFSC  FF2.7
+18EE:  BSF    19.7
+18F0:  BCF    FF2.7
+18F2:  MOVWF  75
+18F4:  CALL   0774
+18F8:  BTFSC  19.6
+18FA:  BSF    FF2.6
+18FC:  BTFSC  19.7
+18FE:  BSF    FF2.7
+.................... 	i2c_write(Dix+0x30);	//Affiche les dizaine 
+1900:  MOVLW  30
+1902:  ADDWF  22,W
+1904:  MOVWF  5B
+1906:  CLRF   19
+1908:  BTFSC  FF2.6
+190A:  BSF    19.6
+190C:  BCF    FF2.6
+190E:  BTFSC  FF2.7
+1910:  BSF    19.7
+1912:  BCF    FF2.7
+1914:  MOVWF  75
+1916:  CALL   0774
+191A:  BTFSC  19.6
+191C:  BSF    FF2.6
+191E:  BTFSC  19.7
+1920:  BSF    FF2.7
+1922:  CLRF   19
+1924:  BTFSC  FF2.6
+1926:  BSF    19.6
+1928:  BCF    FF2.6
+192A:  BTFSC  FF2.7
+192C:  BSF    19.7
+192E:  BCF    FF2.7
+.................... 	i2c_write(0x2E);		//. 
+1930:  MOVLW  2E
+1932:  MOVWF  75
+1934:  CALL   0774
+1938:  BTFSC  19.6
+193A:  BSF    FF2.6
+193C:  BTFSC  19.7
+193E:  BSF    FF2.7
+.................... 	i2c_write(Unit+0x30);	//Affiche les unités 
+1940:  MOVLW  30
+1942:  ADDWF  23,W
+1944:  MOVWF  5B
+1946:  CLRF   19
+1948:  BTFSC  FF2.6
+194A:  BSF    19.6
+194C:  BCF    FF2.6
+194E:  BTFSC  FF2.7
+1950:  BSF    19.7
+1952:  BCF    FF2.7
+1954:  MOVWF  75
+1956:  CALL   0774
+195A:  BTFSC  19.6
+195C:  BSF    FF2.6
+195E:  BTFSC  19.7
+1960:  BSF    FF2.7
+1962:  CLRF   19
+1964:  BTFSC  FF2.6
+1966:  BSF    19.6
+1968:  BCF    FF2.6
+196A:  BTFSC  FF2.7
+196C:  BSF    19.7
+196E:  BCF    FF2.7
+.................... 	i2c_write(0x5B);		//[ 
+1970:  MOVLW  5B
+1972:  MOVWF  75
+1974:  CALL   0774
+1978:  BTFSC  19.6
+197A:  BSF    FF2.6
+197C:  BTFSC  19.7
+197E:  BSF    FF2.7
+1980:  CLRF   19
+1982:  BTFSC  FF2.6
+1984:  BSF    19.6
+1986:  BCF    FF2.6
+1988:  BTFSC  FF2.7
+198A:  BSF    19.7
+198C:  BCF    FF2.7
+.................... 	i2c_write(0x41);		//A 
+198E:  MOVLW  41
+1990:  MOVWF  75
+1992:  CALL   0774
+1996:  BTFSC  19.6
+1998:  BSF    FF2.6
+199A:  BTFSC  19.7
+199C:  BSF    FF2.7
+199E:  CLRF   19
+19A0:  BTFSC  FF2.6
+19A2:  BSF    19.6
+19A4:  BCF    FF2.6
+19A6:  BTFSC  FF2.7
+19A8:  BSF    19.7
+19AA:  BCF    FF2.7
+.................... 	i2c_write(0x5D);		//] 
+19AC:  MOVLW  5D
+19AE:  MOVWF  75
+19B0:  CALL   0774
+19B4:  BTFSC  19.6
+19B6:  BSF    FF2.6
+19B8:  BTFSC  19.7
+19BA:  BSF    FF2.7
+.................... 	i2c_stop(); 
+19BC:  BSF    FC5.2
+19BE:  BTFSC  FC5.2
+19C0:  BRA    19BE
+.................... } 
+19C2:  GOTO   1B04 (RETURN)
+....................  
+.................... /*========================================================================== 
+.................... ====Fonction     : mesVitesse		                                    ==== 
+.................... ====Sierro Romain: 02.06.2016                                           ==== 
+.................... ====--------------------------------------------------------------------==== 
+.................... ====Calcul à partir du compteur du timer 0 la valeur de la vitesse		==== 
+.................... ============================================================================*/ 
+.................... void mesVitesse(void) 
+.................... {	 
+*
+0814:  CLRF   6C
+0816:  CLRF   6B
+0818:  CLRF   6A
+081A:  CLRF   69
+081C:  CLRF   70
+081E:  CLRF   6F
+0820:  CLRF   6E
+0822:  CLRF   6D
+.................... 	double speed=0; 
+.................... 	double count=0; 
+.................... 	count=get_timer0();	//Prend la valeur de comptage du timer0. =(TMR0H<<8)|TMR0L; 
+0824:  MOVF   FD6,W
+0826:  MOVFF  FD7,03
+082A:  MOVWF  71
+082C:  MOVFF  FD7,72
+0830:  RCALL  05BC
+0832:  MOVFF  03,70
+0836:  MOVFF  02,6F
+083A:  MOVFF  01,6E
+083E:  MOVFF  00,6D
+.................... 	speed=count*2.7;	//*75/100'000*3'600 Permet de passer en km/h  
+0842:  MOVFF  70,74
+0846:  MOVFF  6F,73
+084A:  MOVFF  6E,72
+084E:  MOVFF  6D,71
+0852:  MOVLW  CD
+0854:  MOVWF  78
+0856:  MOVLW  CC
+0858:  MOVWF  77
+085A:  MOVLW  2C
+085C:  MOVWF  76
+085E:  MOVLW  80
+0860:  MOVWF  75
+0862:  RCALL  03C2
+0864:  MOVFF  03,6C
+0868:  MOVFF  02,6B
+086C:  MOVFF  01,6A
+0870:  MOVFF  00,69
+.................... 	TMR0H=0; 
+0874:  CLRF   FD7
+.................... 	TMR0L=0; 
+0876:  CLRF   FD6
+.................... 	 
+.................... 	Cent=speed/10; 
+0878:  MOVFF  6C,74
+087C:  MOVFF  6B,73
+0880:  MOVFF  6A,72
+0884:  MOVFF  69,71
+0888:  CLRF   78
+088A:  CLRF   77
+088C:  MOVLW  20
+088E:  MOVWF  76
+0890:  MOVLW  82
+0892:  MOVWF  75
+0894:  RCALL  05F2
+0896:  MOVFF  03,74
+089A:  MOVFF  02,73
+089E:  MOVFF  01,72
+08A2:  MOVFF  00,71
+08A6:  RCALL  04B4
+08A8:  MOVFF  01,21
+.................... 	Dix=speed; 
+08AC:  MOVFF  6C,74
+08B0:  MOVFF  6B,73
+08B4:  MOVFF  6A,72
+08B8:  MOVFF  69,71
+08BC:  RCALL  04B4
+08BE:  MOVFF  01,22
+.................... 	Dix=Dix%10; 
+08C2:  MOVFF  22,71
+08C6:  MOVLW  0A
+08C8:  MOVWF  72
+08CA:  RCALL  074C
+08CC:  MOVFF  00,22
+.................... 	Unit=speed*10; 
+08D0:  MOVFF  6C,74
+08D4:  MOVFF  6B,73
+08D8:  MOVFF  6A,72
+08DC:  MOVFF  69,71
+08E0:  CLRF   78
+08E2:  CLRF   77
+08E4:  MOVLW  20
+08E6:  MOVWF  76
+08E8:  MOVLW  82
+08EA:  MOVWF  75
+08EC:  RCALL  03C2
+08EE:  MOVFF  03,74
+08F2:  MOVFF  02,73
+08F6:  MOVFF  01,72
+08FA:  MOVFF  00,71
+08FE:  RCALL  04B4
+0900:  MOVFF  01,23
+.................... 	Unit=Unit%10; 
+0904:  MOVFF  23,71
+0908:  MOVLW  0A
+090A:  MOVWF  72
+090C:  RCALL  074C
+090E:  MOVFF  00,23
+.................... 	 
+.................... 	startConnection(25);			//Dit combien de caractère on envoie 
+0912:  MOVLW  19
+0914:  MOVWF  71
+0916:  RCALL  0790
+.................... 	setFont(0x00, 0x00);			//Sélectionne la police d'écriture 
+0918:  CLRF   71
+091A:  CLRF   72
+091C:  RCALL  07C8
+.................... 	setCursor(0x02, 0x45, 0x00, 0xD5);	//Positionne le curseur  
+091E:  MOVLW  02
+0920:  MOVWF  71
+0922:  MOVLW  45
+0924:  MOVWF  72
+0926:  CLRF   73
+0928:  MOVLW  D5
+092A:  MOVWF  74
+092C:  RCALL  07E8
+....................  
+.................... 	i2c_write(0xAA);		//Commande de l'écran 
+092E:  MOVLW  AA
+0930:  MOVWF  75
+0932:  RCALL  0774
+.................... 	i2c_write(0x44);		//Commande pour dessiner  
+0934:  MOVLW  44
+0936:  MOVWF  75
+0938:  RCALL  0774
+.................... 	i2c_write(0x54);		//Commande pour écrire du texte 
+093A:  MOVLW  54
+093C:  MOVWF  75
+093E:  RCALL  0774
+.................... 	i2c_write(Cent+0x30);	//Affiche les centaines 
+0940:  MOVLW  30
+0942:  ADDWF  21,W
+0944:  MOVWF  71
+0946:  MOVWF  75
+0948:  RCALL  0774
+.................... 	i2c_write(Dix+0x30);	//Affiche les dizaine 
+094A:  MOVLW  30
+094C:  ADDWF  22,W
+094E:  MOVWF  71
+0950:  MOVWF  75
+0952:  RCALL  0774
+.................... 	i2c_write(0x2E);		//. 
+0954:  MOVLW  2E
+0956:  MOVWF  75
+0958:  RCALL  0774
+.................... 	i2c_write(Unit+0x30);	//Affiche les unités 
+095A:  MOVLW  30
+095C:  ADDWF  23,W
+095E:  MOVWF  71
+0960:  MOVWF  75
+0962:  RCALL  0774
+.................... 	i2c_write(0x5B);		//[ 
+0964:  MOVLW  5B
+0966:  MOVWF  75
+0968:  RCALL  0774
+.................... 	i2c_write(0x4B);		//K 
+096A:  MOVLW  4B
+096C:  MOVWF  75
+096E:  RCALL  0774
+.................... 	i2c_write(0x6D);		//m 
+0970:  MOVLW  6D
+0972:  MOVWF  75
+0974:  RCALL  0774
+.................... 	i2c_write(0x2F);		/// 
+0976:  MOVLW  2F
+0978:  MOVWF  75
+097A:  RCALL  0774
+.................... 	i2c_write(0x68);		//h  
+097C:  MOVLW  68
+097E:  MOVWF  75
+0980:  RCALL  0774
+.................... 	i2c_write(0x5D);		//] 
+0982:  MOVLW  5D
+0984:  MOVWF  75
+0986:  RCALL  0774
+.................... 	i2c_stop(); 
+0988:  BSF    FC5.2
+098A:  BTFSC  FC5.2
+098C:  BRA    098A
+.................... } 
+098E:  GOTO   09A0 (RETURN)
+....................  
+.................... //Interruption : s'active à chaque fois qu'un signal arrive sur la pin Echo du capteur 2 
+.................... #INT_EXT2  
+.................... void Echo_isr() 
+.................... { 
+.................... 	enable_interrupts(INT_TIMER1);	//Active le timer0 
+*
+00D6:  BSF    F9D.0
+.................... 	disable_interrupts(INT_EXT2);	//Désactive l'interruption RB2 
+00D8:  BCF    FF0.4
+.................... } 
+....................  
+.................... //Timer : sert à mesurer la longueur de la pulse d'Echo et ainsi, à calculer la distance 
+00DA:  BCF    FF0.1
+00DC:  GOTO   0088
+.................... #INT_TIMER1 
+.................... void TIMER1_isr() 
+.................... { 
+.................... 	TMR1H=0xFF;	//Préchargement du timer 
+*
+04EC:  SETF   FCF
+.................... 	TMR1L=0x06;	 
+04EE:  MOVLW  06
+04F0:  MOVWF  FCE
+.................... 	if(Echo==1)	//Si on un toujours de l'echo 
+04F2:  BTFSS  F81.2
+04F4:  BRA    0558
+.................... 	{ 
+.................... 		indexEcho+=1;		//On incrémente l'index de l'echo 
+04F6:  BCF    FD8.1
+04F8:  MOVFF  1D,6C
+04FC:  MOVFF  1C,6B
+0500:  MOVFF  1B,6A
+0504:  MOVFF  1A,69
+0508:  CLRF   70
+050A:  CLRF   6F
+050C:  CLRF   6E
+050E:  MOVLW  7F
+0510:  MOVWF  6D
+0512:  BRA    00E0
+0514:  MOVFF  03,1D
+0518:  MOVFF  02,1C
+051C:  MOVFF  01,1B
+0520:  MOVFF  00,1A
+.................... 		if(indexEcho==470)	//Si l'echo à atteint la distance max 
+0524:  MOVFF  1D,6C
+0528:  MOVFF  1C,6B
+052C:  MOVFF  1B,6A
+0530:  MOVFF  1A,69
+0534:  CLRF   70
+0536:  CLRF   6F
+0538:  MOVLW  6B
+053A:  MOVWF  6E
+053C:  MOVLW  87
+053E:  MOVWF  6D
+0540:  RCALL  034C
+0542:  BNZ   0556
+.................... 		{ 
+.................... 			distance=400;	//On fixe la distance à 4m 
+0544:  MOVLW  01
+0546:  MOVWF  1F
+0548:  MOVLW  90
+054A:  MOVWF  1E
+.................... 			indexEcho=0;	//On remet à 0 l'indexEcho 
+054C:  CLRF   1D
+054E:  CLRF   1C
+0550:  CLRF   1B
+0552:  CLRF   1A
+.................... 			disable_interrupts(INT_TIMER1);	//Désactive timer0			 
+0554:  BCF    F9D.0
+.................... 		} 
+.................... 	} 
+.................... 	else 
+0556:  BRA    05B6
+.................... 	{ 
+.................... 		distance = indexEcho*0.85;		//(((indexEcho*0.00005)*340)/2)*100;		 
+0558:  MOVFF  1D,74
+055C:  MOVFF  1C,73
+0560:  MOVFF  1B,72
+0564:  MOVFF  1A,71
+0568:  MOVLW  9A
+056A:  MOVWF  78
+056C:  MOVLW  99
+056E:  MOVWF  77
+0570:  MOVLW  59
+0572:  MOVWF  76
+0574:  MOVLW  7E
+0576:  MOVWF  75
+0578:  RCALL  03C2
+057A:  MOVFF  03,74
+057E:  MOVFF  02,73
+0582:  MOVFF  01,72
+0586:  MOVFF  00,71
+058A:  RCALL  04B4
+058C:  MOVFF  02,1F
+0590:  MOVFF  01,1E
+.................... 		if(distance>=400){distance=400;}	//Fixe la distance max à 4m 
+0594:  MOVF   1F,W
+0596:  SUBLW  00
+0598:  BC    05AC
+059A:  XORLW  FF
+059C:  BNZ   05A4
+059E:  MOVF   1E,W
+05A0:  SUBLW  8F
+05A2:  BC    05AC
+05A4:  MOVLW  01
+05A6:  MOVWF  1F
+05A8:  MOVLW  90
+05AA:  MOVWF  1E
+.................... 		indexEcho=0;	//Remet à 0 indexEcho 
+05AC:  CLRF   1D
+05AE:  CLRF   1C
+05B0:  CLRF   1B
+05B2:  CLRF   1A
+.................... 		disable_interrupts(INT_TIMER1);	//Désactive timer0 
+05B4:  BCF    F9D.0
+.................... 	} 
+.................... } 
+....................  
+.................... //Timer : chaque seconde, appelle la fonction vitesse 
+05B6:  BCF    F9E.0
+05B8:  GOTO   0088
+.................... #INT_TIMER2 
+.................... void TIMER2_isr() 
+.................... { 
+.................... 	static int i_sec; 
+.................... 	 
+.................... 	TMR2=240; 
+*
+0992:  MOVLW  F0
+0994:  MOVWF  FCC
+.................... 	if(i_sec==100)	//Chaque seconde, on calcule la vitesse 
+0996:  MOVF   5A,W
+0998:  SUBLW  64
+099A:  BNZ   09A2
+.................... 	{ 
+.................... 		i_sec=0; 
+099C:  CLRF   5A
+.................... 		mesVitesse();	//Mesure et affiche la vitesse du karting	 
+099E:  BRA    0814
+.................... 	} 
+.................... 	else 
+09A0:  BRA    09A4
+.................... 	{ 
+.................... 		i_sec++; 
+09A2:  INCF   5A,F
+.................... 	} 
+.................... } 
+....................  
+....................  
+....................  
+....................  
+09A4:  BCF    F9E.1
+09A6:  GOTO   0088
+
+Configuration Fuses:
+   Word  1: C200   HS FCMEN IESO
+   Word  2: 1E19   NOPUT NOBROWNOUT BORV20 NOWDT WDT32768
+   Word  3: 8700   CCP2C1 PBADEN LPT1OSC MCLR
+   Word  4: 0000   NOSTVREN NOLVP NOXINST DEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB
+
+   Some fuses have been forced to be compatible with the ICD debugger.

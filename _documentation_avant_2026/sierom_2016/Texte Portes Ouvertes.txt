@@ -1,0 +1,5 @@
+Ce projet a consisté à reprendre ce qui avait été dimmensionné lors de la 1ère partie (Batterie et 
+Moteur) et l'implanter sur le karting pour en faire un karting électrique. Grâce à la carte électronique
+située sur le plancher du karting, nous pouvons réaliser une mesure de tension ainsi que de courant sur
+les batteries, mesurer la vitesse à laquelle nous roulons et calculer la distance d'un obstacle se 
+situant sur la route.

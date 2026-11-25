@@ -1,0 +1,12 @@
+>>> Warning 203 "Base CCS.c" Line 98(1,1): Condition always TRUE
+>>> Warning 216 "Base CCS.c" Line 586(0,1): Interrupts disabled during call to prevent re-entrancy:  (@I2C_WRITEU_1)
+>>> Warning 216 "Base CCS.c" Line 586(0,1): Interrupts disabled during call to prevent re-entrancy:  (startConnection)
+>>> Warning 216 "Base CCS.c" Line 586(0,1): Interrupts disabled during call to prevent re-entrancy:  (setCursor)
+>>> Warning 216 "Base CCS.c" Line 586(0,1): Interrupts disabled during call to prevent re-entrancy:  (setFont)
+>>> Warning 216 "Base CCS.c" Line 586(0,1): Interrupts disabled during call to prevent re-entrancy:  (@ITOF)
+>>> Warning 216 "Base CCS.c" Line 586(0,1): Interrupts disabled during call to prevent re-entrancy:  (@DIVFF)
+>>> Warning 216 "Base CCS.c" Line 586(0,1): Interrupts disabled during call to prevent re-entrancy:  (@SFTOI)
+>>> Warning 216 "Base CCS.c" Line 586(0,1): Interrupts disabled during call to prevent re-entrancy:  (@DIV88)
+>>> Warning 216 "Base CCS.c" Line 586(0,1): Interrupts disabled during call to prevent re-entrancy:  (@FLT)
+      Memory usage:   ROM=22%      RAM=6% - 8%
+      0 Errors,  10 Warnings.
