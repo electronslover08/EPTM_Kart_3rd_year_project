@@ -1,0 +1,16 @@
+[PROJECT]
+Target=build\default\production\_ext\1472\code compteur.hex
+Processor_Text=PIC18F4520
+CCSVersion=5.074
+Compiler=PCH
+[Target Data]
+FileList=..\code compteur.c
+[build\default\production\_ext\1472\code compteur.c]
+Type=4
+[mru-list]
+1=build\default\production\_ext\1472\code compteur.c
+[build\default\debug\_ext\1472\code compteur.c]
+Type=4
+[Units]
+Count=1
+1=code compteur (main)

@@ -1,0 +1,17 @@
+TARGET 3001 : description d'un plan de perçage : 
+Liste des diamètres de perçage pour le projet C:\Users\Student\Desktop\DamiGspo KartingElectrique\Projet target\ampliop.T3001.
+Attention, le plan de perçage doit être imprimé directement.
+Si des pastilles, des vias ou des axes de perçage ont été entre
+ temps, ajoutés ou supprimés, la liste des diamètres de perçage 
+et le plan de perçage ne peuvent pas être conformes !
+
+Vous avez besoin de 3 forets de perçage : 
+
+   18 x 0,800 mm (31,5 mil): Point.
+   10 x 1,000 mm (39,4 mil): Triangle vide.
+    2 x 1,400 mm (55,1 mil): X.
+
+
+Il y a au total 30 trous de perçage.
+
+Fin de la liste.

@@ -1,0 +1,485 @@
+CCS PCH C Compiler, Version 4.114, 93509615               10-May-11 10:55
+
+               Filename: C:\work\PR_uP4\Ecran EEPROM i2c Real 6b\real6b.lst
+
+               ROM used: 886 bytes (3%)
+                         Largest free fragment is 31046
+               RAM used: 48 (3%) at main() level
+                         52 (3%) worst case
+               Stack:    4 worst case (2 in main + 2 for interrupts)
+
+*
+0000:  GOTO   034C
+*
+0008:  GOTO   00BE
+000C:  NOP   
+000E:  NOP   
+0010:  NOP   
+0012:  NOP   
+0014:  NOP   
+0016:  NOP   
+0018:  MOVWF  04
+001A:  MOVFF  FD8,05
+001E:  MOVFF  FE0,06
+0022:  MOVLB  0
+0024:  MOVFF  FE9,0C
+0028:  MOVFF  FEA,07
+002C:  MOVFF  FE1,08
+0030:  MOVFF  FE2,09
+0034:  MOVFF  FD9,0A
+0038:  MOVFF  FDA,0B
+003C:  MOVFF  FF3,12
+0040:  MOVFF  FF4,13
+0044:  MOVFF  FFA,14
+0048:  MOVFF  FF5,15
+004C:  MOVFF  FF6,16
+0050:  MOVFF  FF7,17
+0054:  MOVFF  00,0E
+0058:  MOVFF  01,0F
+005C:  MOVFF  02,10
+0060:  MOVFF  03,11
+0064:  BTFSS  FF0.3
+0066:  GOTO   0070
+006A:  BTFSC  FF0.0
+006C:  GOTO   01C8
+0070:  MOVFF  0E,00
+0074:  MOVFF  0F,01
+0078:  MOVFF  10,02
+007C:  MOVFF  11,03
+0080:  MOVFF  0C,FE9
+0084:  MOVFF  07,FEA
+0088:  BSF    07.7
+008A:  MOVFF  08,FE1
+008E:  MOVFF  09,FE2
+0092:  MOVFF  0A,FD9
+0096:  MOVFF  0B,FDA
+009A:  MOVFF  12,FF3
+009E:  MOVFF  13,FF4
+00A2:  MOVFF  14,FFA
+00A6:  MOVFF  15,FF5
+00AA:  MOVFF  16,FF6
+00AE:  MOVFF  17,FF7
+00B2:  MOVF   04,W
+00B4:  MOVFF  06,FE0
+00B8:  MOVFF  05,FD8
+00BC:  RETFIE 0
+00BE:  MOVWF  1A
+00C0:  MOVFF  FD8,1B
+00C4:  MOVFF  FE0,1C
+00C8:  MOVLB  0
+00CA:  MOVFF  FE9,22
+00CE:  MOVFF  FEA,1D
+00D2:  MOVFF  FE1,1E
+00D6:  MOVFF  FE2,1F
+00DA:  MOVFF  FD9,20
+00DE:  MOVFF  FDA,21
+00E2:  MOVFF  FF3,28
+00E6:  MOVFF  FF4,29
+00EA:  MOVFF  FFA,2A
+00EE:  MOVFF  FF5,2B
+00F2:  MOVFF  FF6,2C
+00F6:  MOVFF  FF7,2D
+00FA:  MOVFF  00,24
+00FE:  MOVFF  01,25
+0102:  MOVFF  02,26
+0106:  MOVFF  03,27
+010A:  BTFSS  FF2.4
+010C:  GOTO   0116
+0110:  BTFSC  FF2.1
+0112:  GOTO   0180
+0116:  MOVFF  24,00
+011A:  MOVFF  25,01
+011E:  MOVFF  26,02
+0122:  MOVFF  27,03
+0126:  MOVFF  22,FE9
+012A:  MOVFF  1D,FEA
+012E:  BSF    1D.7
+0130:  MOVFF  1E,FE1
+0134:  MOVFF  1F,FE2
+0138:  MOVFF  20,FD9
+013C:  MOVFF  21,FDA
+0140:  MOVFF  28,FF3
+0144:  MOVFF  29,FF4
+0148:  MOVFF  2A,FFA
+014C:  MOVFF  2B,FF5
+0150:  MOVFF  2C,FF6
+0154:  MOVFF  2D,FF7
+0158:  MOVF   1A,W
+015A:  MOVFF  1C,FE0
+015E:  MOVFF  1B,FD8
+0162:  RETFIE 0
+.................... //******************************************************************************************************************* 
+.................... // Programme qui mémorise avec RB0 la valeur présente sur PORTA en EEPROM 
+.................... // Affiche la valeur mémorisée sur l'affichage LCD 
+.................... // Développé par : eggn 
+.................... // Date          : 04.05.2011 
+.................... //*********************************************************************************************************************/ 
+....................  
+.................... #include <18F4520.h> 
+.................... //////// Standard Header file for the PIC18F4520 device //////////////// 
+.................... #device PIC18F4520 
+.................... #list 
+....................  
+.................... #include "18F_register.h" 
+.................... #list 
+....................  
+....................  
+.................... #DEVICE HIGH_INTS=TRUE 
+.................... #use delay(clock=20000000) 
+.................... #use i2c(master, slow, sda=PIN_C4, scl=PIN_C3, FORCE_HW) 
+0164:  BCF    FC6.7
+0166:  BCF    F9E.3
+0168:  MOVFF  33,FC9
+016C:  MOVLW  02
+016E:  BTFSC  FC6.7
+0170:  BRA    017C
+0172:  BTFSS  F9E.3
+0174:  BRA    0172
+0176:  MOVLW  00
+0178:  BTFSC  FC5.6
+017A:  MOVLW  01
+017C:  MOVWF  01
+017E:  RETLW  00
+*
+01AA:  BCF    FC6.6
+01AC:  BSF    FC5.3
+01AE:  BTFSC  FC5.3
+01B0:  BRA    01AE
+01B2:  BTFSC  00.0
+01B4:  BCF    FC5.5
+01B6:  BTFSS  00.0
+01B8:  BSF    FC5.5
+01BA:  BSF    FC5.4
+01BC:  BTFSC  FC5.4
+01BE:  BRA    01BC
+01C0:  MOVFF  FC9,01
+01C4:  GOTO   01E8 (RETURN)
+.................... #bit LED_NO_ACK = PORTD.0 
+....................  
+.................... #fuses NOWDT, HS, NOPUT, NOPROTECT, DEBUG, NOBROWNOUT, NOLVP, NOCPD, NOWRT, NOXINST 
+.................... int v_lue; 
+.................... //------------------------------------------------------------------------------ 
+.................... // Routine d'initialisation des ports du microcontrôleur 
+.................... void Init(void) 
+.................... { 
+.................... 	TRISB=0xFF; 
+*
+0228:  MOVLW  FF
+022A:  MOVWF  F93
+.................... 	TRISD=0; 
+022C:  CLRF   F95
+.................... 	TRISA=0x0F; 
+022E:  MOVLW  0F
+0230:  MOVWF  F92
+.................... 	PORTD=0; 
+0232:  CLRF   F83
+.................... 	ADCON1=0x0F; 
+0234:  MOVWF  FC1
+....................  
+.................... 	enable_interrupts(GLOBAL); 
+0236:  MOVLW  C0
+0238:  IORWF  FF2,F
+.................... 	enable_interrupts(INT_EXT); 
+023A:  BSF    FF2.4
+.................... 	enable_interrupts(INT_EXT1); 
+023C:  BSF    FF0.3
+.................... 	ext_int_edge(H_to_L); 
+023E:  BCF    FF1.6
+....................  
+.................... 	i2c_start(); 
+0240:  BSF    FC5.0
+0242:  BTFSC  FC5.0
+0244:  BRA    0242
+0246:  CLRF   19
+0248:  BTFSC  FF2.6
+024A:  BSF    19.6
+024C:  BCF    FF2.6
+024E:  BTFSC  FF2.7
+0250:  BSF    19.7
+0252:  BCF    FF2.7
+.................... 	i2c_write(0x50);	//écris sur l'écran 
+0254:  MOVLW  50
+0256:  MOVWF  33
+0258:  RCALL  0164
+025A:  BTFSC  19.6
+025C:  BSF    FF2.6
+025E:  BTFSC  19.7
+0260:  BSF    FF2.7
+0262:  CLRF   19
+0264:  BTFSC  FF2.6
+0266:  BSF    19.6
+0268:  BCF    FF2.6
+026A:  BTFSC  FF2.7
+026C:  BSF    19.7
+026E:  BCF    FF2.7
+.................... 	i2c_write(0xfe);	//commande 
+0270:  MOVLW  FE
+0272:  MOVWF  33
+0274:  RCALL  0164
+0276:  BTFSC  19.6
+0278:  BSF    FF2.6
+027A:  BTFSC  19.7
+027C:  BSF    FF2.7
+027E:  CLRF   19
+0280:  BTFSC  FF2.6
+0282:  BSF    19.6
+0284:  BCF    FF2.6
+0286:  BTFSC  FF2.7
+0288:  BSF    19.7
+028A:  BCF    FF2.7
+.................... 	i2c_write(0x52);	//contraste 
+028C:  MOVLW  52
+028E:  MOVWF  33
+0290:  RCALL  0164
+0292:  BTFSC  19.6
+0294:  BSF    FF2.6
+0296:  BTFSC  19.7
+0298:  BSF    FF2.7
+029A:  CLRF   19
+029C:  BTFSC  FF2.6
+029E:  BSF    19.6
+02A0:  BCF    FF2.6
+02A2:  BTFSC  FF2.7
+02A4:  BSF    19.7
+02A6:  BCF    FF2.7
+.................... 	i2c_write(0x1E);	//fixe le niveau de contraste à 1E 
+02A8:  MOVLW  1E
+02AA:  MOVWF  33
+02AC:  RCALL  0164
+02AE:  BTFSC  19.6
+02B0:  BSF    FF2.6
+02B2:  BTFSC  19.7
+02B4:  BSF    FF2.7
+02B6:  CLRF   19
+02B8:  BTFSC  FF2.6
+02BA:  BSF    19.6
+02BC:  BCF    FF2.6
+02BE:  BTFSC  FF2.7
+02C0:  BSF    19.7
+02C2:  BCF    FF2.7
+.................... 	i2c_write(0xfe);	//commande	 
+02C4:  MOVLW  FE
+02C6:  MOVWF  33
+02C8:  RCALL  0164
+02CA:  BTFSC  19.6
+02CC:  BSF    FF2.6
+02CE:  BTFSC  19.7
+02D0:  BSF    FF2.7
+02D2:  CLRF   19
+02D4:  BTFSC  FF2.6
+02D6:  BSF    19.6
+02D8:  BCF    FF2.6
+02DA:  BTFSC  FF2.7
+02DC:  BSF    19.7
+02DE:  BCF    FF2.7
+.................... 	i2c_write(0x53);	//set un back light moyen 
+02E0:  MOVLW  53
+02E2:  MOVWF  33
+02E4:  RCALL  0164
+02E6:  BTFSC  19.6
+02E8:  BSF    FF2.6
+02EA:  BTFSC  19.7
+02EC:  BSF    FF2.7
+02EE:  CLRF   19
+02F0:  BTFSC  FF2.6
+02F2:  BSF    19.6
+02F4:  BCF    FF2.6
+02F6:  BTFSC  FF2.7
+02F8:  BSF    19.7
+02FA:  BCF    FF2.7
+.................... 	i2c_write(8);		//niveau de back light de 1 à 8 
+02FC:  MOVLW  08
+02FE:  MOVWF  33
+0300:  RCALL  0164
+0302:  BTFSC  19.6
+0304:  BSF    FF2.6
+0306:  BTFSC  19.7
+0308:  BSF    FF2.7
+030A:  CLRF   19
+030C:  BTFSC  FF2.6
+030E:  BSF    19.6
+0310:  BCF    FF2.6
+0312:  BTFSC  FF2.7
+0314:  BSF    19.7
+0316:  BCF    FF2.7
+.................... 	i2c_write(0xfe);	//commande	 
+0318:  MOVLW  FE
+031A:  MOVWF  33
+031C:  RCALL  0164
+031E:  BTFSC  19.6
+0320:  BSF    FF2.6
+0322:  BTFSC  19.7
+0324:  BSF    FF2.7
+0326:  CLRF   19
+0328:  BTFSC  FF2.6
+032A:  BSF    19.6
+032C:  BCF    FF2.6
+032E:  BTFSC  FF2.7
+0330:  BSF    19.7
+0332:  BCF    FF2.7
+.................... 	i2c_write(0x51);	//clear screen 
+0334:  MOVLW  51
+0336:  MOVWF  33
+0338:  RCALL  0164
+033A:  BTFSC  19.6
+033C:  BSF    FF2.6
+033E:  BTFSC  19.7
+0340:  BSF    FF2.7
+.................... 	i2c_stop(); 
+0342:  BSF    FC5.2
+0344:  BTFSC  FC5.2
+0346:  BRA    0344
+.................... } 
+0348:  GOTO   0376 (RETURN)
+....................  
+.................... //---------------------------------------------------------------------------------- 
+.................... // EEPROM et écran LCD 
+.................... //---------------------------------------------------------------------------------- 
+.................... // Interruption 0 pour stocker un caractère dans l'EEPROM 
+.................... #INT_EXT 
+.................... void RB0_isr(void) 
+.................... { 
+.................... 	int v_lue; 
+.................... 	i2c_start(); 
+*
+0180:  BSF    FC5.0
+0182:  BTFSC  FC5.0
+0184:  BRA    0182
+.................... 	i2c_write(0xa0);			//écris sur L'EEPROM 
+0186:  MOVLW  A0
+0188:  MOVWF  33
+018A:  RCALL  0164
+.................... 	i2c_write(0x00);			//charge l'adresse 0x00 
+018C:  CLRF   33
+018E:  RCALL  0164
+.................... 	v_lue=0x30+(PORTA&0x0F);	//récupère la valeur lue ajoute l'offset ascii  
+0190:  MOVF   F80,W
+0192:  ANDLW  0F
+0194:  ADDLW  30
+0196:  MOVWF  32
+.................... 	i2c_write(v_lue);			//mémorise la valeur lue 
+0198:  MOVFF  32,33
+019C:  RCALL  0164
+.................... 	i2c_stop(); 
+019E:  BSF    FC5.2
+01A0:  BTFSC  FC5.2
+01A2:  BRA    01A0
+.................... } 
+....................  
+.................... //------------------------------------------------------------------------------ 
+.................... // Interruption 1 pour lire et afficher le caractère sur l'écran 
+01A4:  BCF    FF2.1
+01A6:  GOTO   0116
+.................... #INT_EXT1 
+.................... void RB1_isr(void) 
+.................... { 
+.................... 	i2c_start(); 
+*
+01C8:  BSF    FC5.0
+01CA:  BTFSC  FC5.0
+01CC:  BRA    01CA
+.................... 	i2c_write(0xa0);			//écris sur L'EEPROM 
+01CE:  MOVLW  A0
+01D0:  MOVWF  33
+01D2:  RCALL  0164
+.................... 	i2c_write(0x00);			//charge l'adresse 0x00 
+01D4:  CLRF   33
+01D6:  RCALL  0164
+.................... 	i2c_start();				//aaaaaaaaaaatention 
+01D8:  BSF    FC5.1
+01DA:  BTFSC  FC5.1
+01DC:  BRA    01DA
+.................... 	i2c_write(0xa1);			//lecture EEPROM 
+01DE:  MOVLW  A1
+01E0:  MOVWF  33
+01E2:  RCALL  0164
+.................... 	v_lue = i2c_read(0);		//charge la valeur lue dans v_lue 
+01E4:  CLRF   00
+01E6:  BRA    01AA
+01E8:  MOVFF  01,2F
+.................... 	i2c_stop();	 
+01EC:  BSF    FC5.2
+01EE:  BTFSC  FC5.2
+01F0:  BRA    01EE
+....................  
+.................... 	i2c_start(); 
+01F2:  BSF    FC5.0
+01F4:  BTFSC  FC5.0
+01F6:  BRA    01F4
+.................... 	i2c_write(0x50); 
+01F8:  MOVLW  50
+01FA:  MOVWF  33
+01FC:  RCALL  0164
+.................... 	i2c_write(0xfe); 
+01FE:  MOVLW  FE
+0200:  MOVWF  33
+0202:  RCALL  0164
+.................... 	i2c_write(0x51);	//clear screen 
+0204:  MOVLW  51
+0206:  MOVWF  33
+0208:  RCALL  0164
+.................... 	i2c_write(0xfe); 
+020A:  MOVLW  FE
+020C:  MOVWF  33
+020E:  RCALL  0164
+.................... 	i2c_write(0x46);	//cursor home 
+0210:  MOVLW  46
+0212:  MOVWF  33
+0214:  RCALL  0164
+.................... 	i2c_write(v_lue); 
+0216:  MOVFF  2F,33
+021A:  RCALL  0164
+.................... 	i2c_stop(); 
+021C:  BSF    FC5.2
+021E:  BTFSC  FC5.2
+0220:  BRA    021E
+.................... } 
+....................  
+.................... //------------------------------------------------------------------------------ 
+....................  
+0222:  BCF    FF0.0
+0224:  GOTO   0070
+.................... void main(void) 
+.................... { 
+*
+034C:  CLRF   FF8
+034E:  BCF    FF0.6
+0350:  BSF    FD0.7
+0352:  BSF    07.7
+0354:  CLRF   FEA
+0356:  CLRF   FE9
+0358:  BSF    F94.3
+035A:  BSF    F94.4
+035C:  MOVLW  31
+035E:  MOVWF  FC8
+0360:  MOVLW  28
+0362:  MOVWF  FC6
+0364:  BSF    FC7.7
+0366:  BCF    FC7.6
+0368:  MOVF   FC1,W
+036A:  ANDLW  C0
+036C:  IORLW  0F
+036E:  MOVWF  FC1
+0370:  MOVLW  07
+0372:  MOVWF  FB4
+.................... 	Init(); 
+0374:  BRA    0228
+.................... 	while(1) 
+.................... 	{ 
+.................... 			 
+.................... 				 
+.................... 	} 
+0376:  BRA    0376
+.................... } 
+0378:  BRA    0378
+
+Configuration Fuses:
+   Word  1: C200   HS FCMEN IESO
+   Word  2: 1E19   NOPUT NOBROWNOUT BORV20 NOWDT WDT32768
+   Word  3: 8700   CCP2C1 PBADEN LPT1OSC MCLR
+   Word  4: 0000   NOSTVREN NOLVP NOXINST DEBUG
+   Word  5: C00F   NOPROTECT NOCPB NOCPD
+   Word  6: E00F   NOWRT NOWRTC NOWRTB NOWRTD
+   Word  7: 400F   NOEBTR NOEBTRB
+
+   Some fuses have been forced to be compatible with the ICD debugger.
