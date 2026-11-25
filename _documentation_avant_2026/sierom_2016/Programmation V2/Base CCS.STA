@@ -1,0 +1,75 @@
+
+ROM used: 6920 (22%)
+          6920 (22%) including unused fragments
+
+          5 Average locations per line
+          28 Average locations per statement
+
+RAM used: 92 (6%) at main() level
+          127 (8%) worst case
+
+Stack used: 7 worst case (out of 30 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  585   249 100  Base CCS.c
+  470     0   0  C:\Program Files (x86)\PICC\devices\18F4520.h
+  401     0   0  18F_register.h
+----- -----
+ 1456   249 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     38   0   1             @delay_ms1
+0     28   0   1             @I2C_WRITEU_1
+0    326   2   1   230  2.3  Main
+0    144   1   1   561  2.9  init
+0     58   0   0    37  1.1  initScreen
+0     56   0   1   233  3.1  startConnection
+0     44   0   4   190  2.1  setCursor
+0    114   1   2    94  1.8  drawImage
+0     32   0   2   115  1.9  setFont
+0    144   1   5   204  4.5  writeText
+0     32   0   2   127  4.2  adc_read
+0    198   1   4   190  2.1  writeLine
+0    602   4   0  1205  2.0  writeTitre
+0     18   0   0    56  1.6  sendPulse
+0    468   3   2   510  3.8  fctdistance
+0     66   0   5             @DIV1616
+0    158   1   0   375  3.7  afficheDist
+0    858   6   1   648  3.8  mesTension
+0     54   0   2             @ITOF
+0    346   2  14             @DIVFF
+0     56   0   4             @SFTOI
+0     40   0   3             @DIV88
+0    428   3   0   459  3.8  afficheTension
+0    118   1  10             @FLT
+0    798   6   1   634  3.8  mesCourant
+0    382   3   9   894  4.4  mesVitesse
+0    242   2  11             @MULFF
+0     10   0   0    32  1.0  Echo_isr
+0    208   2   1   341  4.5  TIMER1_isr
+0    620   4  16             @ADDFF
+0     24   0   0   123  3.4  TIMER2_isr
+
+Program metrics:
+    Functions               21
+    Statements              249
+    Comments                540
+    Volume (V)              12578
+    Difficilty (D)          62.4
+    Effort to implement (E) 784855
+    Time to implement (T)   12 hours, 7 minutes
+    Est Delivered Bugs (B)  3
+    Cyclomatic Complexity   17
+    Maintainability (MI)    147
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-000D4   206  0  
+000D6-07CBE  6710  25012  
+
+
+

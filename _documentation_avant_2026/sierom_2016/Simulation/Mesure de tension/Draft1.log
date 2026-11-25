@@ -1,0 +1,22 @@
+Circuit: * N:\1. Mes fichiers\3ème année\Projet\Moi\Simulation\Mesure de tension\Draft1.asc
+
+Direct Newton iteration for .op point succeeded.
+
+Date: Fri Apr 22 11:12:52 2016
+Total elapsed time: 0.214 seconds.
+
+tnom = 27
+temp = 27
+method = modified trap
+totiter = 20061
+traniter = 20044
+tranpoints = 10018
+accept = 10018
+rejected = 0
+matrix size = 8
+fillins = 1
+solver = Normal
+Matrix Compiler1: 300 octet(s) object code size  0.8/0.7/[0.7]
+Matrix Compiler2: off  [0.7]/0.9/0.8
+
+

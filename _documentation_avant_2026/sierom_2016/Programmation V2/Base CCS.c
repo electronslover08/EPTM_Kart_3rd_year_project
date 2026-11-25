@@ -1,0 +1,584 @@
+ /* =========================================================================
+====    ()_()                                                  ()_()    ====
+====    (o.0)         EMVs - Ecole des métiers du Valais       (0.o)    ====
+====    (m)(m)                                                (m)(m)    ====
+============================================================================
+====                                                                    ====
+====                     Programmation en langage C                     ====
+====                     --------------------------                     ====
+====                                                                    ====
+====--------------------------------------------------------------------====
+==== Nom du programme                  : projet_kart	                ====
+==== Version                           : V2.0                           ====
+==== Nom du(des) fichier(s) source     : 18F_register.h & Base CCS.c    ====
+====--------------------------------------------------------------------====
+==== Créateur (Nom, Prénom, Localité)  : Sierro Romain, Troistorrents   ====
+====									 Sidler Laura, Sion				====
+==== Classe                            : EL3							====
+==== Date de création                  : ??.??.2015                     ====
+==== Date de la dernière modification  : 02.06.2016                     ====
+====--------------------------------------------------------------------====
+==== Description succincte du programme:                                ====
+==== ----------------------------------                                 ====
+====Programme pour faire fonctionner l'écran tactile du projet du kart  ====
+====électrique. Doit afficher la distance captée par des capteurs ultra ====
+====son. Doit afficher le niveau des batteries du karting ainsi que la  ====
+====vitesse à laquel nous roulons. 										====	
+============================================================================
+*///------------------------------------------------------------------------
+//--------------------------------------------------------------------------
+
+#include <18F4520.h>
+#include "18F_register.h"
+
+#device HIGH_INTS=TRUE
+#device ICD=TRUE
+#use delay(clock=20000000)
+#use i2c(master,fast,sda=PIN_C4,scl=PIN_C3,FORCE_HW)	//Force à utiliser le Hardware du microcontrôleur
+#fuses NOWDT, HS, NOPUT, NOPROTECT, DEBUG, NOBROWNOUT, NOLVP, NOCPD, NOWRT
+
+//--Assignation des ports qui gèrent le capteur--//
+#BIT Trigger=PORTD.1	//Pin du capteur où est envoyée une impulsion
+#BIT Echo=PORTB.2		//Pin du capteur où revient l'echo du signal envoyé
+#BIT ADGO=ADCON0.1		//Bit pour le fonctionnement de convertisseur A/D
+
+#define I2CADDRESS 0X88						//Adresse de l'écran
+
+//==========================================================================
+//Variables globales :												========
+//--------------------												========
+double indexEcho=0;	//Variable pour calculer la durée de l'echo		========
+int16 distance=0;		//Variable pour stocker la distance caclulée========
+unsigned int8 ACK=1;			//Variable pour vérifier l'état de la connection========
+int Cent=0;			//Variable pour stocker les mètres 				========
+int Dix=0;			//Variable pour stocker les centimètres			========
+int Unit=0;			//Variable pour stocker les milimètres			========	
+double tension=0;	//Variable pour stocker la mesure de tension	========	
+double courant=0;	//Variable pour stocker la mesure de courant	========									
+//==========================================================================
+
+//==========================================================================
+//Tableaux de commandes pour iLCD :									========
+//---------------------------------									========
+int	textStart[8]={0x65,0x4B,0x61,0x72,0x74,0x69,0x6E,0x67};	//eKarting======
+int textDist[11]={0x50,0x72,0x6F,0x78,0x69,0x6D,0x69,0x74,0x65,0x20,0x3A};	//Distance :
+int textTension[9]={0x54,0x65,0x6E,0x73,0x69,0x6F,0x6E,0x20,0x3A};	//Tension : 
+int textCourant[9]={0x43,0x6F,0x75,0x72,0x61,0x6E,0x74,0x20,0x3A};	//Courant :
+int textVitesse[9]={0x56,0x69,0x74,0x65,0x73,0x73,0x65,0x20,0x3a};	//Vitesse :
+//==========================================================================
+//Prototypes : 														========
+//------------														========
+void init(void);		//Configuration du uP						========
+void initScreen(void);		//Réinitialise l'écran					========	
+void startConnection(int charToSend);	//Démarre la connection avec l'écran
+void setCursor(int xh, int xl, int yh, int yl);	//Défini position curseur===
+void drawImage(int idx_x, int idx_y);	//Affiche l'image choisie	========
+void setFont(int font_x, int font_y);	//Choisi la police entrée	========
+void writeText(int textTab[], int taille);	//Ecris un texte - iDT	========
+int  adc_read(int channel);	//Convertit le canal entré en analogique========
+void writeLine(int end_xh, int end_xl, int end_yh, int end_yl);	//Affiche une ligne	
+void writeTitre(void);		//Ecrit le titre des éléments			========
+void sendPulse(void);		//Envoie une impulsion au capteur		========
+void fctdistance(void);		//Calcul la distance et l'affiche		========
+void afficheDist(void);		//Affiche le dessin du capteur			========
+void mesTension(void);		//Mesure la tension des batteries		========
+void afficheTension(void);	//Affiche le dessin de la batterie		========
+void mesCourant(void);		//Mesure le courant des batteries		========
+void mesVitesse(void);		//Mesure et affiche la vitesse			========
+//==========================================================================
+
+//------Fonction principale du code------//
+void Main(void)
+{
+	init();
+	TMR0H=TMR0L=0;
+	writeTitre();	//Ecrit les infos de base
+
+	while(1)
+	{
+		enable_interrupts(INT_EXT2);	//Autorise l'interruption RB2
+		sendPulse();	//Envoie une impulsion sur le capteur de distance
+		delay_ms(500);	//Pour pas faire trop clignoter
+		fctdistance();	//Calcul la distance et l'affiche sur l'écran
+		afficheDist();	//Affiche les barres de couleurs pour indiquer la proximité
+		mesTension();	//Mesure et affiche la tension des batteries
+		afficheTension();//Affiche le logo de la batterie et son nniveau de charge
+		mesCourant();	//Mesure et affiche le courant des batteries
+		distance=0;		//Remet distance à 0
+	}	
+}
+
+/*==========================================================================
+====Fonction     : Config_uP	                                        ====
+====Sierro Romain: 11.03.2016                                           ====
+====--------------------------------------------------------------------====
+====Lance la routine d'initialisation du microprocesseur		 		====
+============================================================================*/
+void init(void)
+{	
+	//Ports hardware
+	TRISA=TRISA|0b00010011;	//RA0,1 et 4 en entrée
+	TRISB=0xFF;		//PORTB en entrée
+	TRISD=0X00;		//PORTD en sortie pour le capteur
+	PORTD=0b00111000;	//Commande des capteurs à 1				
+
+	//Configuration des registres
+	ADCON0=0b00000001;	//module CAD actif,channel 0: AN0 multiplexé sur l'A/D
+	ADCON1=0b00001101;	//AN0 et AN1 en analogique
+	ADCON2=0b00011101;	//TAD = Fosc/16 car fCPU = 20MHz
+
+	//Intterupts
+	//enable_interrupts(INT_EXT2);		//Autorise l'interruption RB2
+	enable_interrupts(INT_TIMER0);		//Active le timer0
+	disable_interrupts(INT_TIMER1);		//Désactive l'interruption timer
+	enable_interrupts(INT_TIMER2);		//Active le timer2
+	ext_int_edge(2,L_to_H);				//Configure RB2 sur le flanc montant
+	enable_interrupts(GLOBAL);			//Autorise globalement les interruptions
+
+	T0CON=0b10101000;	//S'incrément chaque L to H
+	T1CON=0b10000001;	//Timer de 50µs
+
+	//Initialisation de l'écran 
+	startConnection(15);	//Dit à l'écran combien de caractère on lui envoie 
+	initScreen();			//Efface l'écran
+	
+	setCursor(0x00,0xF7,0x00,0x9D);	//Positionne le curseur
+	drawImage(0x00,0x00);	//Dessine l'image contune à l'emplacement 0
+
+	delay_ms(2500);	//Attend 2.5s
+	i2c_stop();	
+
+	T2CON=0b01100110;	//Timer de 10ms
+
+}
+
+/*==========================================================================
+====Fonction     : initScreen		                                    ====
+====Sierro Romain: 11.03.2016                                           ====
+====--------------------------------------------------------------------====
+====Réinitialise l'écran			vaut i!						 		====
+============================================================================*/
+void initScreen(void)
+{
+	i2c_write(0xAA);	//Commande de l'écran
+	i2c_write(0x21);	//Réinitialise l'écran; vaut i! dans le programme de iLCD
+}
+
+/*==========================================================================
+====Fonction     : startConnection                                      ====
+====Sierro Romain: 11.03.2016                                           ====
+====--------------------------------------------------------------------====
+====Démarre la connection avec l'écran							 		====
+============================================================================*/
+void startConnection(int charToSend)
+{
+	i2c_start();
+	do{ACK = i2c_write(I2CADDRESS);}	while(ACK==1);	//Atteindre l'écran
+	do{ACK = i2c_write(0x05);}			while(ACK==1);	//Dire à l'écran que l'on veut lui envoyer qqch
+	do{ACK = i2c_write(charToSend);}	while(ACK==1);	//Dire à l'écran combien de char on lui envoie 	
+}
+
+/*==========================================================================
+====Fonction     : setCursor		                                    ====
+====Sierro Romain: 18.03.2016                                           ====
+====--------------------------------------------------------------------====
+====Met le curseur à des coordonnées voulues	vaut iCK		 		====
+============================================================================*/
+void setCursor(int xh, int xl, int yh, int yl)
+{
+	i2c_write(0xAA);//Commande de l'écran
+	i2c_write(0x43);//Commande pour les paramètres de l'écran
+	i2c_write(0x4B);//Commande pour le curseur
+	i2c_write(xh);	//Comme l'écran est grand, sa taille se donne sur 
+	i2c_write(xl);	//2 Byte. C'est pour ça que les coordonnées sont en 2 fois
+	i2c_write(yh);
+	i2c_write(yl);
+}
+
+/*==========================================================================
+====Fonction     : drawImage		                                    ====
+====Sierro Romain: 19.05.2016                                           ====
+====--------------------------------------------------------------------====
+====Affiche l'image entrée en paramètre			vaut iG			 		====
+============================================================================*/
+void drawImage(int idx_x, int idx_y)
+{
+	i2c_write(0xAA);	//Commande de l'écran
+	i2c_write(0x47);	//Commande pour dessiner
+	i2c_write(idx_x);	//Index de l'image contenue dans l'écran
+	i2c_write(idx_y);
+}
+
+/*==========================================================================
+====Fonction     : setFont			                                    ====
+====Sierro Romain: 13.05.2016                                           ====
+====--------------------------------------------------------------------====
+====Sélectionne une police d'écriture 			vaut iAF		 		====
+============================================================================*/
+void setFont(int font_x, int font_y)
+{
+	i2c_write(0xAA);	//Commande de l'écran 
+	i2c_write(0x41);	//Commande pour les options d'écriture
+	i2c_write(0x46);	//Commande pour les paramètres de police
+	i2c_write(font_x);	//Index du style d'écriture
+	i2c_write(font_y);
+}
+
+/*==========================================================================
+====Fonction     : writeText		                                    ====
+====Sierro Romain: 11.03.2016                                           ====
+====--------------------------------------------------------------------====
+====Ecrit un texte à l'écran		vaut iDT					 		====
+============================================================================*/
+void writeText(int textTab[], int taille)
+{
+	int i;	//Index pour la boucle d'écriture
+
+	i2c_write(0xAA);	//Commande de l'écran
+	i2c_write(0x44);	//Commande pour dessiner
+	i2c_write(0x54);	//Commande pour écrire du texte
+
+	for (i=0; i<taille; i++)	//Nous affichons 1 à 1 les caractères
+		{i2c_write(textTab[i]);}//contenus dans le tableau entré
+}
+
+/* =========================================================================
+====Fonction     : Adc_read                                             ====
+====Sierro Romain: 07.01.2014                                           ====
+====--------------------------------------------------------------------====
+==== Fonction: int Adc_read(int channel)
+==== Déscription: Convertit en digital 8 bits le canal analog.          ====
+==== passé en param. Paramètres d'entrée: channel: soit le canal        ====
+==== à convertir Paramètres de sortie: valeur num. 8 bits de l'entrée   ====
+==== analog. AN0                                                        ====
+============================================================================ */
+int adc_read(int channel)
+{
+	ADCON0 = (channel << 2) + 0b00000001;
+
+	ADGO = 1;
+	while(ADGO==1)
+		continue;
+	return (ADRESH);
+}
+
+/*==========================================================================
+====Fonction     : writeLine		                                    ====
+====Sierro Romain: 13.05.2016                                           ====
+====--------------------------------------------------------------------====
+====Affiche une ligne sur l'écran			 					 		====
+============================================================================*/
+void writeLine(int end_xh,int end_xl, int end_yh, int end_yl)
+{
+	i2c_write(0xAA);	//Commande de l'écran
+	i2c_write(0x44);	//Commande pour dessiner
+	i2c_write(0x4C);	//Commande pour dessiner un trait
+	i2c_write(end_xh);	//Comme l'écran est grand, sa taille se donne sur 
+	i2c_write(end_xl);	//2 Byte. C'est pour ça que les coordonnées sont en 2 fois
+	i2c_write(end_yh);	//La ligne part de la position du curseur jusqu'à la position 
+	i2c_write(end_yl);	//entrée dans la fonction
+}
+
+/*==========================================================================
+====Fonction     : writeTitre		                                    ====
+====Sierro Romain: 11.05.2016                                           ====
+====--------------------------------------------------------------------====
+====Ecrit le squelette de l'affichage		 					 		====
+============================================================================*/
+void writeTitre(void)
+{
+	startConnection(165);				//Envoie le nombre de caractère qu'il va recevoir
+	initScreen();						//Efface l'écran
+	setCursor(0x01, 0x10, 0x00, 0x25);	//Met le curseur pour centrer le texte en haut au milieu
+	setFont(0x00, 0x01);				//Sélectionne la police du titre
+	writeText(textStart, 8);			//Ecrit <<eKarting>>
+
+	setCursor(0x00, 0x30, 0x00, 0xA5);	//Met le curseur pour centrer le texte en haut au milieu
+	setFont(0x00, 0x02);				//Sélectionne la police du titre
+	writeText(textDist, 11);			//Ecrit <<Proximité>>
+
+	setCursor(0x01, 0x40, 0x00, 0xA5);	//Met le curseur pour centrer le texte en haut au milieu
+	setFont(0x00, 0x02);				//Sélectionne la police du titre
+	writeText(textTension, 9);			//Ecrit <<Tension>>
+
+	setCursor(0x01, 0x40, 0x01, 0x80);	//Met le curseur pour centrer le texte en haut au milieu
+	setFont(0x00, 0x02);				//Sélectionne la police du titre
+	writeText(textCourant, 9);			//Ecrit <<Courant>>
+
+	setCursor(0x02, 0x45, 0x00, 0xA5);	//Met le curseur pour centrer le texte en haut au milieu
+	setFont(0x00, 0x02);				//Sélectionne la police du titre
+	writeText(textVitesse, 9);			//Ecrit <<Vitesse>>
+
+	setCursor(0x00, 0x00, 0x00, 0xA0);	//Positionne le curseur à 1/3 de la hauteur
+	writeLine(0x03, 0x1F, 0x00, 0xA0);	//Fait une ligne horizontal en travers de l'écran
+	setCursor(0x01, 0x0A, 0x00, 0xA0);	//Positionne le curseur à 1/3 de la largeur
+	writeLine(0x01, 0x0A, 0x01, 0xDF);	//Fait une ligne verticale à 1/3 de l'écran
+	setCursor(0x02, 0x16, 0x00, 0xA0);	//Positionne le curseur à 2/3 de la largeur
+	writeLine(0x02, 0x16, 0x01, 0xDF);	//Fait une ligne verticale à 2/3 de l'écran
+	i2c_stop();
+}
+
+/*==========================================================================
+====Fonction     : sendPulse		                                    ====
+====Sierro Romain: 11.05.2016                                           ====
+====--------------------------------------------------------------------====
+====Envoie une impulsion sur le trigger du capteur				 		====
+============================================================================*/
+void sendPulse(void)
+{
+	Trigger=1;		//On allume l'émetteur du capteur
+	delay_us(10);	//pendant 10µs
+	Trigger=0;		//Puis on l'éteint
+}
+
+/*==========================================================================
+====Fonction     : distance			                                    ====
+====Sierro Romain: 12.05.2016                                           ====
+====--------------------------------------------------------------------====
+====Convertit la valeur du timer en distance et l'envoi pour l'afficher	====
+============================================================================*/
+void fctdistance(void)
+{
+		//Calculs pour ressortir chaque chiffre
+		Cent=distance/100;	
+		Dix=(distance/10)%10;
+		Unit=distance%10;
+			
+		startConnection(21);	//Dit à l'écran le nombre de caractère qu'on lui envoie
+		setFont(0x00, 0x00);	//Sélectionne la police d'écriture	
+		setCursor(0x00, 0x50, 0x00, 0xD5);	//Positionne le curseur
+		
+		i2c_write(0xAA);		//Commande de l'écran
+		i2c_write(0x44);		//Commande pour dessiner 
+		i2c_write(0x54);		//Commande pour écrire du texte
+		i2c_write(Cent+0x30);	//Affiche les mètres
+		i2c_write(Dix+0x30);	//Affiche les centimètres
+		i2c_write(Unit+0x30);	//Affiche les milimètre 
+		i2c_write(0x20);		//Espace
+		i2c_write(0x63);		//c
+		i2c_write(0x6D);		//m
+		i2c_stop();
+}
+
+/*==========================================================================
+====Fonction     : afficheDist		                                    ====
+====Sierro Romain: 19.05.2016                                           ====
+====--------------------------------------------------------------------====
+====Affiche le dessin pour le capteur de proximité avec les barres 		====
+============================================================================*/
+void afficheDist(void)
+{
+	startConnection(11);	//Dit à l'écran le nombre de Byte qu'on lui envoie
+	setCursor(0x00, 0x55, 0x01, 0x22);	//Positionne le curseur
+	if(distance>=90)	//Si la distance est plus grande que 90
+	{
+		drawImage(0x00, 0x02);	//On affiche l'icone tout gris
+	}
+	else if(distance>=60)	//Si la distance est plus grande que60
+	{
+		drawImage(0x00, 0x03);	//On affiche l'icone jaune
+	}
+	else if(distance>=30)	//Si la distance est plus grande que 30
+	{
+		drawImage(0x00, 0x04);	//On affiche l'icone jaune orange
+	}
+	else if(distance<30)	//Si la distance est plus petite que 30
+	{
+		drawImage(0x00, 0x05);	//On affiche l'icone jaune orange rouge
+	}
+	i2c_stop();
+}
+
+/*==========================================================================
+====Fonction     : mesTension		                                    ====
+====Sierro Romain: 12.05.2016                                           ====
+====--------------------------------------------------------------------====
+====Prend la tension des batteries mesurée sur AN1 et l'affiche 		====
+============================================================================*/
+void mesTension(void)
+{	
+	tension=adc_read(1);	//Lit la mesure de AN1
+	Cent=tension/51;		//Convertit pour garder la centaine
+	Dix=tension/5.1;		//Convertit pour garder la dizaine
+	Dix=Dix%10;
+	Unit=tension/0.51;		//Convertit pour garder l'unité
+	Unit=Unit%10;
+
+	startConnection(22);			//Dit combien de caractère on envoi
+	setFont(0x00, 0x00);			//Sélectionne la police d'écriture
+	setCursor(0x01, 0x70, 0x00, 0xD5);	//Positionne le curseur 
+
+	i2c_write(0xAA);		//Commande de l'écran
+	i2c_write(0x44);		//Commande pour dessiner 
+	i2c_write(0x54);		//Commande pour écrire du texte
+	i2c_write(Cent+0x30);	//Affiche les centaines
+	i2c_write(Dix+0x30);	//Affiche les dizaine
+	i2c_write(0x2E);		//.
+	i2c_write(Unit+0x30);	//Affiche les unités
+	i2c_write(0x5B);		//[
+	i2c_write(0x56);		//V
+	i2c_write(0x5D);		//]
+	i2c_stop();
+}
+
+/*==========================================================================
+====Fonction     : afficheTension	                                    ====
+====Sierro Romain: 20.05.2016                                           ====
+====--------------------------------------------------------------------====
+====Affiche le dessin de la batterie pour savoir le niveau de charge	====
+============================================================================*/
+void afficheTension(void)
+{
+	startConnection(11);
+	setCursor(0x01, 0x0B, 0x01, 0x0B);
+	if(tension>=228)	//Si la tension est plus grande que 45V
+	{
+		drawImage(0x00, 0x06);	//Dessine la batterie verte
+	}
+	else if(tension>=152)	//Si la tension est plus grande que 30V
+	{
+		drawImage(0x00, 0x07);	//Dessine la batterie jaune
+	}
+	else if(tension>=102)	//Si la tension est plus grande que 20V
+	{
+		drawImage(0x00, 0x08);	//Dessine la batterie orange
+	}
+	else if(tension>=51)	//Si la tension est plus grande que 10V
+	{
+		drawImage(0x00, 0x09);	//Dessine la batterie rouge
+	}
+	else if(tension<51)	//Si la tension est plus petite que 10V
+	{
+		drawImage(0x00, 0x0A);	//Dessine la batterie vide
+	}
+
+	i2c_stop();	
+}
+
+/*==========================================================================
+====Fonction     : mesCourant		                                    ====
+====Sierro Romain: 13.05.2016                                           ====
+====--------------------------------------------------------------------====
+====Prend le courant des batteries mesurée sur AN0 et l'affiche 		====
+============================================================================*/
+void mesCourant(void)
+{	
+	courant=adc_read(0);	//Lit la mesure de AN1
+	Cent=courant/85;		
+	Dix=courant/8.5;		
+	Dix=Dix%10;				//-Je fais un modulo par la suite
+	Unit=courant;			// 	car on ne peut pas le faire sur un double
+	Unit=Unit%10;			//
+
+	startConnection(22);			//Dit combien de caractère on envoi
+	setFont(0x00, 0x00);			//Sélectionne la police d'écriture
+	setCursor(0x01, 0x70, 0x01, 0xB0);	//Positionne le curseur 
+
+	i2c_write(0xAA);		//Commande de l'écran
+	i2c_write(0x44);		//Commande pour dessiner 
+	i2c_write(0x54);		//Commande pour écrire du texte
+	i2c_write(Cent+0x30);	//Affiche les centaines
+	i2c_write(Dix+0x30);	//Affiche les dizaine
+	i2c_write(0x2E);		//.
+	i2c_write(Unit+0x30);	//Affiche les unités
+	i2c_write(0x5B);		//[
+	i2c_write(0x41);		//A
+	i2c_write(0x5D);		//]
+	i2c_stop();
+}
+
+/*==========================================================================
+====Fonction     : mesVitesse		                                    ====
+====Sierro Romain: 02.06.2016                                           ====
+====--------------------------------------------------------------------====
+====Calcul à partir du compteur du timer 0 la valeur de la vitesse		====
+============================================================================*/
+void mesVitesse(void)
+{	
+	double speed=0;
+	double count=0;
+	count=get_timer0();	//Prend la valeur de comptage du timer0. =(TMR0H<<8)|TMR0L;
+	speed=count*2.7;	//*75/100'000*3'600 Permet de passer en km/h 
+	TMR0H=0;
+	TMR0L=0;
+	
+	Cent=speed/10;
+	Dix=speed;
+	Dix=Dix%10;
+	Unit=speed*10;
+	Unit=Unit%10;
+	
+	startConnection(25);			//Dit combien de caractère on envoie
+	setFont(0x00, 0x00);			//Sélectionne la police d'écriture
+	setCursor(0x02, 0x45, 0x00, 0xD5);	//Positionne le curseur 
+
+	i2c_write(0xAA);		//Commande de l'écran
+	i2c_write(0x44);		//Commande pour dessiner 
+	i2c_write(0x54);		//Commande pour écrire du texte
+	i2c_write(Cent+0x30);	//Affiche les centaines
+	i2c_write(Dix+0x30);	//Affiche les dizaine
+	i2c_write(0x2E);		//.
+	i2c_write(Unit+0x30);	//Affiche les unités
+	i2c_write(0x5B);		//[
+	i2c_write(0x4B);		//K
+	i2c_write(0x6D);		//m
+	i2c_write(0x2F);		///
+	i2c_write(0x68);		//h 
+	i2c_write(0x5D);		//]
+	i2c_stop();
+}
+
+//Interruption : s'active à chaque fois qu'un signal arrive sur la pin Echo du capteur 2
+#INT_EXT2 
+void Echo_isr()
+{
+	enable_interrupts(INT_TIMER1);	//Active le timer0
+	disable_interrupts(INT_EXT2);	//Désactive l'interruption RB2
+}
+
+//Timer : sert à mesurer la longueur de la pulse d'Echo et ainsi, à calculer la distance
+#INT_TIMER1
+void TIMER1_isr()
+{
+	TMR1H=0xFF;	//Préchargement du timer
+	TMR1L=0x06;	
+	if(Echo==1)	//Si on un toujours de l'echo
+	{
+		indexEcho+=1;		//On incrémente l'index de l'echo
+		if(indexEcho==470)	//Si l'echo à atteint la distance max
+		{
+			distance=400;	//On fixe la distance à 4m
+			indexEcho=0;	//On remet à 0 l'indexEcho
+			disable_interrupts(INT_TIMER1);	//Désactive timer0			
+		}
+	}
+	else
+	{
+		distance = indexEcho*0.85;		//(((indexEcho*0.00005)*340)/2)*100;		
+		if(distance>=400){distance=400;}	//Fixe la distance max à 4m
+		indexEcho=0;	//Remet à 0 indexEcho
+		disable_interrupts(INT_TIMER1);	//Désactive timer0
+	}
+}
+
+//Timer : chaque seconde, appelle la fonction vitesse
+#INT_TIMER2
+void TIMER2_isr()
+{
+	static int i_sec;
+	
+	TMR2=240;
+	if(i_sec==100)	//Chaque seconde, on calcule la vitesse
+	{
+		i_sec=0;
+		mesVitesse();	//Mesure et affiche la vitesse du karting	
+	}
+	else
+	{
+		i_sec++;
+	}
+}
+
+
+
+
