@@ -1,0 +1,7 @@
+>>> Warning 208 "ext_rb0_4520.c" Line 25(1,8): Function not void and does not return a value  Init_uC
+>>> Warning 208 "ext_rb0_4520.c" Line 51(1,8): Function not void and does not return a value  RB0_isr
+>>> Warning 203 "ext_rb0_4520.c" Line 115(1,1): Condition always TRUE
+>>> Warning 208 "ext_rb0_4520.c" Line 63(1,5): Function not void and does not return a value  MAIN
+>>> Warning 216 "ext_rb0_4520.c" Line 125(0,1): Interrupts disabled during call to prevent re-entrancy:  (@I2C_WRITEU_1)
+      Memory usage:   ROM=2%      RAM=2% - 2%
+      0 Errors,  5 Warnings.

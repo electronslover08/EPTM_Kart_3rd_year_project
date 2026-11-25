@@ -1,0 +1,50 @@
+
+ROM used: 670 (2%)
+          670 (2%) including unused fragments
+
+          1 Average locations per line
+          13 Average locations per statement
+
+RAM used: 27 (2%) at main() level
+          31 (2%) worst case
+
+Stack used: 4 worst case (out of 30 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  118    50 100  Réalisation 7 EEPROM_SEQ.c
+  470     0   0  18F4520.h
+  412     0   0  18F_register.h
+----- -----
+ 1000    50 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     28   2   1             @I2C_WRITEU_1
+0     30   2   1             @I2C_READU_1
+0    200  15   0   447  2.4  Init
+0     54   4   2   185  3.6  RB0_isr
+0    130  10   2   525  3.4  RB1_isr
+0     46   3   0    32  1.2  MAIN
+
+Program metrics:
+    Functions               4
+    Statements              50
+    Comments                152
+    Volume (V)              1576
+    Difficilty (D)          11.0
+    Effort to implement (E) 17362
+    Time to implement (T)   16 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    93
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-000B8   178  0  
+000BA-07CBE   488  31262  
+
+
+

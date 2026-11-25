@@ -1,0 +1,18 @@
+ÀÄext_rb0_4520
+   ÃÄMAIN  0/98  Ram=0
+   ³  ÃÄ??0??
+   ³  ÃÄInit_uC  0/160  Ram=0
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ³  ÀÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+   ³  ÀÄ@delay_ms1  0/40  Ram=1
+   ÀÄRB0_isr  0/36  Ram=0
+      ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+      ÃÄ@I2C_WRITEU_1  0/28  Ram=1
+      ÀÄ@I2C_WRITEU_1  0/28  Ram=1

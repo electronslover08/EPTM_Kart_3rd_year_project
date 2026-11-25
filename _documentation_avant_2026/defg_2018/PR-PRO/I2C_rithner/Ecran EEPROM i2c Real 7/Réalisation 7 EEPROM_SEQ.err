@@ -1,0 +1,4 @@
+>>> Warning 203 "Réalisation 7 EEPROM_SEQ.c" Line 114(1,1): Condition always TRUE
+>>> Warning 216 "Réalisation 7 EEPROM_SEQ.c" Line 119(0,1): Interrupts disabled during call to prevent re-entrancy:  (@I2C_WRITEU_1)
+      Memory usage:   ROM=2%      RAM=2% - 2%
+      0 Errors,  2 Warnings.
