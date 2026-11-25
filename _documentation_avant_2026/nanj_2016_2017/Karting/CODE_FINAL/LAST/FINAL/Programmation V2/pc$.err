@@ -1,0 +1,6 @@
+>>> Warning 203 "Base CCS.c" Line 79(1,1): Condition always TRUE
+>>> Warning 201 "Base CCS.c" Line 82(1,1): Assignment inside relational expression
+*** Error 76 "Base CCS.c" Line 88(1,3): Expect ;
+*** Error 48 "Base CCS.c" Line 92(1,9): Expecting a (
+      2 Errors,  2 Warnings.
+Build Failed.

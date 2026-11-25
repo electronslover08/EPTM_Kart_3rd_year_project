@@ -1,0 +1,52 @@
+
+ROM used: 944 (3%)
+          944 (3%) including unused fragments
+
+          1 Average locations per line
+          19 Average locations per statement
+
+RAM used: 139 (9%) at main() level
+          145 (10%) worst case
+
+Stack used: 4 worst case (out of 30 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  152    49 100  Base CCS.c
+  470     0   0  C:\Program Files (x86)\PICC\devices\18F4520.h
+  401     0   0  18F_register.h
+----- -----
+ 1023    49 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0    108   6   1             @I2C_WRITE_1
+0     92   5   0    32  1.2  main
+0     38   2   0   253  1.9  Config_uP
+0     88   5   2   132  1.6  RB0_isr
+0     34   2   0             @const505
+0     64   3   5   240  4.7  startPointScreen
+0     88   5   1   233  3.1  startConnection
+0     92   5   3   247  4.6  writeText
+
+Program metrics:
+    Functions               6
+    Statements              49
+    Comments                188
+    Volume (V)              1724
+    Difficilty (D)          17.1
+    Effort to implement (E) 29404
+    Time to implement (T)   27 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   5
+    Maintainability (MI)    142
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-00156   336  0  
+00158-07CBE   604  30988  
+
+
+

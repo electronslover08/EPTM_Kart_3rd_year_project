@@ -1,0 +1,10 @@
+>>> Warning 203 "Base CCS.c" Line 52(1,1): Condition always TRUE
+>>> Warning 225 "Base CCS.c" Line 97(1,1): Interrupt level changed  EXT: NORMAL=>HIGH
+>>> Warning 202 "Base CCS.c" Line 21(5,12): Variable never used:   oldData
+>>> Warning 202 "Base CCS.c" Line 22(5,12): Variable never used:   newData
+>>> Warning 202 "Base CCS.c" Line 23(5,6): Variable never used:   i
+>>> Warning 202 "Base CCS.c" Line 25(5,14): Variable never used:   backlight
+>>> Warning 202 "Base CCS.c" Line 26(5,17): Variable never used:   oldBacklight
+>>> Warning 202 "Base CCS.c" Line 30(6,17): Variable never used:   dataRecuTab
+      Memory usage:   ROM=3%      RAM=9% - 10%
+      0 Errors,  8 Warnings.

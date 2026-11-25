@@ -1,0 +1,53 @@
+
+ROM used: 1526 (5%)
+          1526 (5%) including unused fragments
+
+          2 Average locations per line
+          31 Average locations per statement
+
+RAM used: 51 (3%) at main() level
+          70 (5%) worst case
+
+Stack used: 4 worst case (out of 30 total available)
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  138    50 100  Base CCS.c
+  470     0   0  C:\Program Files (x86)\PICC\devices\18F4520.h
+  401     0   0  18F_register.h
+----- -----
+ 1009    50 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     28   1   1             @I2C_WRITEU_1
+0     82   3   0   434  2.4  Config_uP
+0    122   4   0   253  1.8  MAIN
+0     14   0   0    50  1.5  Echo_isr
+0    224   7   4   216  4.3  TIMER0_isr
+0     56   2   2             @ITOF
+0    242   8  11             @MULFF
+0    348  11  14             @DIVFF
+0     58   2   4             @SFTOI
+
+Program metrics:
+    Functions               4
+    Statements              50
+    Comments                154
+    Volume (V)              1308
+    Difficilty (D)          9.9
+    Effort to implement (E) 12890
+    Time to implement (T)   12 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    91
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00002     4  0  
+00004-00006     0  4  
+00008-00162   348  0  
+00164-07CBE  1174  30406  
+
+
+

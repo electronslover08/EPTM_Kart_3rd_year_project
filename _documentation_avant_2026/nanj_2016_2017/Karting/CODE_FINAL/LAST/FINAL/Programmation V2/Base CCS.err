@@ -1,0 +1,28 @@
+>>> Warning 203 "Base CCS.c" Line 129(1,1): Condition always TRUE
+>>> Warning 229 "Base CCS.c" Line 415(1,1): Subscript out of range
+>>> Warning 208 "Base CCS.c" Line 406(56,66): Function not void and does not return a value  TIMER0_isr
+>>> Warning 225 "Base CCS.c" Line 832(1,1): Interrupt level changed  EXT: NORMAL=>HIGH
+>>> Warning 208 "Base CCS.c" Line 890(1,11): Function not void and does not return a value  Timer1_isr
+>>> Warning 225 "Base CCS.c" Line 944(1,1): Interrupt level changed  TIMER0: FAST=>HIGH
+>>> Warning 216 "Base CCS.c" Line 944(1,2): Interrupts disabled during call to prevent re-entrancy:  (@I2C_WRITEU_1)
+>>> Warning 216 "Base CCS.c" Line 944(1,2): Interrupts disabled during call to prevent re-entrancy:  (StartConnection)
+>>> Warning 216 "Base CCS.c" Line 944(1,2): Interrupts disabled during call to prevent re-entrancy:  (iCK)
+>>> Warning 216 "Base CCS.c" Line 944(1,2): Interrupts disabled during call to prevent re-entrancy:  (writeLine)
+>>> Warning 216 "Base CCS.c" Line 944(1,2): Interrupts disabled during call to prevent re-entrancy:  (iAF)
+>>> Warning 216 "Base CCS.c" Line 944(1,2): Interrupts disabled during call to prevent re-entrancy:  (iDT)
+>>> Warning 216 "Base CCS.c" Line 944(1,2): Interrupts disabled during call to prevent re-entrancy:  (iTW)
+>>> Warning 216 "Base CCS.c" Line 944(1,2): Interrupts disabled during call to prevent re-entrancy:  (iTH)
+>>> Warning 216 "Base CCS.c" Line 944(1,2): Interrupts disabled during call to prevent re-entrancy:  (iTA)
+>>> Warning 216 "Base CCS.c" Line 944(1,2): Interrupts disabled during call to prevent re-entrancy:  (BlockRead)
+>>> Warning 216 "Base CCS.c" Line 944(1,2): Interrupts disabled during call to prevent re-entrancy:  (TouchFieldMain)
+>>> Warning 216 "Base CCS.c" Line 944(1,2): Interrupts disabled during call to prevent re-entrancy:  (DrawGraphVoltage)
+>>> Warning 202 "Base CCS.c" Line 60(5,12): Variable never used:   iew_tab
+>>> Warning 202 "Base CCS.c" Line 61(5,12): Variable never used:   ier_tab
+>>> Warning 202 "Base CCS.c" Line 62(5,12): Variable never used:   iit_tab
+>>> Warning 202 "Base CCS.c" Line 63(5,12): Variable never used:   iid_tab
+>>> Warning 202 "Base CCS.c" Line 64(5,12): Variable never used:   ici_tab
+>>> Warning 202 "Base CCS.c" Line 65(5,12): Variable never used:   icb_tab
+>>> Warning 202 "Base CCS.c" Line 68(5,14): Variable never used:   indexTIME
+      Memory usage:   ROM=28%      RAM=16% - 18%
+      0 Errors,  25 Warnings.
+Build Successful.
