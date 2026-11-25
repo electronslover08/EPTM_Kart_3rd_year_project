@@ -1,0 +1,5 @@
+Damien Gsponer
+Direction Karting electrique
+
+Le but de ce projet a été de réaliser une direction assistée pour commander les roues du kart à l'aide d'un moteur.
+On récupère les valeurs du volant et de l'axe de la direction puis on ajuste la trajectoire pour imiter un vrai virage.

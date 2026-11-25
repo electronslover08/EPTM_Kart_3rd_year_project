@@ -1,0 +1,31 @@
+Sortie des fichiers FAO du projet actuelampliopcapteur.T3001
+Révision V.01
+Editer le 17. mai 2019, 16:32h
+Projet actuel crée avec TARGET 18.4.0.86 design station
+Fichiers crées avec TARGET 3001! V18.4.0.86
+Projet de la version TARGET NC. Utilisation commerciale est délictueuse!
+ADRESSE DE LIVRAISON:
+  
+  
+  
+  F- 
+  Tel: 
+  FAX: 
+  eMail: 
+Taille de PCB: 29,21 mm x 40 mm
+
+Suivant la description des fichiers crées:
+
+ampliopcapteur.Top = 16 = Face composant: cuivre L1   ( *.Top )
+ampliopcapteur.Bot = 2 = Face soudure: cuivre L2   ( *.Bot )
+ampliopcapteur.Tool = liste de perçage
+ampliopcapteur.Drill = Perçages pour les vias
+ampliopcapteur.Outline = 23 = Contour PCB ( détourage )   ( *.Outline )
+ampliopcapteur.StopTop = 18 = Face composant: vernis épargne   ( *.StopTop )
+ampliopcapteur.StopBot = 4 = Face soudure: vernis épargne   ( *.StopBot )
+ampliopcapteur.PosiTop = 21 = Face composant: sérigraphie   ( *.PosiTop )
+ampliopcapteur.Apr = TARGET 3001! liste des "apertures"
+ampliopcapteur.Whl = liste des "apertures" compatible avec Eagle
+
+
+Attention: La piste la plus fine est plus petite que 0,150mm: (0,104 chez 25,4775 | 24,4405) sur la couche 21
