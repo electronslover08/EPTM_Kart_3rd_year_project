@@ -3,7 +3,8 @@
 | Document | Date | Formats |
 |---|---|---|
 | **Cahier des charges, version 2** (pilotage à distance, en vigueur) | 17.11.2026 | [PDF](cahier_des_charges/Cahier_des_charges_kart_Bachelard_v2.pdf) · [Word](cahier_des_charges/Cahier_des_charges_kart_Bachelard_v2.docx) |
-| **Petit cahier des charges, phase 1** (commande de l'accélérateur par télécommande, destiné au responsable) | 25.11.2026 | [PDF](cahier_des_charges/phase_1_telecommande/Cahier_des_charges_phase1_telecommande_Bachelard.pdf) · [Word](cahier_des_charges/phase_1_telecommande/Cahier_des_charges_phase1_telecommande_Bachelard.docx) |
+| **Petit cahier des charges, phases 1 à 3** (accélérateur, direction motorisée, freins ; budget ; destiné au responsable) | 26.11.2026 | [PDF](cahier_des_charges/petit_cahier_pilotage_a_distance/Petit_cahier_des_charges_pilotage_Bachelard.pdf) · [Word](cahier_des_charges/petit_cahier_pilotage_a_distance/Petit_cahier_des_charges_pilotage_Bachelard.docx) |
+| Petit cahier des charges, phase 1 seule (remplacé par la version phases 1 à 3 ci-dessus) | 25.11.2026 | [PDF](cahier_des_charges/phase_1_telecommande/Cahier_des_charges_phase1_telecommande_Bachelard.pdf) · [Word](cahier_des_charges/phase_1_telecommande/Cahier_des_charges_phase1_telecommande_Bachelard.docx) |
 | Cahier des charges, version 1 (rénovation, remplacée par la version 2) | 10.11.2026 | [PDF](cahier_des_charges/Cahier_des_charges_kart_Bachelard.pdf) · [Word](cahier_des_charges/Cahier_des_charges_kart_Bachelard.docx) |
 | Planning des tâches | 25.11.2026 | [Excel](planning/planning.xlsx) |
 | Journal de bord, 25.11.2026 (modèle : [Word](journal_de_bord/modele.dotx)) | 25.11.2026 | [Word](journal_de_bord/251126.docx) |
