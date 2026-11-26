@@ -10,6 +10,7 @@
 | Analyse du kart | 25.11.2026 | [Word](analyses/analyse_du_kart_261126.docx) |
 | Analyse du moteur | 25.11.2026 | [Word](analyses/analyse_du_moteur_261126.docx) |
 | Analyse de la direction | 25.11.2026 | [Word](analyses/analyse_de_la_direction_251126.docx) |
+| Simulation 3D de la direction motorisée (moteur pas à pas, réducteur, roues dentées) | 26.11.2026 | [Word](simulations/moteur_direction_kart/Simulation_3D_direction_kart.docx) |
 | Bon de commande du matériel | 25.11.2026 | [Excel](commandes/bon_commande.xlsx) |
 | Fiches techniques : contrôleur moteur DSH600, moteur pas à pas SHW86-16 | 25.11.2026 | [PDF](datasheets/controlleur_motor_DSH600.pdf) · [PDF](datasheets/step_motor_SHW86-16.pdf) |
 
