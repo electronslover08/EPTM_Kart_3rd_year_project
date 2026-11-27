@@ -1,0 +1,22 @@
+(version 1)
+
+# Regles EPTM (gravure perchlo, sans metallisation) - doc ManufactureOfPCB v26, ch. 6.2.2 / 6.2.5
+# Isolation 20 mil, piste mini 15 mil (20 conseille), trou/cuivre 20 mil, cuivre/bord 25 mil, via 50/25 mil.
+
+(rule "EPTM via 50/25 mil"
+  (condition "A.Type == 'Via'")
+  (constraint via_diameter (min 1.27mm))
+  (constraint hole_size (min 0.6mm)))
+
+(rule "EPTM isolation trou-cuivre"
+  (constraint hole_clearance (min 0.508mm)))
+
+(rule "EPTM bord"
+  (constraint edge_clearance (min 0.635mm)))
+
+# Marge acceptee : eventail du TQFP-44 (pas 0,8 mm). Pastilles retrecies a 0,40 mm
+# -> ecart pastille/pastille 0,40 mm = 15,7 mil (limite "tres soigneux" du document).
+(rule "Marge TQFP U3 (15 mil)"
+  (condition "A.intersectsCourtyard('U3') || B.intersectsCourtyard('U3')")
+  (constraint clearance (min 0.38mm))
+  (constraint track_width (min 0.381mm)))
