@@ -1,0 +1,4 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "MAX485EESA") (type "KiCad") (uri "${KIPRJMOD}/lib_MAX485EESA/MAX485EESA.pretty") (options "") (descr ""))
+)

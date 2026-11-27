@@ -1,0 +1,5 @@
+(sym_lib_table
+	(version 7)
+	(lib (name "PIC18F45K22") (type "KiCad") (uri "${KIPRJMOD}/lib_PIC18F45K22/PIC18F45K22-I_PT.kicad_sym") (options "") (descr ""))
+	(lib (name "MAX485EESA") (type "KiCad") (uri "${KIPRJMOD}/lib_MAX485EESA/MAX485EESA.kicad_sym") (options "") (descr ""))
+)
